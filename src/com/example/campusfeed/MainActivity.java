@@ -1,11 +1,5 @@
 package com.example.campusfeed;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
@@ -84,5 +78,10 @@ public class MainActivity extends Activity
 
 			});
 		}
+	}
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.game_menu, menu);
+	    return true;
 	}
 }

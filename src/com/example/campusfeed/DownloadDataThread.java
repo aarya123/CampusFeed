@@ -42,6 +42,7 @@ public class DownloadDataThread extends Thread
 		{
 			e.printStackTrace();
 		}
+		
 		for (int i = 0; i < json.length(); i++)
 		{
 			try
@@ -59,15 +60,6 @@ public class DownloadDataThread extends Thread
 				e.printStackTrace();
 			}
 		}
-		/*
-		while (src.contains("<br>"))
-		{
-			String info = src.substring(0, src.indexOf("<br>"));
-			String[] infoArray = info.split(",,, ");
-			EventOrganizer.addEvent(new Event(infoArray[0], infoArray[1],
-					"Active"));
-			src = src.substring(src.indexOf("<br>") + 4);
-		}*/
 	}
 
 }
