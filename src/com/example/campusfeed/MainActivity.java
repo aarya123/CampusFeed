@@ -1,22 +1,25 @@
-package com.coding.campusfeed;
+package com.example.campusfeed;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
-import android.widget.*;
 
-import java.io.*;
-import java.net.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 public class MainActivity extends Activity
 {
+
+	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 	}
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.activity_main, menu);
+		return true;
+	}
 
 }
