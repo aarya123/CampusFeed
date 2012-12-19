@@ -33,6 +33,18 @@ public class Event
 		this.date = date;
 	}
 
+	public String getLocation(){
+		return location;
+	}
+	public String getDescription(){
+		return description;
+	}
+	public String getLocationSpecifics(){
+		return locationSpecifics;
+	}
+	public String getDate(){
+		return date;
+	}
 	public String getName()
 	{
 		return name;

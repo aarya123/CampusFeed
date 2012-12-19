@@ -43,10 +43,10 @@ public class MainActivity extends Activity
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id)
 				{
-					Intent myIntent = new Intent(MainActivity.this, EventInfo.class);
-					MainActivity.this.startActivity(myIntent);
+					Intent eventInfo = new Intent(MainActivity.this, EventInfo.class);
+					eventInfo.putExtra("EventIndex", position);
+					MainActivity.this.startActivity(eventInfo);
 				}
-
 			});
 		}
 	}
