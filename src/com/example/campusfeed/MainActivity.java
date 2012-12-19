@@ -5,6 +5,7 @@ import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
 import android.app.Activity;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -42,9 +43,8 @@ public class MainActivity extends Activity
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id)
 				{
-					Toast.makeText(getApplicationContext(),
-							"Clicked on item: " + position, Toast.LENGTH_SHORT)
-							.show();
+					Intent myIntent = new Intent(MainActivity.this, EventInfo.class);
+					MainActivity.this.startActivity(myIntent);
 				}
 
 			});
@@ -53,9 +53,7 @@ public class MainActivity extends Activity
 
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
-		super.onCreateOptionsMenu(menu);
-		MenuInflater mi = getMenuInflater();
-		mi.inflate(R.menu.activity_main, menu);
+		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
 	}
 
@@ -73,6 +71,10 @@ public class MainActivity extends Activity
 			return true;
 		case R.id.today:
 			Toast.makeText(getApplicationContext(), "Clicked on today",
+					Toast.LENGTH_SHORT).show();
+			return true;
+		case R.id.refresh:
+			Toast.makeText(getApplicationContext(), "Clicked on refresh",
 					Toast.LENGTH_SHORT).show();
 			return true;
 		}
