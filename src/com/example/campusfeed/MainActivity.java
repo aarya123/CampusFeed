@@ -8,6 +8,7 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -22,36 +23,6 @@ public class MainActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		ActionBar actionBar = getActionBar();
-		actionBar.addTab(
-				actionBar.newTab().setText("Popular")
-						.setTabListener(new TabListener()
-						{
-
-							@Override
-							public void onTabReselected(Tab tab,
-									FragmentTransaction ft)
-							{
-								// TODO
-
-							}
-
-							@Override
-							public void onTabSelected(Tab tab,
-									FragmentTransaction ft)
-							{
-								// TODO
-
-							}
-
-							@Override
-							public void onTabUnselected(Tab tab,
-									FragmentTransaction ft)
-							{
-								// TODO
-
-							}
-						}), true);
 		ListView listView = (ListView) findViewById(R.id.eventListView);
 		DownloadDataThread downloader = new DownloadDataThread();
 		downloader.start();
@@ -79,9 +50,32 @@ public class MainActivity extends Activity
 			});
 		}
 	}
-	/*public boolean onCreateOptionsMenu(Menu menu) {
-	    MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.game_menu, menu);
-	    return true;
-	}*/
+
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
+		super.onCreateOptionsMenu(menu);
+		MenuInflater mi = getMenuInflater();
+		mi.inflate(R.menu.activity_main, menu);
+		return true;
+	}
+
+	public boolean onMenuItemSelected(int featureId, MenuItem item)
+	{
+		switch (item.getItemId())
+		{
+		case R.id.more:
+			Toast.makeText(getApplicationContext(), "Clicked on more",
+					Toast.LENGTH_SHORT).show();
+			return true;
+		case R.id.popular:
+			Toast.makeText(getApplicationContext(), "Clicked on popular",
+					Toast.LENGTH_SHORT).show();
+			return true;
+		case R.id.today:
+			Toast.makeText(getApplicationContext(), "Clicked on today",
+					Toast.LENGTH_SHORT).show();
+			return true;
+		}
+		return super.onMenuItemSelected(featureId, item);
+	}
 }

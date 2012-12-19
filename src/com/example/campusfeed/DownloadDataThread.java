@@ -12,12 +12,6 @@ import org.json.*;
 
 public class DownloadDataThread extends Thread
 {
-	// events LinkedList
-	LinkedList<String> eventTitleLinked = new LinkedList<String>();
-	// events title string array
-	String[] eventTitles = null;
-	String connected = null;
-
 	public void run()
 	{
 		URL events = null;
@@ -41,7 +35,6 @@ public class DownloadDataThread extends Thread
 		}
 		// decode the json string
 		src = URLDecoder.decode(src);
-		System.out.println(src);
 		JSONArray json = null;
 		try
 		{
@@ -56,8 +49,6 @@ public class DownloadDataThread extends Thread
 			try
 			{
 				JSONObject event = json.getJSONObject(i);
-				// add the title to the linkedlist for titles
-				// just store the titles into the linked list.
 				EventOrganizer.addEvent(new Event(event.getString("unique_id"),
 						event.getString("title"), "active", event
 								.getString("location"),
@@ -65,18 +56,11 @@ public class DownloadDataThread extends Thread
 						event.getString("desc"), event.getString("latlng"),
 						event.getString("location_details"), event
 								.getString("date")));
-				//eventTitleLinked.add(event.optString("title"));
 			} catch (JSONException e)
 			{
 				e.printStackTrace();
 			}
 		}
-
-		// after adding all of the titles, we will convert the linked list into
-		// an array of strings
-		//eventTitles = new String[eventTitleLinked.size()];
-		// convert the linked list into a string array.
-		//eventTitleLinked.toArray(eventTitles);
 	}
 
 }

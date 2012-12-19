@@ -1,9 +1,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/menu_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/menu_settings"/>
+        android:id="@+id/popular"
+        android:icon="@android:drawable/btn_star_big_on"
+        android:showAsAction="ifRoom"
+        android:title="Sort By Popular"/>
+    <item
+        android:id="@+id/today"
+        android:icon="@android:drawable/ic_menu_day"
+        android:showAsAction="ifRoom"
+        android:title="Sort By Today"/>
+    <item
+        android:id="@+id/more"
+        android:icon="@android:drawable/ic_menu_add"
+        android:showAsAction="ifRoom"
+        android:title="More"/>
 
 </menu>
