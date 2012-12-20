@@ -21,11 +21,12 @@ import android.widget.ListView;
 
 public class DownloadDataThread extends Thread
 {
+	// I'll upgrade this class to work with when the user does not have an internet connection, so it does not just crash.
 	
 	
 	public void Download()
 	{
-     // boolean here possibly?
+
 		boolean isConnected=true;
 		// USING HTTP OBJECTS
 		// provided by Apache Foundation for android
