@@ -50,39 +50,23 @@ public class Event
 		return locationSpecifics;
 	}
 
-	// Weird stuff happening here... :(
+	// good stuff happening here :D 
 	public String getDate()
 	{
-		return (datetime.getMonth() + 1) + "/" + datetime.getDate() + "/"
-				+ (datetime.getYear() + 1900);
+	   // create a simpledateformat obj
+	   SimpleDateFormat sdf=new SimpleDateFormat("M/D/yy");
+	   return sdf.format(datetime);
 	}
 
-	// Weird stuff happening here... :(
+	// good stuff happening here :D 
 	public String getTime()
 	{
-		if (datetime.getHours() == 0)
-		{
-			if (datetime.getMinutes() > 9)
-				return 12 + ":" + datetime.getMinutes() + " AM";
-			else
-				return 12 + ":0" + datetime.getMinutes() + " AM";
-		} else if (datetime.getHours() > 12)
-		{
-			if (datetime.getMinutes() > 9)
-				return datetime.getHours() - 12 + ":" + datetime.getMinutes()
-						+ " PM";
-			else
-				return datetime.getHours() - 12 + ":0" + datetime.getMinutes()
-						+ " PM";
-		} else
-		{
-			if (datetime.getMinutes() > 9)
-				return datetime.getHours() + ":" + datetime.getMinutes()
-						+ " AM";
-			else
-				return datetime.getHours() + ":0" + datetime.getMinutes()
-						+ " AM";
-		}
+	// create a simple date format obj
+	// Set default timezone to EST
+	TimeZone.setDefault(TimeZone.getTimeZone("EST"));  
+	SimpleDateFormat sdf=new SimpleDateFormat("H:mm a");
+	return sdf.format(datetime);
+	
 	}
 
 	public Date getDateTime()
