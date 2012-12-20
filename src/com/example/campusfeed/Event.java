@@ -32,21 +32,64 @@ public class Event
 		this.description = description;
 		this.coordinates = coordinates;
 		this.locationSpecifics = locationSpecifics;
-		this.datetime=new Date(Long.parseLong(date)*1000);
+		this.datetime = new Date(Long.parseLong(date) * 1000);
 	}
 
-	public String getLocation(){
+	public String getLocation()
+	{
 		return location;
 	}
-	public String getDescription(){
+
+	public String getDescription()
+	{
 		return description;
 	}
-	public String getLocationSpecifics(){
+
+	public String getLocationSpecifics()
+	{
 		return locationSpecifics;
 	}
-	public String getDate(){
-		return date.toString();
+
+	// Weird stuff happening here... :(
+	public String getDate()
+	{
+		return (datetime.getMonth() + 1) + "/" + datetime.getDate() + "/"
+				+ (datetime.getYear() + 1900);
 	}
+
+	// Weird stuff happening here... :(
+	public String getTime()
+	{
+		if (datetime.getHours() == 0)
+		{
+			if (datetime.getMinutes() > 9)
+				return 12 + ":" + datetime.getMinutes() + " AM";
+			else
+				return 12 + ":0" + datetime.getMinutes() + " AM";
+		} else if (datetime.getHours() > 12)
+		{
+			if (datetime.getMinutes() > 9)
+				return datetime.getHours() - 12 + ":" + datetime.getMinutes()
+						+ " PM";
+			else
+				return datetime.getHours() - 12 + ":0" + datetime.getMinutes()
+						+ " PM";
+		} else
+		{
+			if (datetime.getMinutes() > 9)
+				return datetime.getHours() + ":" + datetime.getMinutes()
+						+ " AM";
+			else
+				return datetime.getHours() + ":0" + datetime.getMinutes()
+						+ " AM";
+		}
+	}
+
+	public Date getDateTime()
+	{
+		return datetime;
+	}
+
 	public String getName()
 	{
 		return name;

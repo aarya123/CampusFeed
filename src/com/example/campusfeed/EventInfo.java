@@ -20,7 +20,7 @@ public class EventInfo extends Activity
 		TextView description = (TextView)findViewById(R.id.eventInfo);
 		description.setText(currentEvent.getDescription());
 		TextView time = (TextView)findViewById(R.id.time);
-		//time.setText(currentEvent);
+		time.setText(currentEvent.getTime());
 		TextView date = (TextView)findViewById(R.id.date);
 		date.setText(currentEvent.getDate());
 		TextView location = (TextView)findViewById(R.id.eventLocation);
