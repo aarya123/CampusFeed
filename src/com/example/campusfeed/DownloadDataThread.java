@@ -8,37 +8,60 @@ import java.net.URL;
 import java.net.URLDecoder;
 import java.util.LinkedList;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.ParseException;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 import org.json.*;
+
+import android.widget.ListView;
 
 public class DownloadDataThread extends Thread
 {
-	public void run()
+	
+	
+	public void Download()
 	{
-		URL events = null;
-		try
-		{
-			events = new URL("http://ezevents.6te.net/playingaroundandroid.php");
-		} catch (MalformedURLException e)
-		{
-			e.printStackTrace();
+     // boolean here possibly?
+		boolean isConnected=true;
+		// USING HTTP OBJECTS
+		// provided by Apache Foundation for android
+		// more secure and fast
+		HttpGet httpGet=new HttpGet("http://ezevents.6te.net/playingaroundandroid.php");
+	    HttpClient h=new DefaultHttpClient();
+	    HttpResponse r=null;
+		try {
+			// execute request
+			r = h.execute(httpGet);
+		} catch (ClientProtocolException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
-		BufferedReader in = null;
-		String src = null;
-		try
-		{
-			in = new BufferedReader(new InputStreamReader(events.openStream()));
-			src = in.readLine();
-			in.close();
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		// decode the json string
-		src = URLDecoder.decode(src);
+	    String response=null;
+	    String jsonArray=null;
+	  try {
+	  	// will return the full json array outputted by php
+		response=EntityUtils.toString(r.getEntity());
+	} catch (ParseException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	} catch (IOException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	// decode it.
+		jsonArray = URLDecoder.decode(response);
 		JSONArray json = null;
 		try
 		{
-			json = new JSONArray(src);
+			// set the array to a jsonarray obj.
+			json = new JSONArray(jsonArray);
 		} catch (JSONException e)
 		{
 			e.printStackTrace();
