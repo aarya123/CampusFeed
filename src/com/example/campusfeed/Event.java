@@ -2,13 +2,15 @@ package com.example.campusfeed;
 
 import android.content.Context;
 import android.view.View;
+import java.util.*;
 import android.widget.*;
 
 public class Event
 {
 	String name, id, status, location, host, category, description,
-			coordinates, locationSpecifics, date;
+			coordinates, locationSpecifics;
 	static Context CONTEXT;
+	Date datetime;
 
 	public Event(String id, String name, String status)
 	{
@@ -30,7 +32,7 @@ public class Event
 		this.description = description;
 		this.coordinates = coordinates;
 		this.locationSpecifics = locationSpecifics;
-		this.date = date;
+		this.datetime=new Date(Long.parseLong(date)*1000);
 	}
 
 	public String getLocation(){
@@ -43,7 +45,7 @@ public class Event
 		return locationSpecifics;
 	}
 	public String getDate(){
-		return date;
+		return date.toString();
 	}
 	public String getName()
 	{
