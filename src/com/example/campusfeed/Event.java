@@ -55,7 +55,7 @@ public class Event
 	public String getDate()
 	{
 	   // create a simpledateformat obj
-	   SimpleDateFormat sdf=new SimpleDateFormat("M/D/yy");
+	   SimpleDateFormat sdf=new SimpleDateFormat("M/d/yy");
 	   return sdf.format(datetime);
 	}
 
@@ -65,7 +65,7 @@ public class Event
 	// create a simple date format obj
 	// Set default timezone to EST
 	TimeZone.setDefault(TimeZone.getTimeZone("EST"));  
-	SimpleDateFormat sdf=new SimpleDateFormat("H:mm a");
+	SimpleDateFormat sdf=new SimpleDateFormat("h:mm a");
 	return sdf.format(datetime);
 	
 	}
