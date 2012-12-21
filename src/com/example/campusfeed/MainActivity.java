@@ -20,8 +20,9 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity
 {
-// full scope vars for use in async task
+	// full scope vars for use in async task
 	ListView listView;
+
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
@@ -29,7 +30,6 @@ public class MainActivity extends Activity
 		listView = (ListView) findViewById(R.id.eventListView);
 		// start async task
 		new Connection().execute();
-		
 
 	}
 
@@ -62,8 +62,9 @@ public class MainActivity extends Activity
 		}
 		return super.onMenuItemSelected(featureId, item);
 	}
-	
-	// NOTE: Right now the listview shows up with WHITE TEXT!!. i'll fix that tomorrow!
+
+	// NOTE: Right now the listview shows up with WHITE TEXT!!. i'll fix that
+	// tomorrow!
 	/*
 	 * Inner AsyncTask class starts here. 
 	 * with it being an innner class
@@ -72,69 +73,63 @@ public class MainActivity extends Activity
 	 * 
 	 */
 	// the first generic is what doInBackground takes as a param.
-	// the second is for progress. I'll add that in later. We can use Int for it.
-	// the third is what onPostExecute takes as a param. 
-	// ** doInBackground, once completed, will return it's value to onPostExecute. ***
+	// the second is for progress. I'll add that in later. We can use Int for
+	// it.
+	// the third is what onPostExecute takes as a param.
+	// ** doInBackground, once completed, will return it's value to
+	// onPostExecute. ***
 	// onPostExecute is what you use to update the ui thread.
-	 public class Connection extends AsyncTask<String,Void,String>{
-		 
-		 		@Override
-		 		protected String doInBackground(String... params) {
-		 			//in this method, you do any network, and etc jobs.
-		 			// call the download class
-		 			DownloadDataThread main=new DownloadDataThread();
-		 			// I changed  method run to "Download"
-		 			main.Download();
-		 			
-		 			// the return here will basically pass the string or whatever to onPostExecute
-		 		        // maybe if we arent using this method to return our actual data, we can use
-	       	 //--------> read      	// this return value to tell onPostExecute if we did not connect. so if no, then set some ui element
-		 			// to say, "Please have an internet connection ready" or something...
-		 			return "complete";
-		 		}
-		     	@Override 
-		     	protected void onPostExecute(String events){
-		     		/*
-		     		 * Once done we can then update the ui and set onclick listeners and etc.
-		     		 
-		     		 */
-		     		 // set the array adapter. 
-					ArrayAdapter<String> a = new ArrayAdapter<String>(getApplicationContext(),
-							android.R.layout.simple_selectable_list_item,
-							EventOrganizer.getEventNames());
-				       // listview var has full scope so we can use it in this inner class.			
-					listView.setAdapter(a);
-					listView.setOnItemClickListener(new OnItemClickListener()
-					{
-						public void onItemClick(AdapterView<?> parent, View view,
-								int position, long id)
-						{
-							Intent eventInfo = new Intent(MainActivity.this, EventInfo.class);
-							eventInfo.putExtra("EventIndex", position);
-							MainActivity.this.startActivity(eventInfo);
-						}
-					});
-				
-		     		 
-		     	
-		     	      
-		     	   
-		     	}
-		     }
-		   
+	public class Connection extends AsyncTask<String, Void, String>
+	{
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		@Override
+		protected String doInBackground(String... params)
+		{
+			// in this method, you do any network, and etc jobs.
+			// call the download class
+			DownloadDataThread main = new DownloadDataThread();
+			// I changed method run to "Download"
+			main.Download();
+
+			// the return here will basically pass the string or whatever to
+			// onPostExecute
+			// maybe if we arent using this method to return our actual data, we
+			// can use
+			// --------> read // this return value to tell onPostExecute if we
+			// did not connect. so if no, then set some ui element
+			// to say, "Please have an internet connection ready" or
+			// something...
+			return "complete";
+		}
+
+		@Override
+		protected void onPostExecute(String events)
+		{
+			/*
+			 * Once done we can then update the ui and set onclick listeners and etc.
+			 
+			 */
+			// set the array adapter.
+			 ArrayAdapter<String> a = new ArrayAdapter<String>(
+					getApplicationContext(),
+					android.R.layout.simple_selectable_list_item,
+					EventOrganizer.getEventNames());
+			// listview var has full scope so we can use it in this inner class.
+			listView.setAdapter(a);
+			listView.setOnItemClickListener(new OnItemClickListener()
+			{
+				public void onItemClick(AdapterView<?> parent, View view,
+						int position, long id)
+				{
+					Intent eventInfo = new Intent(MainActivity.this,
+							EventInfo.class);
+					System.out.println(listView.getItemAtPosition(position).toString());
+					eventInfo.putExtra("EventName", listView.getItemAtPosition(position).toString());
+					MainActivity.this.startActivity(eventInfo);
+				}
+			});
+
+		}
+	}
+
 }
