@@ -115,7 +115,7 @@ public class MainActivity extends Activity
 			 ArrayAdapter<String> a = new ArrayAdapter<String>(
 					getApplicationContext(),
 					android.R.layout.simple_selectable_list_item,
-					EventOrganizer.getEventNames());
+					EventOrganizer.getEventNames(EventOrganizer.Sorter.popular));
 			// listview var has full scope so we can use it in this inner class.
 			listView.setAdapter(a);
 			listView.setOnItemClickListener(new OnItemClickListener()

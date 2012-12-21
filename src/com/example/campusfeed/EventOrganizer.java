@@ -40,7 +40,12 @@ public class EventOrganizer
 		ArrayList<String> names = new ArrayList<String>();
 		if (sorter == Sorter.popular)
 		{
-			// TODO
+			ArrayList<Event> events= new ArrayList<Event>();
+			for(int i=0;i<getNumOfEvents();i++)
+				events.add(getEvent(i));
+			events=sort(events);
+			for(int i=0;i<events.size();i++)
+				names.add(events.get(i).getName());
 		}
 		if (sorter == Sorter.today)
 		{
@@ -55,7 +60,10 @@ public class EventOrganizer
 				if (getEvent(i).getCategory() == sorter.toString())
 					names.add(getEvent(i).getName());
 		}
-		return (String[]) names.toArray();
+		String[] returnNames= new String[names.size()];
+		for(int i =0;i<names.size();i++)
+			returnNames[i]=names.get(i);
+		return returnNames;
 	}
 
 	public static Event getEventByName(String name)
@@ -74,49 +82,47 @@ public class EventOrganizer
 		return eventNames;
 	}
 
-	private int[] numbers;
-
-	public void sort(int[] values)
+	private static ArrayList<Event> sort(ArrayList<Event> events)
 	{
-		if (values == null || values.length == 0 || values.length == 1)
+		if (events == null || events.size() == 0 || events.size() == 1)
 		{
-			return;
+			return events;
 		}
-		this.numbers = values;
-		quicksort(0, values.length - 1);
+		return quicksort(0, events.size() - 1,events);
 	}
 
-	private void quicksort(int low, int high)
+	private static ArrayList<Event> quicksort(int low, int high,ArrayList<Event> toSort)
 	{
 		int i = low, j = high;
-		int pivot = numbers[low + (high - low) / 2];
+		Event pivot = toSort.get(low + (high - low) / 2);
 		while (i <= j)
 		{
-			while (numbers[i] < pivot)
+			while (toSort.get(i).getInterest() < pivot.getInterest())
 			{
 				i++;
 			}
-			while (numbers[j] > pivot)
+			while (toSort.get(j).getInterest() > pivot.getInterest())
 			{
 				j--;
 			}
 			if (i <= j)
 			{
-				swap(i, j);
+				swap(i, j,toSort);
 				i++;
 				j--;
 			}
 		}
 		if (low < j)
-			quicksort(low, j);
+			quicksort(low, j,toSort);
 		if (i < high)
-			quicksort(i, high);
+			quicksort(i, high,toSort);
+		return toSort;
 	}
 
-	private void swap(int i, int j)
+	private static void swap(int i, int j,ArrayList<Event> list)
 	{
-		int temp = numbers[i];
-		numbers[i] = numbers[j];
-		numbers[j] = temp;
+		Event temp = list.get(i);
+		list.set(i, list.get(j));
+		list.set(j, temp);
 	}
 }

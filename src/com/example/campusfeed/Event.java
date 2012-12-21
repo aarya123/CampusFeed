@@ -24,7 +24,8 @@ public class Event
 
 	public Event(String id, String name, String status, String location,
 			String host, String category, String description,
-			String coordinates, String locationSpecifics, String date, int interest)
+			String coordinates, String locationSpecifics, String date,
+			int interest)
 	{
 		this.id = id;
 		this.name = name;
@@ -36,7 +37,7 @@ public class Event
 		this.coordinates = coordinates;
 		this.locationSpecifics = locationSpecifics;
 		this.datetime = new Date(Long.parseLong(date) * 1000);
-		this.interest=interest;
+		this.interest = interest;
 	}
 
 	public String getLocation()
@@ -86,6 +87,11 @@ public class Event
 	public String getName()
 	{
 		return name;
+	}
+
+	public int getInterest()
+	{
+		return interest;
 	}
 
 	public String toString()
