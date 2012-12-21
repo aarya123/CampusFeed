@@ -1,6 +1,7 @@
 package com.example.campusfeed;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 public class EventOrganizer
@@ -43,7 +44,11 @@ public class EventOrganizer
 		}
 		if (sorter == Sorter.today)
 		{
-			// TODO
+			Calendar c = Calendar.getInstance(); 
+			String date = (c.get(Calendar.MONTH)+1)+"/"+c.get(Calendar.DATE)+"/"+c.get(Calendar.YEAR);
+			for (int i = 0; i < getNumOfEvents(); i++)
+				if (getEvent(i).getDate().equals(date))
+					names.add(getEvent(i).getName());
 		} else
 		{
 			for (int i = 0; i < getNumOfEvents(); i++)
