@@ -5,6 +5,7 @@ import android.view.View;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.text.*;
 import android.widget.*;
 
 public class Event
@@ -59,20 +60,22 @@ public class Event
 	// good stuff happening here :D
 	public String getDate()
 	{
-		// create a simpledateformat obj
-		SimpleDateFormat sdf = new SimpleDateFormat("M/D/yy");
-		return sdf.format(datetime);
+
+	   // create a simpledateformat obj
+	   SimpleDateFormat sdf=new SimpleDateFormat("M/d/yy");
+	   return sdf.format(datetime);
+
 	}
 
 	// good stuff happening here :D
 	public String getTime()
 	{
-		// create a simple date format obj
-		// Set default timezone to EST
-		TimeZone.setDefault(TimeZone.getTimeZone("EST"));
-		SimpleDateFormat sdf = new SimpleDateFormat("h:mm a");
-		return sdf.format(datetime);
 
+	// create a simple date format obj
+	// Set default timezone to EST
+	TimeZone.setDefault(TimeZone.getTimeZone("EST"));  
+	SimpleDateFormat sdf=new SimpleDateFormat("h:mm a");
+	return sdf.format(datetime);
 	}
 
 	public Date getDateTime()
