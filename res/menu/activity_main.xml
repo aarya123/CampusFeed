@@ -5,20 +5,6 @@
         android:icon="@drawable/ic_menu_refresh"
         android:showAsAction="ifRoom"
         android:title="Check For New Events"/>
-    <item
-        android:id="@+id/popular"
-        android:icon="@drawable/btn_star_big_on"
-        android:showAsAction="ifRoom"
-        android:title="Sort By Popular"/>
-    <item
-        android:id="@+id/today"
-        android:icon="@drawable/ic_menu_day"
-        android:showAsAction="ifRoom"
-        android:title="Sort By Today"/>
-    <item
-        android:id="@+id/more"
-        android:icon="@drawable/ic_menu_add"
-        android:showAsAction="ifRoom"
-        android:title="More"/>
+
 
 </menu>
