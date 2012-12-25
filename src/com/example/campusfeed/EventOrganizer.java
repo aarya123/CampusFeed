@@ -52,9 +52,12 @@ public class EventOrganizer
 			Calendar c = Calendar.getInstance();
 			String date = (c.get(Calendar.MONTH) + 1) + "/"
 					+ c.get(Calendar.DATE) + "/" + c.get(Calendar.YEAR);
+			System.out.println(date);
 			for (int i = 0; i < getNumOfEvents(); i++)
 				if (getEvent(i).getDate().equals(date))
 					names.add(getEvent(i).getName());
+			if(names.size()==0)
+				names.add("No Events Today!");
 		} else
 		{
 			for (int i = 0; i < getNumOfEvents(); i++)

@@ -28,10 +28,14 @@ public class Tab1 extends Activity
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id)
 			{
-				Intent eventInfo = new Intent(Tab1.this, EventInfo.class);
-				eventInfo.putExtra("EventName",
-						listView.getItemAtPosition(position).toString());
-				Tab1.this.startActivity(eventInfo);
+				if (!listView.getItemAtPosition(position).toString()
+						.equals("No Events Today!"))
+				{
+					Intent eventInfo = new Intent(Tab1.this, EventInfo.class);
+					eventInfo.putExtra("EventName",
+							listView.getItemAtPosition(position).toString());
+					Tab1.this.startActivity(eventInfo);
+				}
 			}
 		});
 	}
