@@ -1,64 +1,47 @@
 package com.example.campusfeed;
 
-import android.app.ActionBar;
-import android.app.ActionBar.Tab;
-import android.app.ActionBar.TabListener;
-import android.app.Activity;
-import android.app.FragmentTransaction;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.TabHost.TabSpec;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TabHost;
-import android.widget.Toast;
+import android.widget.TabHost.TabSpec;
 
 public class MainActivity extends TabActivity
 {
-// full scope vars for use in async task
+	// full scope vars for use in async task
 	ListView listView;
+
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+		new Connection().execute();
 		// create tab host.
-		TabHost tabs=getTabHost();
-		
-		 // tabs 
-		 // first tab
-	       TabSpec tab1=tabs.newTabSpec("Tab 1");
-	       tab1.setIndicator("Today");
-	       Intent today=new Intent(this,Tab1.class);
-	       tab1.setContent(today);
-
-	       // tab 2
-	    
-	       TabSpec tab2=tabs.newTabSpec("Tab 2");
-	       tab2.setIndicator("Popular");
-	     Intent popular =new Intent(this,Tab2.class);
-	      tab2.setContent(popular);
-	       // tab 3
-	       
-	       TabSpec tab3=tabs.newTabSpec("Tab 3");
-	       tab3.setIndicator("More");
-	       Intent more=new Intent(this,Tab3.class);
-	       tab3.setContent(more);
-	      //   add the tabs to the tabHOST
-	       tabs.addTab(tab1);
-	       tabs.addTab(tab2);
-	       tabs.addTab(tab3);
-	       
-		
-
+		TabHost tabs = getTabHost();
+		// tabs
+		// first tab
+		TabSpec tab1 = tabs.newTabSpec("Tab 1");
+		tab1.setIndicator("Today");
+		Intent today = new Intent(this, Tab1.class);
+		tab1.setContent(today);
+		// tab 2
+		TabSpec tab2 = tabs.newTabSpec("Tab 2");
+		tab2.setIndicator("Popular");
+		Intent popular = new Intent(this, Tab2.class);
+		tab2.setContent(popular);
+		// tab 3
+		TabSpec tab3 = tabs.newTabSpec("Tab 3");
+		tab3.setIndicator("More");
+		Intent more = new Intent(this, Tab3.class);
+		tab3.setContent(more);
+		// add the tabs to the tabHOST
+		tabs.addTab(tab1);
+		tabs.addTab(tab2);
+		tabs.addTab(tab3);
+		tabs.refreshDrawableState();
 	}
 
 	public boolean onCreateOptionsMenu(Menu menu)
@@ -67,7 +50,7 @@ public class MainActivity extends TabActivity
 		return true;
 	}
 
-	public boolean onMenuItemSelected(int featureId, MenuItem item)
+	/*public boolean onMenuItemSelected(int featureId, MenuItem item)
 	{
 		switch (item.getItemId())
 		{
@@ -89,9 +72,10 @@ public class MainActivity extends TabActivity
 			return true;
 		}
 		return super.onMenuItemSelected(featureId, item);
-	}
-	
-	// NOTE: Right now the listview shows up with WHITE TEXT!!. i'll fix that tomorrow!
+	}*/
+
+	// NOTE: Right now the listview shows up with WHITE TEXT!!. i'll fix that
+	// tomorrow!
 	/*
 	 * Inner AsyncTask class starts here. 
 	 * with it being an innner class
@@ -100,69 +84,34 @@ public class MainActivity extends TabActivity
 	 * 
 	 */
 	// the first generic is what doInBackground takes as a param.
-	// the second is for progress. I'll add that in later. We can use Int for it.
-	// the third is what onPostExecute takes as a param. 
-	// ** doInBackground, once completed, will return it's value to onPostExecute. ***
+	// the second is for progress. I'll add that in later. We can use Int for
+	// it.
+	// the third is what onPostExecute takes as a param.
+	// ** doInBackground, once completed, will return it's value to
+	// onPostExecute. ***
 	// onPostExecute is what you use to update the ui thread.
-	 public class Connection extends AsyncTask<String,Void,String>{
-		 
-		 		@Override
-		 		protected String doInBackground(String... params) {
-		 			//in this method, you do any network, and etc jobs.
-		 			// call the download class
-		 			DownloadDataThread main=new DownloadDataThread();
-		 			// I changed  method run to "Download"
-		 			main.Download();
-		 			
-		 			// the return here will basically pass the string or whatever to onPostExecute
-		 		        // maybe if we arent using this method to return our actual data, we can use
-	       	 //--------> read      	// this return value to tell onPostExecute if we did not connect. so if no, then set some ui element
-		 			// to say, "Please have an internet connection ready" or something...
-		 			return "complete";
-		 		}
-		     	@Override 
-		     	protected void onPostExecute(String events){
-		     		/*
-		     		 * Once done we can then update the ui and set onclick listeners and etc.
-		     		 
-		     		 */
-		     		 // set the array adapter. 
-					ArrayAdapter<String> a = new ArrayAdapter<String>(getApplicationContext(),
-							android.R.layout.simple_selectable_list_item,
-							EventOrganizer.getEventNames());
-				       // listview var has full scope so we can use it in this inner class.			
-					listView.setAdapter(a);
-					listView.setOnItemClickListener(new OnItemClickListener()
-					{
-						public void onItemClick(AdapterView<?> parent, View view,
-								int position, long id)
-						{
-							Intent eventInfo = new Intent(MainActivity.this, EventInfo.class);
-							eventInfo.putExtra("EventIndex", position);
-							MainActivity.this.startActivity(eventInfo);
-						}
-					});
-				
-		     		 
-		     	
-		     	      
-		     	   
-		     	}
-		     }
-		   
+	public class Connection extends AsyncTask<String, Void, String>
+	{
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		@Override
+		protected String doInBackground(String... params)
+		{
+			// in this method, you do any network, and etc jobs.
+			// call the download class
+			DownloadDataThread main = new DownloadDataThread();
+			// I changed method run to "Download"
+			main.Download();
+
+			// the return here will basically pass the string or whatever to
+			// onPostExecute
+			// maybe if we arent using this method to return our actual data, we
+			// can use
+			// --------> read // this return value to tell onPostExecute if we
+			// did not connect. so if no, then set some ui element
+			// to say, "Please have an internet connection ready" or
+			// something...
+			return "complete";
+		}
+	}
+
 }

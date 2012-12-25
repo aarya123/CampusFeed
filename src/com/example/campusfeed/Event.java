@@ -1,12 +1,7 @@
 package com.example.campusfeed;
 
-import android.content.Context;
-import android.view.View;
-
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.text.*;
-import android.widget.*;
 
 public class Event
 {

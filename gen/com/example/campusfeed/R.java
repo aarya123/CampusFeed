@@ -25,9 +25,7 @@ public final class R {
         public static final int eventLocationSpecifics=0x7f070009;
         public static final int list=0x7f07000e;
         public static final int location=0x7f070007;
-        public static final int more=0x7f070012;
         public static final int name=0x7f070001;
-        public static final int popular=0x7f070010;
         public static final int refresh=0x7f07000f;
         public static final int scrollView=0x7f070000;
         public static final int tab1=0x7f07000a;
@@ -35,7 +33,6 @@ public final class R {
         public static final int tab3=0x7f07000c;
         public static final int text=0x7f07000d;
         public static final int time=0x7f070005;
-        public static final int today=0x7f070011;
         public static final int when=0x7f070004;
     }
     public static final class layout {
