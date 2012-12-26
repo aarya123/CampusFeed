@@ -1,9 +1,12 @@
 package com.example.campusfeed;
 
-import android.os.Bundle;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import android.app.Activity;
-import android.view.Menu;
-import android.widget.ListView;
+import android.os.Bundle;
 import android.widget.TextView;
 
 public class EventInfo extends Activity
@@ -27,6 +30,11 @@ public class EventInfo extends Activity
 		location.setText(currentEvent.getLocation());
 		TextView locationSpecs = (TextView) findViewById(R.id.eventLocationSpecifics);
 		locationSpecs.setText(currentEvent.getLocationSpecifics());
+		GoogleMap map = ((MapFragment) getFragmentManager().findFragmentById(
+				R.id.map)).getMap();
+		map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+		map.addMarker(new MarkerOptions().position(
+				currentEvent.getLatLng()).title("Home"));
+		map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentEvent.getLatLng(),17));
 	}
-
 }

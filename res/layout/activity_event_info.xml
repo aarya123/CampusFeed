@@ -21,64 +21,85 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Event Name"
-            android:textSize="25sp" />
-        
+            android:textSize="30sp" />
+
         <TextView
             android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Description"
-            android:textSize="20sp" />
+            android:textSize="25sp" />
+
         <TextView
             android:id="@+id/eventInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Event Info"
-            android:textSize="15sp" />
+            android:textSize="20sp" />
+
         <TextView
             android:id="@+id/when"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="When"
-            android:textSize="20sp" />
+            android:textSize="25sp" />
+
         <TextView
             android:id="@+id/time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Event Time"
-            android:textSize="15sp" />
+            android:textSize="20sp" />
+
         <TextView
             android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Event Date"
-            android:textSize="15sp" />
+            android:textSize="20sp" />
+
         <TextView
             android:id="@+id/location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Event Location"
-            android:textSize="20sp" />
+            android:textSize="25sp" />
+
         <TextView
             android:id="@+id/eventLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Event Location"
-            android:textSize="15sp" />
+            android:textSize="20sp" />
+
         <TextView
             android:id="@+id/eventLocationSpecifics"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Event Location Specifics"
-            android:textSize="12sp" />
+            android:textSize="17sp" />
+
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.MapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="512dp" />
+
+        <!--
+             <com.google.android.maps.MapView
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:apiKey="AIzaSyBqbunJ58pvEmi8im6JBwm2AUSKBxy3j8E"/>
+        -->
     </LinearLayout>
 
 </ScrollView>

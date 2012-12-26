@@ -1,14 +1,16 @@
 package com.example.campusfeed;
 
 import java.text.SimpleDateFormat;
+import com.google.android.gms.maps.model.LatLng;
 import java.util.*;
 
 public class Event
 {
-	String name, id, status, location, host, category, description,
+	private String name, id, status, location, host, category, description,
 			coordinates, locationSpecifics;
-	Date datetime;
-	int interest;
+	private Date datetime;
+	private int interest;
+	private LatLng latlng;
 
 	public Event(String id, String name, String status)
 	{
@@ -20,7 +22,7 @@ public class Event
 	public Event(String id, String name, String status, String location,
 			String host, String category, String description,
 			String coordinates, String locationSpecifics, String date,
-			int interest)
+			int interest, String latlng)
 	{
 		this.id = id;
 		this.name = name;
@@ -33,6 +35,8 @@ public class Event
 		this.locationSpecifics = locationSpecifics;
 		this.datetime = new Date(Long.parseLong(date) * 1000);
 		this.interest = interest;
+		String[] latAndLang=latlng.split(",");
+		this.latlng=new LatLng(Double.parseDouble(latAndLang[0]),Double.parseDouble(latAndLang[1]));
 	}
 
 	public String getLocation()
@@ -92,5 +96,8 @@ public class Event
 	public String toString()
 	{
 		return name + "\n" + status;
+	}
+	public LatLng getLatLng(){
+		return latlng;
 	}
 }
