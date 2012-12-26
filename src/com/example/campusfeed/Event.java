@@ -21,8 +21,7 @@ public class Event
 
 	public Event(String id, String name, String status, String location,
 			String host, String category, String description,
-			String coordinates, String locationSpecifics, String date,
-			int interest, String latlng)
+			String locationSpecifics, String date, int interest, String latlng)
 	{
 		this.id = id;
 		this.name = name;
@@ -31,12 +30,12 @@ public class Event
 		this.host = host;
 		this.category = category;
 		this.description = description;
-		this.coordinates = coordinates;
 		this.locationSpecifics = locationSpecifics;
 		this.datetime = new Date(Long.parseLong(date) * 1000);
 		this.interest = interest;
-		String[] latAndLang=latlng.split(",");
-		this.latlng=new LatLng(Double.parseDouble(latAndLang[0]),Double.parseDouble(latAndLang[1]));
+		String[] latAndLang = latlng.split(",");
+		this.latlng = new LatLng(Double.parseDouble(latAndLang[0]),
+				Double.parseDouble(latAndLang[1]));
 	}
 
 	public String getLocation()
@@ -97,7 +96,9 @@ public class Event
 	{
 		return name + "\n" + status;
 	}
-	public LatLng getLatLng(){
+
+	public LatLng getLatLng()
+	{
 		return latlng;
 	}
 }

@@ -128,11 +128,8 @@ containing a value of this type.
         public static final int zOrderOnTop=0x7f01000d;
     }
     public static final class drawable {
-        public static final int btn_star_big_on=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
-        public static final int ic_menu_add=0x7f020002;
-        public static final int ic_menu_day=0x7f020003;
-        public static final int ic_menu_refresh=0x7f020004;
+        public static final int ic_launcher=0x7f020000;
+        public static final int ic_menu_refresh=0x7f020001;
     }
     public static final class id {
         public static final int date=0x7f04000a;
