@@ -61,7 +61,7 @@ public class EventOrganizer
 		} else
 		{
 			for (int i = 0; i < getNumOfEvents(); i++)
-				if (getEvent(i).getCategory() == sorter.toString())
+				if (getEvent(i).getCategory().equals(sorter.toString()))
 					names.add(getEvent(i).getName());
 		}
 		String[] returnNames = new String[names.size()];

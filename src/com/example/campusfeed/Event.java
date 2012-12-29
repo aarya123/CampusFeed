@@ -7,17 +7,10 @@ import java.util.*;
 public class Event
 {
 	private String name, id, status, location, host, category, description,
-			coordinates, locationSpecifics;
+			 locationSpecifics;
 	private Date datetime;
 	private int interest;
 	private LatLng latlng;
-
-	public Event(String id, String name, String status)
-	{
-		this.id = id;
-		this.name = name;
-		this.status = status;
-	}
 
 	public Event(String id, String name, String status, String location,
 			String host, String category, String description,

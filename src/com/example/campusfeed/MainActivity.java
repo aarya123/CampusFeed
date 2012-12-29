@@ -1,18 +1,17 @@
 package com.example.campusfeed;
-
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
-import android.widget.ListView;
+import android.view.MenuItem;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
+import android.widget.Toast;
 
 public class MainActivity extends TabActivity
 {
 	// full scope vars for use in async task
-	ListView listView;
 
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -35,7 +34,7 @@ public class MainActivity extends TabActivity
 		// tab 3
 		TabSpec tab3 = tabs.newTabSpec("Tab 3");
 		tab3.setIndicator("More");
-		Intent more = new Intent(this, Tab3.class);
+		Intent more = new Intent(this, ExtraSorters.class);
 		tab3.setContent(more);
 		// add the tabs to the tabHOST
 		tabs.addTab(tab1);
@@ -50,32 +49,19 @@ public class MainActivity extends TabActivity
 		return true;
 	}
 
-	/*public boolean onMenuItemSelected(int featureId, MenuItem item)
+	public boolean onMenuItemSelected(int featureId, MenuItem item)
 	{
 		switch (item.getItemId())
 		{
-		case R.id.more:
-			Toast.makeText(getApplicationContext(), "Clicked on more",
-					Toast.LENGTH_SHORT).show();
-			return true;
-		case R.id.popular:
-			Toast.makeText(getApplicationContext(), "Clicked on popular",
-					Toast.LENGTH_SHORT).show();
-			return true;
-		case R.id.today:
-			Toast.makeText(getApplicationContext(), "Clicked on today",
-					Toast.LENGTH_SHORT).show();
-			return true;
 		case R.id.refresh:
-			Toast.makeText(getApplicationContext(), "Clicked on refresh",
-					Toast.LENGTH_SHORT).show();
+			new Connection().execute();
+			Toast.makeText(getApplicationContext(),
+					"Event list has been updated", Toast.LENGTH_SHORT).show();
 			return true;
 		}
 		return super.onMenuItemSelected(featureId, item);
-	}*/
+	}
 
-	// NOTE: Right now the listview shows up with WHITE TEXT!!. i'll fix that
-	// tomorrow!
 	/*
 	 * Inner AsyncTask class starts here. 
 	 * with it being an innner class
@@ -110,7 +96,7 @@ public class MainActivity extends TabActivity
 			// did not connect. so if no, then set some ui element
 			// to say, "Please have an internet connection ready" or
 			// something...
-			return "complete";
+			return "";
 		}
 	}
 

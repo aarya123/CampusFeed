@@ -66,13 +66,20 @@ public class DownloadDataThread extends Thread
 			try
 			{
 				JSONObject event = json.getJSONObject(i);
-				EventOrganizer.addEvent(new Event(event.getString("unique_id"),
-						event.getString("title"), "active", event
-								.getString("location"),
-						event.getString("user"), event.getString("category"),
-						event.getString("desc"),
-						event.getString("location_details"), event
-								.getString("date"),event.getInt("interest"),event.getString("latlng").replace(" ", "").replace("\n", "")));
+				if (EventOrganizer.getEventByName(event.getString("title"))==null)
+				{
+					EventOrganizer.addEvent(new Event(event
+							.getString("unique_id"), event.getString("title"),
+							"active", event.getString("location"), event
+									.getString("user"), event
+									.getString("category"), event
+									.getString("desc"), event
+									.getString("location_details"), event
+									.getString("date"), event
+									.getInt("interest"), event
+									.getString("latlng").replace(" ", "")
+									.replace("\n", "")));
+				}
 			} catch (JSONException e)
 			{
 				e.printStackTrace();
