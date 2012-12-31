@@ -35,9 +35,9 @@ public class EventOrganizer
 		return eventList.size();
 	}
 
-	public static ArrayList<String> getEventNames(Enum<Sorter> sorter)
+	public static ArrayList<Event> getEventNames(Enum<Sorter> sorter)
 	{
-		ArrayList<String> names = new ArrayList<String>();
+		ArrayList<Event> names = new ArrayList<Event>();
 		if (sorter == Sorter.popular)
 		{
 			ArrayList<Event> events = new ArrayList<Event>();
@@ -45,7 +45,7 @@ public class EventOrganizer
 				events.add(getEvent(i));
 			events = sort(events);
 			for (int i = events.size()-1; i > -1; i--)
-				names.add(events.get(i).getName());
+				names.add(events.get(i));
 		
 		}
 		if (sorter == Sorter.today)
@@ -56,14 +56,18 @@ public class EventOrganizer
 			
 			for (int i = 0; i < getNumOfEvents(); i++)
 				if (getEvent(i).getDate().equals(date))
-					names.add(getEvent(i).getName());
+					names.add(getEvent(i));
 			if(names.size()==0)
-				names.add("No Events Today!");
-		} else
+			{
+				// do nothing
+			}
+		}
+		
+		else
 		{
 			for (int i = 0; i < getNumOfEvents(); i++)
 				if (getEvent(i).getCategory().equals(sorter.toString()))
-					names.add(getEvent(i).getName());
+					names.add(getEvent(i));
 		}
 	
 		return names;
@@ -136,4 +140,5 @@ public class EventOrganizer
 		list.set(i, list.get(j));
 		list.set(j, temp);
 	}
+	
 }

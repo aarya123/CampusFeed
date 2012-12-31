@@ -3,9 +3,12 @@ package com.example.campusfeed;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class EventInfo extends Activity
@@ -15,8 +18,8 @@ public class EventInfo extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_event_info);
-		Event currentEvent = EventOrganizer.getEventByName(getIntent()
-				.getExtras().getString("EventName"));
+		Event currentEvent = EventOrganizer.getEventById(getIntent()
+				.getExtras().getString("eventId"));
 		TextView name = (TextView) findViewById(R.id.name);
 		name.setText(currentEvent.getName());
 		TextView description = (TextView) findViewById(R.id.eventInfo);
@@ -35,5 +38,8 @@ public class EventInfo extends Activity
 		map.addMarker(new MarkerOptions().position(
 				currentEvent.getLatLng()).title("Home"));
 		map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentEvent.getLatLng(),17));
+		
+		
+		
 	}
 }
