@@ -1,25 +1,56 @@
 package com.example.campusfeed;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import android.annotation.TargetApi;
+import android.app.ActionBar;
+import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.TabActivity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 import android.widget.Toast;
 
+@TargetApi(11)
 public class MainActivity extends TabActivity
 {
 	// full scope vars for use in async task
+	ListView listView;
 
+	public  TabHost tabs;
+	
+	@TargetApi(11)
 	public void onCreate(Bundle savedInstanceState)
 	{
+		setupActionBar();
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		new Connection().execute();
+		// set the color of the action bar
+		
+	
+		new Connection().execute("ON_BOOT");
+		
 		// create tab host.
-		TabHost tabs = getTabHost();
+		tabs = getTabHost();
+	
 		// tabs
 		// first tab
 		TabSpec tab1 = tabs.newTabSpec("Tab 1");
@@ -34,34 +65,72 @@ public class MainActivity extends TabActivity
 		// tab 3
 		TabSpec tab3 = tabs.newTabSpec("Tab 3");
 		tab3.setIndicator("More");
+
 		Intent more = new Intent(this, ExtraSorters.class);
 		tab3.setContent(more);
 		// add the tabs to the tabHOST
+		
 		tabs.addTab(tab1);
 		tabs.addTab(tab2);
 		tabs.addTab(tab3);
-		tabs.refreshDrawableState();
-	}
+		
+		
+		
+	
+		// start up the background alarm manager for periodcal updates
 
+		Intent alarmmanager =new Intent(this,UpdateManager.class);
+		PendingIntent pending =PendingIntent.getService(getApplicationContext(), 00001, alarmmanager, PendingIntent.FLAG_CANCEL_CURRENT);
+	    AlarmManager manager=(AlarmManager)getSystemService(Activity.ALARM_SERVICE);
+	    manager.setRepeating(AlarmManager.RTC, System.currentTimeMillis(),60000, pending);
+	  
+	    
+		tabs.refreshDrawableState();
+		
+//	 new Updater().execute();
+	
+	}
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
 	}
-
+	@Override
 	public boolean onMenuItemSelected(int featureId, MenuItem item)
 	{
 		switch (item.getItemId())
 		{
 		case R.id.refresh:
-			new Connection().execute();
-			Toast.makeText(getApplicationContext(),
-					"Event list has been updated", Toast.LENGTH_SHORT).show();
+		
+			new Connection().execute("UPDATE");
+			
 			return true;
 		}
+		
+	
 		return super.onMenuItemSelected(featureId, item);
 	}
+	
+	
 
+	
+	@TargetApi(14)
+	public void setupActionBar(){
+		ActionBar bar=getActionBar();
+		ColorDrawable actionBarColor=new ColorDrawable();
+		Color c=new android.graphics.Color();
+		actionBarColor.setColor(Color.rgb(49,132,189));
+		bar.setTitle("");
+		
+		bar.setBackgroundDrawable(actionBarColor);
+	}
+	
+	
+}
+
+
+//NOTE: Right now the listview shows up with WHITE TEXT!!. i'll fix that
+	// tomorrow!
 	/*
 	 * Inner AsyncTask class starts here. 
 	 * with it being an innner class
@@ -76,7 +145,7 @@ public class MainActivity extends TabActivity
 	// ** doInBackground, once completed, will return it's value to
 	// onPostExecute. ***
 	// onPostExecute is what you use to update the ui thread.
-	public class Connection extends AsyncTask<String, Void, String>
+	 class Connection extends AsyncTask<String, Void, String>
 	{
 
 		@Override
@@ -87,6 +156,7 @@ public class MainActivity extends TabActivity
 			DownloadDataThread main = new DownloadDataThread();
 			// I changed method run to "Download"
 			main.Download();
+			Log.d("APP", "IN BACKGROUND");
 
 			// the return here will basically pass the string or whatever to
 			// onPostExecute
@@ -96,8 +166,41 @@ public class MainActivity extends TabActivity
 			// did not connect. so if no, then set some ui element
 			// to say, "Please have an internet connection ready" or
 			// something...
-			return "";
+			
+			return params[0];
 		}
-	}
-
+		@Override
+		public void onPostExecute(String result){
+			if(result.equals("UPDATE")){
+			updateAllLists();
+			}
+			else{
+				// do nothing
+			}
+		}
+		public void updateAllLists(){
+       try{
+    	   Tab1.a.clear();
+    	   Tab1.a.addAll(EventOrganizer.getEventNames(EventOrganizer.Sorter.today));
+    	   Tab1.a.notifyDataSetChanged();
+	
+			Tab2.a.clear();
+			Tab2.a.addAll(EventOrganizer.getEventNames(EventOrganizer.Sorter.popular));
+			Tab2.a.notifyDataSetChanged();
+			
+			// finish for list 1
+			
+		
 }
+catch(Exception e){
+	// since null pointer might go off if the array adapter has not loaded yet.
+}
+		}
+		
+		
+		
+	
+	}
+	 
+	
+	

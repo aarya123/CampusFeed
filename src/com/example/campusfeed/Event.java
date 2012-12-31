@@ -31,6 +31,24 @@ public class Event
 				Double.parseDouble(latAndLang[1]));
 	}
 
+	public void Update(String id, String name, String status, String location,
+			String host, String category, String description,
+			String locationSpecifics, String date, int interest, String latlng)
+	{
+		this.id = id;
+		this.name = name;
+		this.status = status;
+		this.location = location;
+		this.host = host;
+		this.category = category;
+		this.description = description;
+		this.locationSpecifics = locationSpecifics;
+		this.datetime = new Date(Long.parseLong(date) * 1000);
+		this.interest = interest;
+		String[] latAndLang = latlng.split(",");
+		this.latlng = new LatLng(Double.parseDouble(latAndLang[0]),
+				Double.parseDouble(latAndLang[1]));
+	}
 	public String getLocation()
 	{
 		return location;
@@ -93,5 +111,8 @@ public class Event
 	public LatLng getLatLng()
 	{
 		return latlng;
+	}
+	public String getId(){
+		return this.id;
 	}
 }

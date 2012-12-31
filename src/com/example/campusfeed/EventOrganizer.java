@@ -35,7 +35,7 @@ public class EventOrganizer
 		return eventList.size();
 	}
 
-	public static String[] getEventNames(Enum<Sorter> sorter)
+	public static ArrayList<String> getEventNames(Enum<Sorter> sorter)
 	{
 		ArrayList<String> names = new ArrayList<String>();
 		if (sorter == Sorter.popular)
@@ -46,13 +46,14 @@ public class EventOrganizer
 			events = sort(events);
 			for (int i = events.size()-1; i > -1; i--)
 				names.add(events.get(i).getName());
+		
 		}
 		if (sorter == Sorter.today)
 		{
 			Calendar c = Calendar.getInstance();
 			String date = (c.get(Calendar.MONTH) + 1) + "/"
 					+ c.get(Calendar.DATE) + "/" + c.get(Calendar.YEAR);
-			System.out.println(date);
+			
 			for (int i = 0; i < getNumOfEvents(); i++)
 				if (getEvent(i).getDate().equals(date))
 					names.add(getEvent(i).getName());
@@ -64,16 +65,21 @@ public class EventOrganizer
 				if (getEvent(i).getCategory().equals(sorter.toString()))
 					names.add(getEvent(i).getName());
 		}
-		String[] returnNames = new String[names.size()];
-		for (int i = 0; i < names.size(); i++)
-			returnNames[i] = names.get(i);
-		return returnNames;
+	
+		return names;
 	}
 
 	public static Event getEventByName(String name)
 	{
 		for (int i = 0; i < getNumOfEvents(); i++)
 			if (name.equalsIgnoreCase(getEvent(i).getName()))
+				return getEvent(i);
+		return null;
+	}
+	
+	public static Event getEventById(String id){
+		for (int i = 0; i < getNumOfEvents(); i++)
+			if (id.equalsIgnoreCase(getEvent(i).getId()))
 				return getEvent(i);
 		return null;
 	}

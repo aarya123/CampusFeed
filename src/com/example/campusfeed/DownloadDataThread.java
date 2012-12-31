@@ -11,6 +11,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.json.*;
 
+import android.util.Log;
+
 public class DownloadDataThread extends Thread
 {
 	// I'll upgrade this class to work with when the user does not have an
@@ -31,10 +33,10 @@ public class DownloadDataThread extends Thread
 			r = h.execute(httpGet);
 		} catch (ClientProtocolException e1)
 		{
-			e1.printStackTrace();
+			Log.d("APP", "ERROR");
 		} catch (IOException e1)
 		{
-			e1.printStackTrace();
+		Log.d("APP", "ERROR");
 		}
 		String response = null;
 		String jsonArray = null;
@@ -44,10 +46,10 @@ public class DownloadDataThread extends Thread
 			response = EntityUtils.toString(r.getEntity());
 		} catch (ParseException e1)
 		{
-			e1.printStackTrace();
+			Log.d("APP", "ERROR");
 		} catch (IOException e1)
 		{
-			e1.printStackTrace();
+			Log.d("APP", "ERROR");
 		}
 		// decode it.
 		jsonArray = URLDecoder.decode(response);
@@ -58,7 +60,7 @@ public class DownloadDataThread extends Thread
 			json = new JSONArray(jsonArray);
 		} catch (JSONException e)
 		{
-			e.printStackTrace();
+			Log.d("APP", "ERROR");
 		}
 
 		for (int i = 0; i < json.length(); i++)
@@ -66,7 +68,8 @@ public class DownloadDataThread extends Thread
 			try
 			{
 				JSONObject event = json.getJSONObject(i);
-				if (EventOrganizer.getEventByName(event.getString("title"))==null)
+				Event e=EventOrganizer.getEventById(event.getString("unique_id"));
+				if (e==null)
 				{
 					EventOrganizer.addEvent(new Event(event
 							.getString("unique_id"), event.getString("title"),
@@ -80,9 +83,27 @@ public class DownloadDataThread extends Thread
 									.getString("latlng").replace(" ", "")
 									.replace("\n", "")));
 				}
+				else
+					{
+					 // update all sections
+					e.Update(event
+							.getString("unique_id"), event.getString("title"),
+							"active", event.getString("location"), event
+									.getString("user"), event
+									.getString("category"), event
+									.getString("desc"), event
+									.getString("location_details"), event
+									.getString("date"), event
+									.getInt("interest"), event
+									.getString("latlng").replace(" ", "")
+									.replace("\n", ""));
+						
+					}
+					
+				
 			} catch (JSONException e)
 			{
-				e.printStackTrace();
+				Log.d("APP", "ERROR");
 			}
 		}
 	}
