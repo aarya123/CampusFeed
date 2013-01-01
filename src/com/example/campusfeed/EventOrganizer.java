@@ -44,15 +44,10 @@ public class EventOrganizer
 			for (int i = 0; i < getNumOfEvents(); i++)
 				events.add(getEvent(i));
 			events = sort(events);
-<<<<<<< HEAD
-			for (int i = events.size() - 1; i > -1; i--)
-				names.add(events.get(i).getName());
 
-=======
-			for (int i = events.size()-1; i > -1; i--)
+			for (int i = events.size() - 1; i > -1; i--)
 				names.add(events.get(i));
-		
->>>>>>> c57c134191c5c893814d3b5ea9fed2dd6f345817
+
 		}
 		if (sorter == Sorter.today)
 		{
@@ -62,21 +57,10 @@ public class EventOrganizer
 
 			for (int i = 0; i < getNumOfEvents(); i++)
 				if (getEvent(i).getDate().equals(date))
-<<<<<<< HEAD
-					names.add(getEvent(i).getName());
-			if (names.size() == 0)
-				names.add("No Events Today!");
-		} else
-=======
 					names.add(getEvent(i));
-			if(names.size()==0)
-			{
-				// do nothing
-			}
-		}
-		
-		else
->>>>>>> c57c134191c5c893814d3b5ea9fed2dd6f345817
+			if (names.size() == 0)
+				names.add(null);
+		} else
 		{
 			for (int i = 0; i < getNumOfEvents(); i++)
 				if (getEvent(i).getCategory().equals(sorter.toString()))
@@ -179,5 +163,5 @@ public class EventOrganizer
 		list.set(i, list.get(j));
 		list.set(j, temp);
 	}
-	
+
 }

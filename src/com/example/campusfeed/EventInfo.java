@@ -3,19 +3,13 @@ package com.example.campusfeed;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
-<<<<<<< HEAD
-=======
-import android.widget.Button;
->>>>>>> c57c134191c5c893814d3b5ea9fed2dd6f345817
 import android.widget.TextView;
 
 public class EventInfo extends Activity
@@ -42,9 +36,8 @@ public class EventInfo extends Activity
 		GoogleMap map = ((MapFragment) getFragmentManager().findFragmentById(
 				R.id.map)).getMap();
 		map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-<<<<<<< HEAD
 		map.addMarker(new MarkerOptions().position(currentEvent.getLatLng())
-				.title("Home"));
+				.title(currentEvent.getName()));
 		map.moveCamera(CameraUpdateFactory.newLatLngZoom(
 				currentEvent.getLatLng(), 17));
 		setupActionBar();
@@ -73,13 +66,5 @@ public class EventInfo extends Activity
 		actionBarColor.setColor(Color.rgb(49, 132, 189));
 		bar.setTitle("CampusFeed");
 		bar.setBackgroundDrawable(actionBarColor);
-=======
-		map.addMarker(new MarkerOptions().position(
-				currentEvent.getLatLng()).title("Home"));
-		map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentEvent.getLatLng(),17));
-		
-		
-		
->>>>>>> c57c134191c5c893814d3b5ea9fed2dd6f345817
 	}
 }
