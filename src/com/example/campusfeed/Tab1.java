@@ -1,8 +1,13 @@
 package com.example.campusfeed;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,7 +19,7 @@ import android.widget.ListView;
 public class Tab1 extends Activity
 {
 	// full scope vars for use in async task
-	private ListView listView;
+	public static ListView listView;
 	public static ArrayAdapter<String> a;
 
 	public void onCreate(Bundle savedInstanceState)
@@ -22,9 +27,11 @@ public class Tab1 extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tabs);
 		listView = (ListView) findViewById(R.id.list);
-		a = new ArrayAdapter<String>(getApplicationContext(),
-				R.layout.list_layout, R.id.text,
-				EventOrganizer.getEventNames(EventOrganizer.Sorter.today));
+
+		CustomAdapter a = new CustomAdapter(getApplicationContext(), R.id.list,
+				EventOrganizer.getEventNames(EventOrganizer.Sorter.popular));
+		;
+
 		try
 		{
 			listView.setAdapter(a);
@@ -38,9 +45,12 @@ public class Tab1 extends Activity
 					{
 						Intent eventInfo = new Intent(Tab1.this,
 								EventInfo.class);
-						eventInfo.putExtra("EventName", listView
-								.getItemAtPosition(position).toString());
-						Tab1.this.startActivity(eventInfo);
+						Event e = (Event) listView.getItemAtPosition(position);
+
+						Log.d("APP", e.getId());
+						// eventInfo.putExtra("eventId",
+						// );
+						// Tab1.this.startActivity(eventInfo);
 					}
 				}
 			});
@@ -48,6 +58,7 @@ public class Tab1 extends Activity
 		{
 
 		}
+
 	}
 
 	public void onResume()
@@ -55,6 +66,7 @@ public class Tab1 extends Activity
 		super.onResume();
 		// download again and update the list
 		// call the async task
+
 	}
 
 	public boolean onMenuItemSelected(int featureId, MenuItem item)
@@ -68,4 +80,5 @@ public class Tab1 extends Activity
 		}
 		return super.onMenuItemSelected(featureId, item);
 	}
+
 }

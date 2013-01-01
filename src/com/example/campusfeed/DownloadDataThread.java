@@ -36,7 +36,7 @@ public class DownloadDataThread extends Thread
 			Log.d("APP", "ERROR");
 		} catch (IOException e1)
 		{
-			Log.d("APP", "ERROR");
+		Log.d("APP", "ERROR");
 		}
 		String response = null;
 		String jsonArray = null;
@@ -68,9 +68,8 @@ public class DownloadDataThread extends Thread
 			try
 			{
 				JSONObject event = json.getJSONObject(i);
-				Event e = EventOrganizer.getEventById(event
-						.getString("unique_id"));
-				if (e == null)
+				Event e=EventOrganizer.getEventById(event.getString("unique_id"));
+				if (e==null)
 				{
 					EventOrganizer.addEvent(new Event(event
 							.getString("unique_id"), event.getString("title"),
@@ -83,24 +82,25 @@ public class DownloadDataThread extends Thread
 									.getInt("interest"), event
 									.getString("latlng").replace(" ", "")
 									.replace("\n", "")));
-				} else
-				{
-					// update all sections
-					e.Update(
-							event.getString("unique_id"),
-							event.getString("title"),
-							"active",
-							event.getString("location"),
-							event.getString("user"),
-							event.getString("category"),
-							event.getString("desc"),
-							event.getString("location_details"),
-							event.getString("date"),
-							event.getInt("interest"),
-							event.getString("latlng").replace(" ", "")
-									.replace("\n", ""));
-					EventOrganizer.addEvent(e);
 				}
+				else
+					{
+					 // update all sections
+					e.Update(event
+							.getString("unique_id"), event.getString("title"),
+							"active", event.getString("location"), event
+									.getString("user"), event
+									.getString("category"), event
+									.getString("desc"), event
+									.getString("location_details"), event
+									.getString("date"), event
+									.getInt("interest"), event
+									.getString("latlng").replace(" ", "")
+									.replace("\n", ""));
+						
+					}
+					
+				
 			} catch (JSONException e)
 			{
 				Log.d("APP", "ERROR");

@@ -132,21 +132,23 @@ containing a value of this type.
         public static final int ic_menu_refresh=0x7f020001;
     }
     public static final class id {
+        public static final int cats=0x7f040016;
         public static final int choiceList=0x7f040012;
         public static final int date=0x7f04000b;
+        public static final int date_time=0x7f040018;
         public static final int description=0x7f040007;
         public static final int eventInfo=0x7f040008;
         public static final int eventLocation=0x7f04000d;
         public static final int eventLocationSpecifics=0x7f04000e;
         public static final int extraList=0x7f040010;
-        public static final int list=0x7f040017;
+        public static final int list=0x7f040019;
         public static final int location=0x7f04000c;
         public static final int map=0x7f04000f;
-        public static final int menu_settings=0x7f040018;
+        public static final int menu_settings=0x7f04001a;
         public static final int name=0x7f040005;
         public static final int none=0x7f040000;
         public static final int normal=0x7f040001;
-        public static final int refresh=0x7f040019;
+        public static final int refresh=0x7f04001b;
         public static final int satellite=0x7f040002;
         public static final int scrollView=0x7f040004;
         public static final int separator=0x7f040006;
@@ -154,8 +156,8 @@ containing a value of this type.
         public static final int tab2=0x7f040014;
         public static final int tab3=0x7f040015;
         public static final int terrain=0x7f040003;
-        public static final int text=0x7f040016;
         public static final int time=0x7f04000a;
+        public static final int title=0x7f040017;
         public static final int viewSwitcher=0x7f040011;
         public static final int when=0x7f040009;
     }
@@ -164,8 +166,9 @@ containing a value of this type.
         public static final int activity_extra_list_viewer=0x7f030001;
         public static final int activity_extra_sorters=0x7f030002;
         public static final int activity_main=0x7f030003;
-        public static final int list_layout=0x7f030004;
-        public static final int tabs=0x7f030005;
+        public static final int categories=0x7f030004;
+        public static final int list_layout=0x7f030005;
+        public static final int tabs=0x7f030006;
     }
     public static final class menu {
         public static final int activity_event_info=0x7f070000;
