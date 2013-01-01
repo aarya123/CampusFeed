@@ -48,7 +48,6 @@ public class Tab1 extends Activity
 		{
 
 		}
-
 	}
 
 	public void onResume()

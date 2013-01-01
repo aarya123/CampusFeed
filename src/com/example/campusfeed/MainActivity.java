@@ -19,9 +19,6 @@ import android.widget.TabHost.TabSpec;
 
 public class MainActivity extends TabActivity
 {
-	// full scope vars for use in async task
-	public TabHost tabs;
-
 	public void onCreate(Bundle savedInstanceState)
 	{
 		setupActionBar();
@@ -30,7 +27,7 @@ public class MainActivity extends TabActivity
 		// set the color of the action bar
 		new Connection().execute("ON_BOOT");
 		// create tab host.
-		tabs = getTabHost();
+		TabHost tabs = getTabHost();
 		// tabs
 		// first tab
 		TabSpec tab1 = tabs.newTabSpec("Tab 1");
@@ -74,12 +71,9 @@ public class MainActivity extends TabActivity
 		switch (item.getItemId())
 		{
 		case R.id.refresh:
-
 			new Connection().execute("UPDATE");
-
 			return true;
 		}
-
 		return super.onMenuItemSelected(featureId, item);
 	}
 
@@ -88,14 +82,12 @@ public class MainActivity extends TabActivity
 		ActionBar bar = getActionBar();
 		ColorDrawable actionBarColor = new ColorDrawable();
 		actionBarColor.setColor(Color.rgb(49, 132, 189));
-		bar.setTitle("");
+		bar.setTitle("CampusFeed");
 		bar.setBackgroundDrawable(actionBarColor);
 	}
 
 }
 
-// NOTE: Right now the listview shows up with WHITE TEXT!!. i'll fix that
-// tomorrow!
 /*
  * Inner AsyncTask class starts here. 
  * with it being an innner class
@@ -133,6 +125,7 @@ class Connection extends AsyncTask<String, Void, String>
 		// something...
 		return params[0];
 	}
+
 	public void onPostExecute(String result)
 	{
 		if (result.equals("UPDATE"))

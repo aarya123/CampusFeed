@@ -10,7 +10,7 @@ public class EventOrganizer
 
 	public enum Sorter
 	{
-		popular, today, social, sports, organizations, academic, sales;
+		popular, today, social, sports, organizations, academic, sales, location, date, time;
 	}
 
 	public static ArrayList<HashMap<String, Event>> getList()
@@ -44,20 +44,20 @@ public class EventOrganizer
 			for (int i = 0; i < getNumOfEvents(); i++)
 				events.add(getEvent(i));
 			events = sort(events);
-			for (int i = events.size()-1; i > -1; i--)
+			for (int i = events.size() - 1; i > -1; i--)
 				names.add(events.get(i).getName());
-		
+
 		}
 		if (sorter == Sorter.today)
 		{
 			Calendar c = Calendar.getInstance();
 			String date = (c.get(Calendar.MONTH) + 1) + "/"
 					+ c.get(Calendar.DATE) + "/" + c.get(Calendar.YEAR);
-			
+
 			for (int i = 0; i < getNumOfEvents(); i++)
 				if (getEvent(i).getDate().equals(date))
 					names.add(getEvent(i).getName());
-			if(names.size()==0)
+			if (names.size() == 0)
 				names.add("No Events Today!");
 		} else
 		{
@@ -65,7 +65,32 @@ public class EventOrganizer
 				if (getEvent(i).getCategory().equals(sorter.toString()))
 					names.add(getEvent(i).getName());
 		}
-	
+
+		return names;
+	}
+
+	public static ArrayList<String> getEventNames(Sorter sorter, Event event)
+	{
+		ArrayList<String> names = new ArrayList<String>();
+
+		if (sorter == Sorter.location)
+		{
+			for (int i = 0; i < getNumOfEvents(); i++)
+				if (getEvent(i).getLocation().equals(event.getLocation()))
+					names.add(getEvent(i).getName());
+		}
+		if (sorter == Sorter.date)
+		{
+			for (int i = 0; i < getNumOfEvents(); i++)
+				if (getEvent(i).getDate().equals(event.getDate()))
+					names.add(getEvent(i).getName());
+		}
+		if (sorter == Sorter.time)
+		{
+			for (int i = 0; i < getNumOfEvents(); i++)
+				if (getEvent(i).getDateTime().equals(event.getDateTime()))
+					names.add(getEvent(i).getName());
+		}
 		return names;
 	}
 
@@ -76,8 +101,9 @@ public class EventOrganizer
 				return getEvent(i);
 		return null;
 	}
-	
-	public static Event getEventById(String id){
+
+	public static Event getEventById(String id)
+	{
 		for (int i = 0; i < getNumOfEvents(); i++)
 			if (id.equalsIgnoreCase(getEvent(i).getId()))
 				return getEvent(i);
