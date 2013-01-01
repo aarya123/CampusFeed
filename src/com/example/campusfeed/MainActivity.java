@@ -63,8 +63,9 @@ public class MainActivity extends TabActivity
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
 	}
-
-	@Override
+	/**
+	 * Executes whenever something on the action bar is clicked
+	 */
 	public boolean onMenuItemSelected(int featureId, MenuItem item)
 	{
 		switch (item.getItemId())
@@ -73,17 +74,17 @@ public class MainActivity extends TabActivity
 			new Connection().execute("UPDATE");
 			return true;
 		}
-
 		return super.onMenuItemSelected(featureId, item);
 	}
-
+	/**
+	 * Sets up Action Bar
+	 */
 	public void setupActionBar()
 	{
 		ActionBar bar = getActionBar();
 		ColorDrawable actionBarColor = new ColorDrawable();
 		actionBarColor.setColor(Color.rgb(49, 132, 189));
 		bar.setTitle("CampusFeed");
-
 		bar.setBackgroundDrawable(actionBarColor);
 	}
 
@@ -136,7 +137,6 @@ class Connection extends AsyncTask<String, Void, String>
 		return params[0];
 	}
 
-	@Override
 	public void onPostExecute(String result)
 	{
 		if (result.equals("UPDATE"))

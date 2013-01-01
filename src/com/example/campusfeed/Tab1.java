@@ -30,8 +30,6 @@ public class Tab1 extends Activity
 
 		CustomAdapter a = new CustomAdapter(getApplicationContext(), R.id.list,
 				EventOrganizer.getEventNames(EventOrganizer.Sorter.popular));
-		;
-
 		try
 		{
 			listView.setAdapter(a);
@@ -46,11 +44,11 @@ public class Tab1 extends Activity
 						Intent eventInfo = new Intent(Tab1.this,
 								EventInfo.class);
 						Event e = (Event) listView.getItemAtPosition(position);
-
 						Log.d("APP", e.getId());
 						// eventInfo.putExtra("eventId",
 						// );
 						// Tab1.this.startActivity(eventInfo);
+						// TODO fix this!
 					}
 				}
 			});
@@ -66,9 +64,11 @@ public class Tab1 extends Activity
 		super.onResume();
 		// download again and update the list
 		// call the async task
-
 	}
 
+	/**
+	 * Executes whenever something on the action bar is clicked
+	 */
 	public boolean onMenuItemSelected(int featureId, MenuItem item)
 	{
 		switch (item.getItemId())
