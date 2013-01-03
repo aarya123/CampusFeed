@@ -15,7 +15,7 @@ public class Tab1 extends Activity
 {
 	// full scope vars for use in async task
 	public static ListView listView;
-	public static ArrayAdapter<String> a;
+	public static CustomAdapter a;
 
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -23,7 +23,7 @@ public class Tab1 extends Activity
 		setContentView(R.layout.tabs);
 		listView = (ListView) findViewById(R.id.list);
 
-		CustomAdapter a = new CustomAdapter(getApplicationContext(), R.id.list,
+		a = new CustomAdapter(getApplicationContext(), R.id.list,
 				EventOrganizer.getEventNames(EventOrganizer.Sorter.popular));
 		try
 		{
@@ -36,22 +36,19 @@ public class Tab1 extends Activity
 					if (!listView.getItemAtPosition(position).toString()
 							.equals("No Events Today!"))
 					{
+						Event goingTo = a.getItem(position);
 						Intent eventInfo = new Intent(Tab1.this,
 								EventInfo.class);
 						Event e = (Event) listView.getItemAtPosition(position);
 						Log.d("APP", e.getId());
-						// eventInfo.putExtra("eventId",
-						// );
-						// Tab1.this.startActivity(eventInfo);
-						// TODO fix this!
+						eventInfo.putExtra("eventId", goingTo.getId());
+						Tab1.this.startActivity(eventInfo);
 					}
 				}
 			});
 		} catch (Exception e)
 		{
-
 		}
-
 	}
 
 	/**
