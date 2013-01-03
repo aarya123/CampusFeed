@@ -1,13 +1,8 @@
 package com.example.campusfeed;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -57,13 +52,6 @@ public class Tab1 extends Activity
 
 		}
 
-	}
-
-	public void onResume()
-	{
-		super.onResume();
-		// download again and update the list
-		// call the async task
 	}
 
 	/**
