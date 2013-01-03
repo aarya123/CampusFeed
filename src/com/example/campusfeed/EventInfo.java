@@ -18,6 +18,7 @@ public class EventInfo extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+	        setupActionBar();
 		setContentView(R.layout.activity_event_info);
 		Event currentEvent = EventOrganizer.getEventById(getIntent()
 				.getExtras().getString("eventId"));
@@ -40,7 +41,23 @@ public class EventInfo extends Activity
 				.title(currentEvent.getName()));
 		map.moveCamera(CameraUpdateFactory.newLatLngZoom(
 				currentEvent.getLatLng(), 17));
-		setupActionBar();
+		// set onLONGclick listener so once the use holds the touch for some seconds, it'll fire off into google
+		// maps with the lat and lng.
+		map.setOnMapLongClickListener(new OnMapLongClickListener(){
+
+			@Override
+			public void onMapLongClick(LatLng click) {
+		
+				LatLng location=currentEvent.getLatLng();
+				
+				Intent intent = new Intent(android.content.Intent.ACTION_VIEW, 
+						Uri.parse("geo:0,0?q="+location.latitude+","+location.longitude+"(Location)"));
+						startActivity(intent);
+				
+			}
+	    	
+	    })	;	
+	
 	}
 
 	public void onClick(View v)
