@@ -45,26 +45,26 @@ public class ExtraSorters extends Activity
 				CustomAdapter b=null;
 				if (position == 0)
 				{
-					b=new CustomAdapter(getApplicationContext(),R.id.list,EventOrganizer.getEventNames(EventOrganizer.Sorter.social));;
+					b=new CustomAdapter(getApplicationContext(),R.id.list,EventOrganizer.getEvents(EventOrganizer.Sorter.social));;
 					
 				if (position == 1)
 				{
-					b=new CustomAdapter(getApplicationContext(),R.id.list,EventOrganizer.getEventNames(EventOrganizer.Sorter.sales));;
+					b=new CustomAdapter(getApplicationContext(),R.id.list,EventOrganizer.getEvents(EventOrganizer.Sorter.sales));;
 					
 				}
 				if (position == 2)
 				{
-					b=new CustomAdapter(getApplicationContext(),R.id.list,EventOrganizer.getEventNames(EventOrganizer.Sorter.organizations));;
+					b=new CustomAdapter(getApplicationContext(),R.id.list,EventOrganizer.getEvents(EventOrganizer.Sorter.organizations));;
 					
 				}
 				if (position == 3)
 				{
-					b=new CustomAdapter(getApplicationContext(),R.id.list,EventOrganizer.getEventNames(EventOrganizer.Sorter.sports));;
+					b=new CustomAdapter(getApplicationContext(),R.id.list,EventOrganizer.getEvents(EventOrganizer.Sorter.sports));;
 					
 				}
 				if (position == 4)
 				{
-					b=new CustomAdapter(getApplicationContext(),R.id.list,EventOrganizer.getEventNames(EventOrganizer.Sorter.academic));;
+					b=new CustomAdapter(getApplicationContext(),R.id.list,EventOrganizer.getEvents(EventOrganizer.Sorter.academic));;
 					
 				}
 				eventListView.setAdapter(b);

@@ -4,10 +4,20 @@
     android:layout_height="match_parent"
     tools:context=".ExtraListViewer" >
 
-        <ListView
+    <TextView
+        android:id="@+id/sortTypeText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Events of the same "
+        android:textSize="20sp" />
+
+    <ListView
         android:id="@+id/extraList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </ListView>
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sortTypeText" >
 
+    </ListView>
+ 
 </RelativeLayout>

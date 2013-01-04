@@ -24,7 +24,7 @@ public class Tab1 extends Activity
 		listView = (ListView) findViewById(R.id.list);
 
 		a = new CustomAdapter(getApplicationContext(), R.id.list,
-				EventOrganizer.getEventNames(EventOrganizer.Sorter.popular));
+				EventOrganizer.getEvents(EventOrganizer.Sorter.popular));
 		try
 		{
 			listView.setAdapter(a);

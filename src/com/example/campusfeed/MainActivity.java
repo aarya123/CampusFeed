@@ -153,7 +153,7 @@ class Connection extends AsyncTask<String, Void, String>
 		{
 			Tab2.a.clear();
 			Tab2.a.add(EventOrganizer
-					.getEventNames(EventOrganizer.Sorter.popular));
+					.getEvents(EventOrganizer.Sorter.popular));
 			Tab2.a.notifyDataSetChanged();
 
 			// finish for list 1

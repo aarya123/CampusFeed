@@ -65,7 +65,7 @@ public class EventOrganizer
 	 *            <Sorter> method
 	 * @return ArrayList<Event> in order of method
 	 */
-	public static ArrayList<Event> getEventNames(Enum<Sorter> sorter)
+	public static ArrayList<Event> getEvents(Enum<Sorter> sorter)
 	{
 		ArrayList<Event> names = new ArrayList<Event>();
 		if (sorter == Sorter.popular)
@@ -96,7 +96,6 @@ public class EventOrganizer
 				if (getEvent(i).getCategory().equals(sorter.toString()))
 					names.add(getEvent(i));
 		}
-
 		return names;
 	}
 
@@ -109,27 +108,26 @@ public class EventOrganizer
 	 *            to compare to
 	 * @return ArrayList<Event> in order of method
 	 */
-	public static ArrayList<String> getEventNames(Sorter sorter, Event event)
+	public static ArrayList<Event> getEvents(Sorter sorter, Event event)
 	{
-		ArrayList<String> names = new ArrayList<String>();
-
+		ArrayList<Event> names = new ArrayList<Event>();
 		if (sorter == Sorter.location)
 		{
 			for (int i = 0; i < getNumOfEvents(); i++)
 				if (getEvent(i).getLocation().equals(event.getLocation()))
-					names.add(getEvent(i).getName());
+					names.add(getEvent(i));
 		}
 		if (sorter == Sorter.date)
 		{
 			for (int i = 0; i < getNumOfEvents(); i++)
 				if (getEvent(i).getDate().equals(event.getDate()))
-					names.add(getEvent(i).getName());
+					names.add(getEvent(i));
 		}
 		if (sorter == Sorter.time)
 		{
 			for (int i = 0; i < getNumOfEvents(); i++)
-				if (getEvent(i).getDateTime().equals(event.getDateTime()))
-					names.add(getEvent(i).getName());
+				if (getEvent(i).getTime().equals(event.getTime()))
+					names.add(getEvent(i));
 		}
 		return names;
 	}

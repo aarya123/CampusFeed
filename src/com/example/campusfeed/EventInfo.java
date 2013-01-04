@@ -1,5 +1,6 @@
 package com.example.campusfeed;
 
+import com.example.campusfeed.EventOrganizer.Sorter;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
@@ -18,14 +19,15 @@ import android.widget.TextView;
 
 public class EventInfo extends Activity
 {
+	Event currentEvent;
 
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setupActionBar();
 		setContentView(R.layout.activity_event_info);
-		final Event currentEvent = EventOrganizer.getEventById(getIntent()
-				.getExtras().getString("eventId"));
+		currentEvent = EventOrganizer.getEventById(getIntent().getExtras()
+				.getString("eventId"));
 		TextView name = (TextView) findViewById(R.id.name);
 		name.setText(currentEvent.getName());
 		TextView description = (TextView) findViewById(R.id.eventInfo);
@@ -66,15 +68,27 @@ public class EventInfo extends Activity
 	{
 		if (v.getId() == R.id.date)
 		{
-			System.out.println("Date");
+			Intent extraListViewer = new Intent(EventInfo.this,
+					ExtraListViewer.class);
+			extraListViewer.putExtra("sort", "date");
+			extraListViewer.putExtra("eventId", currentEvent.getId());
+			EventInfo.this.startActivity(extraListViewer);
 		}
 		if (v.getId() == R.id.time)
 		{
-			System.out.println("Time");
+			Intent extraListViewer = new Intent(EventInfo.this,
+					ExtraListViewer.class);
+			extraListViewer.putExtra("sort", "time");
+			extraListViewer.putExtra("eventId", currentEvent.getId());
+			EventInfo.this.startActivity(extraListViewer);
 		}
 		if (v.getId() == R.id.eventLocation)
 		{
-			System.out.println("Location");
+			Intent extraListViewer = new Intent(EventInfo.this,
+					ExtraListViewer.class);
+			extraListViewer.putExtra("sort", "location");
+			extraListViewer.putExtra("eventId", currentEvent.getId());
+			EventInfo.this.startActivity(extraListViewer);
 		}
 	}
 

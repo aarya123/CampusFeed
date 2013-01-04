@@ -159,7 +159,7 @@ public class Event
 	}
 
 	/**
-	 * Gets time of the event
+	 * Gets date and time of the event
 	 * 
 	 * @return time of the event
 	 */

@@ -31,16 +31,10 @@ public class Tab2 extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tabs);
-
-		MenuItem item = (MenuItem) findViewById(R.id.refresh);
 		listView = (ListView) findViewById(R.id.list);
-		// get array then turn into array list
-
 		a = new CustomAdapter(getApplicationContext(), R.id.list,
-				EventOrganizer.getEventNames(EventOrganizer.Sorter.popular));
-
+				EventOrganizer.getEvents(EventOrganizer.Sorter.popular));
 		listView.setAdapter(a);
-
 		listView.setOnItemClickListener(new OnItemClickListener()
 		{
 			public void onItemClick(AdapterView<?> parent, View view,
@@ -52,7 +46,6 @@ public class Tab2 extends Activity
 				Tab2.this.startActivity(eventInfo);
 			}
 		});
-
 	}
 
 	/**
