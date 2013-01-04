@@ -120,7 +120,6 @@ class Connection extends AsyncTask<String, Void, String>
 		// in this method, you do any network, and etc jobs.
 		// call the download class
 		DownloadDataThread main = new DownloadDataThread();
-		// I changed method run to "Download"
 		main.Download();
 		Log.d("APP", "IN BACKGROUND");
 		// the return here will basically pass the string or whatever to
@@ -136,11 +135,10 @@ class Connection extends AsyncTask<String, Void, String>
 
 	public void onPostExecute(String result)
 	{
+		Log.d("APP", "FINISHED");
 		if (result.equals("UPDATE"))
 		{
 			updateAllLists();
-		} else
-		{
 		}
 	}
 
@@ -148,12 +146,8 @@ class Connection extends AsyncTask<String, Void, String>
 	{
 		try
 		{
-			Tab2.a.clear();
-			Tab1.a.clear();
-			Tab2.a.add(EventOrganizer.getEvents(EventOrganizer.Sorter.popular));
-			Tab1.a.add(EventOrganizer.getEvents(EventOrganizer.Sorter.today));
-			Tab2.a.notifyDataSetChanged();
-			Tab1.a.notifyDataSetChanged();
+			Tab1.a.add(EventOrganizer.getEvents(EventOrganizer.Sorter.popular));
+			Tab2.a.add(EventOrganizer.getEvents(EventOrganizer.Sorter.today));
 		} catch (Exception e)
 		{
 			// since null pointer might go off if the array adapter has not

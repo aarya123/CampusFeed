@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -15,15 +16,23 @@ public class Tab1 extends Activity
 {
 	// full scope vars for use in async task
 	public static ListView listView;
-	public static CustomAdapter a;
+	public static ArrayAdapter a;
 
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tabs);
 		listView = (ListView) findViewById(R.id.list);
-		a = new CustomAdapter(getApplicationContext(), R.id.list,
-				EventOrganizer.getEvents(EventOrganizer.Sorter.today));
+		if (EventOrganizer.getEvents(EventOrganizer.Sorter.today).size() > 0)
+		{
+			a = new CustomAdapter(getApplicationContext(), R.id.list,
+					EventOrganizer.getEvents(EventOrganizer.Sorter.today));
+		}
+		else{
+			a = new ArrayAdapter<String>(
+					getApplicationContext(), R.layout.plainlistlayout,
+					R.id.eventTitle, new String[]{"No Events Today!"});
+		}
 		listView.setAdapter(a);
 		listView.setOnItemClickListener(new OnItemClickListener()
 		{
@@ -33,7 +42,7 @@ public class Tab1 extends Activity
 				if (!listView.getItemAtPosition(position).toString()
 						.equals("No Events Today!"))
 				{
-					Event goingTo = a.getItem(position);
+					Event goingTo = (Event) a.getItem(position);
 					Intent eventInfo = new Intent(Tab1.this, EventInfo.class);
 					Event e = (Event) listView.getItemAtPosition(position);
 					Log.d("APP", e.getId());

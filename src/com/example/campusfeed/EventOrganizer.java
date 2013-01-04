@@ -87,8 +87,6 @@ public class EventOrganizer
 			for (int i = 0; i < getNumOfEvents(); i++)
 				if (getEvent(i).getDate().equals(date))
 					names.add(getEvent(i));
-			if (names.size() == 0)
-				names.add(null);
 		} else
 		{
 			for (int i = 0; i < getNumOfEvents(); i++)
