@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
 
@@ -23,7 +24,6 @@ public class ExtraListViewer extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_extra_list_viewer);
-		setupActionBar();
 		listView = (ListView) findViewById(R.id.extraListSorter);
 		TextView sortTypeText = (TextView) findViewById(R.id.sortTypeText);
 		sortTypeText.setText(sortTypeText.getText()
@@ -54,16 +54,22 @@ public class ExtraListViewer extends Activity
 		return true;
 	}
 
+
 	/**
-	 * Sets up Action Bar
+	 * Executes whenever something on the action bar is clicked
 	 */
-	public void setupActionBar()
+	public boolean onMenuItemSelected(int featureId, MenuItem item)
 	{
-		ActionBar bar = getActionBar();
-		ColorDrawable actionBarColor = new ColorDrawable();
-		actionBarColor.setColor(Color.rgb(49, 132, 189));
-		bar.setTitle("CampusFeed");
-		bar.setBackgroundDrawable(actionBarColor);
+		switch (item.getItemId())
+		{
+		case R.id.refresh:
+			Toast.makeText(getApplicationContext(),
+		               "Updated Events", Toast.LENGTH_LONG).show();
+
+			new Connection().execute("UPDATE");
+			return true;
+		}
+		return super.onMenuItemSelected(featureId, item);
 	}
 
 }

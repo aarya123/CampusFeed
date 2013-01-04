@@ -44,8 +44,7 @@ public class Tab1 extends Activity
 				{
 					Event goingTo = (Event) a.getItem(position);
 					Intent eventInfo = new Intent(Tab1.this, EventInfo.class);
-					Event e = (Event) listView.getItemAtPosition(position);
-					Log.d("APP", e.getId());
+					Log.d("APP", goingTo.getId());
 					eventInfo.putExtra("eventId", goingTo.getId());
 					Tab1.this.startActivity(eventInfo);
 				}

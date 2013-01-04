@@ -3,10 +3,13 @@ package com.example.campusfeed;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ViewSwitcher;
 
@@ -14,6 +17,7 @@ public class ExtraSorters extends Activity
 {
 	ListView choiceListView, eventListView;
 	ViewSwitcher switcher;
+	CustomAdapter a, b;
 	int clickCount;
 
 	protected void onCreate(Bundle savedInstanceState)
@@ -36,7 +40,7 @@ public class ExtraSorters extends Activity
 			{
 				clickCount = 1;
 				eventListView = (ListView) findViewById(R.id.extraList);
-				CustomAdapter b = null;
+				 b = null;
 				if (position == 0)
 					b = new CustomAdapter(getApplicationContext(), R.id.list,
 							EventOrganizer
@@ -66,10 +70,11 @@ public class ExtraSorters extends Activity
 					public void onItemClick(AdapterView<?> parent, View view,
 							int position, long id)
 					{
+						Event goingTo = (Event) b.getItem(position);
+						Log.d("APP", goingTo.getId());
 						Intent eventInfo = new Intent(ExtraSorters.this,
 								EventInfo.class);
-						eventInfo.putExtra("EventName", eventListView
-								.getItemAtPosition(position).toString());
+						eventInfo.putExtra("eventId", goingTo.getId());
 						ExtraSorters.this.startActivity(eventInfo);
 					}
 				});
@@ -77,6 +82,22 @@ public class ExtraSorters extends Activity
 		});
 	}
 
+	/**
+	 * Executes whenever something on the action bar is clicked
+	 */
+	public boolean onMenuItemSelected(int featureId, MenuItem item)
+	{
+		switch (item.getItemId())
+		{
+		case R.id.refresh:
+			Toast.makeText(getApplicationContext(),
+		               "Updated Events", Toast.LENGTH_LONG).show();
+
+			new Connection().execute("UPDATE");
+			return true;
+		}
+		return super.onMenuItemSelected(featureId, item);
+	}
 	public void onBackPressed()
 	{
 		if (clickCount == 1)

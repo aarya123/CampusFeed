@@ -127,6 +127,9 @@ containing a value of this type.
          */
         public static final int zOrderOnTop=0x7f01000d;
     }
+    public static final class color {
+        public static final int cf_blue=0x7f060000;
+    }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
         public static final int ic_menu_refresh=0x7f020001;
@@ -146,11 +149,10 @@ containing a value of this type.
         public static final int list=0x7f04001c;
         public static final int location=0x7f04000c;
         public static final int map=0x7f04000f;
-        public static final int menu_settings=0x7f04001d;
         public static final int name=0x7f040005;
         public static final int none=0x7f040000;
         public static final int normal=0x7f040001;
-        public static final int refresh=0x7f04001e;
+        public static final int refresh=0x7f04001d;
         public static final int satellite=0x7f040002;
         public static final int scrollView=0x7f040004;
         public static final int separator=0x7f040006;
@@ -175,10 +177,10 @@ containing a value of this type.
         public static final int tabs=0x7f030007;
     }
     public static final class menu {
-        public static final int activity_event_info=0x7f070000;
-        public static final int activity_extra_list_viewer=0x7f070001;
-        public static final int activity_extra_sorters=0x7f070002;
-        public static final int activity_main=0x7f070003;
+        public static final int activity_event_info=0x7f080000;
+        public static final int activity_extra_list_viewer=0x7f080001;
+        public static final int activity_extra_sorters=0x7f080002;
+        public static final int activity_main=0x7f080003;
     }
     public static final class string {
         public static final int app_name=0x7f05000b;
@@ -232,6 +234,7 @@ containing a value of this type.
         public static final int title_activity_extra_sorters=0x7f05000f;
     }
     public static final class style {
+        public static final int ActionBar=0x7f070002;
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -253,11 +256,10 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f060000;
+        public static final int AppBaseTheme=0x7f070000;
         /**  Application theme. 
- All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f060001;
+        public static final int AppTheme=0x7f070001;
     }
     public static final class styleable {
         /** Attributes that can be used with a MapAttrs.

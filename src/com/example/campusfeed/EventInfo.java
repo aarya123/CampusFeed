@@ -1,6 +1,5 @@
 package com.example.campusfeed;
 
-import com.example.campusfeed.EventOrganizer.Sorter;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
@@ -14,8 +13,10 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class EventInfo extends Activity
 {
@@ -24,7 +25,6 @@ public class EventInfo extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setupActionBar();
 		setContentView(R.layout.activity_event_info);
 		currentEvent = EventOrganizer.getEventById(getIntent().getExtras()
 				.getString("eventId"));
@@ -92,12 +92,21 @@ public class EventInfo extends Activity
 		}
 	}
 
-	public void setupActionBar()
+
+	/**
+	 * Executes whenever something on the action bar is clicked
+	 */
+	public boolean onMenuItemSelected(int featureId, MenuItem item)
 	{
-		ActionBar bar = getActionBar();
-		ColorDrawable actionBarColor = new ColorDrawable();
-		actionBarColor.setColor(Color.rgb(49, 132, 189));
-		bar.setTitle("CampusFeed");
-		bar.setBackgroundDrawable(actionBarColor);
+		switch (item.getItemId())
+		{
+		case R.id.refresh:
+			Toast.makeText(getApplicationContext(),
+		               "Updated Events", Toast.LENGTH_LONG).show();
+
+			new Connection().execute("UPDATE");
+			return true;
+		}
+		return super.onMenuItemSelected(featureId, item);
 	}
 }

@@ -1,13 +1,10 @@
 package com.example.campusfeed;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.TabActivity;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,12 +12,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
+import android.widget.Toast;
 
 public class MainActivity extends TabActivity
 {
 	public void onCreate(Bundle savedInstanceState)
 	{
-		setupActionBar();
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		new Connection().execute("ON_BOOT");
@@ -72,22 +69,12 @@ public class MainActivity extends TabActivity
 		switch (item.getItemId())
 		{
 		case R.id.refresh:
+			Toast.makeText(getApplicationContext(), "Updated Events",
+					Toast.LENGTH_LONG).show();
 			new Connection().execute("UPDATE");
 			return true;
 		}
 		return super.onMenuItemSelected(featureId, item);
-	}
-
-	/**
-	 * Sets up Action Bar
-	 */
-	public void setupActionBar()
-	{
-		ActionBar bar = getActionBar();
-		ColorDrawable actionBarColor = new ColorDrawable();
-		actionBarColor.setColor(Color.rgb(49, 132, 189));
-		bar.setTitle("CampusFeed");
-		bar.setBackgroundDrawable(actionBarColor);
 	}
 }
 
