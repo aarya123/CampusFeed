@@ -7,15 +7,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ViewSwitcher;
 
 public class ExtraSorters extends Activity
 {
-	// have to do couple fixes to this list.. not working properly
-
-
 	ListView choiceListView, eventListView;
 	ViewSwitcher switcher;
 	int clickCount;
@@ -29,11 +25,10 @@ public class ExtraSorters extends Activity
 				"Sports", "Academic" };
 		choiceListView = (ListView) findViewById(R.id.choiceList);
 		ArrayAdapter<String> a = new ArrayAdapter<String>(
-				getApplicationContext(), R.layout.list_layout,R.id.title,
-				events);
+				getApplicationContext(), R.layout.plainlistlayout,
+				R.id.eventTitle, events);
 		choiceListView.setAdapter(a);
 		switcher = (ViewSwitcher) findViewById(R.id.viewSwitcher);
-		// switcher.showNext();
 		choiceListView.setOnItemClickListener(new OnItemClickListener()
 		{
 			public void onItemClick(AdapterView<?> parent, View view,
@@ -41,33 +36,31 @@ public class ExtraSorters extends Activity
 			{
 				clickCount = 1;
 				eventListView = (ListView) findViewById(R.id.extraList);
-				switcher.showNext();
-				CustomAdapter b=null;
+				CustomAdapter b = null;
 				if (position == 0)
-				{
-					b=new CustomAdapter(getApplicationContext(),R.id.list,EventOrganizer.getEvents(EventOrganizer.Sorter.social));;
-					
-				if (position == 1)
-				{
-					b=new CustomAdapter(getApplicationContext(),R.id.list,EventOrganizer.getEvents(EventOrganizer.Sorter.sales));;
-					
-				}
-				if (position == 2)
-				{
-					b=new CustomAdapter(getApplicationContext(),R.id.list,EventOrganizer.getEvents(EventOrganizer.Sorter.organizations));;
-					
-				}
-				if (position == 3)
-				{
-					b=new CustomAdapter(getApplicationContext(),R.id.list,EventOrganizer.getEvents(EventOrganizer.Sorter.sports));;
-					
-				}
-				if (position == 4)
-				{
-					b=new CustomAdapter(getApplicationContext(),R.id.list,EventOrganizer.getEvents(EventOrganizer.Sorter.academic));;
-					
-				}
+					b = new CustomAdapter(getApplicationContext(), R.id.list,
+							EventOrganizer
+									.getEvents(EventOrganizer.Sorter.social));
+				else if (position == 1)
+					b = new CustomAdapter(getApplicationContext(), R.id.list,
+							EventOrganizer
+									.getEvents(EventOrganizer.Sorter.sales));
+				else if (position == 2)
+					b = new CustomAdapter(
+							getApplicationContext(),
+							R.id.list,
+							EventOrganizer
+									.getEvents(EventOrganizer.Sorter.organizations));
+				else if (position == 3)
+					b = new CustomAdapter(getApplicationContext(), R.id.list,
+							EventOrganizer
+									.getEvents(EventOrganizer.Sorter.sports));
+				else if (position == 4)
+					b = new CustomAdapter(getApplicationContext(), R.id.list,
+							EventOrganizer
+									.getEvents(EventOrganizer.Sorter.academic));
 				eventListView.setAdapter(b);
+				switcher.showNext();
 				eventListView.setOnItemClickListener(new OnItemClickListener()
 				{
 					public void onItemClick(AdapterView<?> parent, View view,
@@ -80,7 +73,6 @@ public class ExtraSorters extends Activity
 						ExtraSorters.this.startActivity(eventInfo);
 					}
 				});
-			}
 			}
 		});
 	}

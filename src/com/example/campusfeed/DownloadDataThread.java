@@ -17,12 +17,9 @@ public class DownloadDataThread extends Thread
 {
 	// I'll upgrade this class to work with when the user does not have an
 	// internet connection, so it does not just crash.
-
 	public void Download()
 	{
 		// USING HTTP OBJECTS
-		// provided by Apache Foundation for android
-		// more secure and fast
 		HttpGet httpGet = new HttpGet(
 				"http://ezevents.6te.net/playingaroundandroid.php");
 		HttpClient h = new DefaultHttpClient();
@@ -33,10 +30,10 @@ public class DownloadDataThread extends Thread
 			r = h.execute(httpGet);
 		} catch (ClientProtocolException e1)
 		{
-			Log.d("APP", "ERROR");
+			Log.d("APP", e1.getMessage());
 		} catch (IOException e1)
 		{
-		Log.d("APP", "ERROR");
+			Log.d("APP", e1.getMessage());
 		}
 		String response = null;
 		String jsonArray = null;
@@ -46,10 +43,10 @@ public class DownloadDataThread extends Thread
 			response = EntityUtils.toString(r.getEntity());
 		} catch (ParseException e1)
 		{
-			Log.d("APP", "ERROR");
+			Log.d("APP", e1.getMessage());
 		} catch (IOException e1)
 		{
-			Log.d("APP", "ERROR");
+			Log.d("APP", e1.getMessage());
 		}
 		// decode it.
 		jsonArray = URLDecoder.decode(response);
@@ -60,16 +57,16 @@ public class DownloadDataThread extends Thread
 			json = new JSONArray(jsonArray);
 		} catch (JSONException e)
 		{
-			Log.d("APP", "ERROR");
+			Log.d("APP", e.getMessage());
 		}
-
 		for (int i = 0; i < json.length(); i++)
 		{
 			try
 			{
 				JSONObject event = json.getJSONObject(i);
-				Event e=EventOrganizer.getEventById(event.getString("unique_id"));
-				if (e==null)
+				Event e = EventOrganizer.getEventById(event
+						.getString("unique_id"));
+				if (e == null)
 				{
 					EventOrganizer.addEvent(new Event(event
 							.getString("unique_id"), event.getString("title"),
@@ -82,30 +79,27 @@ public class DownloadDataThread extends Thread
 									.getInt("interest"), event
 									.getString("latlng").replace(" ", "")
 									.replace("\n", "")));
-				}
-				else
-					{
-					 // update all sections
-					e.Update(event
-							.getString("unique_id"), event.getString("title"),
-							"active", event.getString("location"), event
-									.getString("user"), event
-									.getString("category"), event
-									.getString("desc"), event
-									.getString("location_details"), event
-									.getString("date"), event
-									.getInt("interest"), event
-									.getString("latlng").replace(" ", "")
+				} else
+				{
+					// update all sections
+					e.Update(
+							event.getString("unique_id"),
+							event.getString("title"),
+							"active",
+							event.getString("location"),
+							event.getString("user"),
+							event.getString("category"),
+							event.getString("desc"),
+							event.getString("location_details"),
+							event.getString("date"),
+							event.getInt("interest"),
+							event.getString("latlng").replace(" ", "")
 									.replace("\n", ""));
-						
-					}
-					
-				
+				}
 			} catch (JSONException e)
 			{
-				Log.d("APP", "ERROR");
+				Log.d("APP", e.getMessage());
 			}
 		}
 	}
-
 }

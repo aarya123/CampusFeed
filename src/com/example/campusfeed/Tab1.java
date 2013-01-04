@@ -8,8 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class Tab1 extends Activity
 {
@@ -22,33 +22,26 @@ public class Tab1 extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tabs);
 		listView = (ListView) findViewById(R.id.list);
-
 		a = new CustomAdapter(getApplicationContext(), R.id.list,
-				EventOrganizer.getEvents(EventOrganizer.Sorter.popular));
-		try
+				EventOrganizer.getEvents(EventOrganizer.Sorter.today));
+		listView.setAdapter(a);
+		listView.setOnItemClickListener(new OnItemClickListener()
 		{
-			listView.setAdapter(a);
-			listView.setOnItemClickListener(new OnItemClickListener()
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id)
 			{
-				public void onItemClick(AdapterView<?> parent, View view,
-						int position, long id)
+				if (!listView.getItemAtPosition(position).toString()
+						.equals("No Events Today!"))
 				{
-					if (!listView.getItemAtPosition(position).toString()
-							.equals("No Events Today!"))
-					{
-						Event goingTo = a.getItem(position);
-						Intent eventInfo = new Intent(Tab1.this,
-								EventInfo.class);
-						Event e = (Event) listView.getItemAtPosition(position);
-						Log.d("APP", e.getId());
-						eventInfo.putExtra("eventId", goingTo.getId());
-						Tab1.this.startActivity(eventInfo);
-					}
+					Event goingTo = a.getItem(position);
+					Intent eventInfo = new Intent(Tab1.this, EventInfo.class);
+					Event e = (Event) listView.getItemAtPosition(position);
+					Log.d("APP", e.getId());
+					eventInfo.putExtra("eventId", goingTo.getId());
+					Tab1.this.startActivity(eventInfo);
 				}
-			});
-		} catch (Exception e)
-		{
-		}
+			}
+		});
 	}
 
 	/**
@@ -60,7 +53,9 @@ public class Tab1 extends Activity
 		{
 		case R.id.refresh:
 			new Connection().execute();
-			Log.d("APP", "BUTTON PRESSED");
+			Log.d("APP", "REFRESH BUTTON PRESSED");
+			Toast.makeText(getApplicationContext(), "Updated Event List",
+					Toast.LENGTH_LONG).show();
 			return true;
 		}
 		return super.onMenuItemSelected(featureId, item);

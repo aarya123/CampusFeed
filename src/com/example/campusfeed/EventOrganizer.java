@@ -74,7 +74,6 @@ public class EventOrganizer
 			for (int i = 0; i < getNumOfEvents(); i++)
 				events.add(getEvent(i));
 			events = sort(events);
-
 			for (int i = events.size() - 1; i > -1; i--)
 				names.add(events.get(i));
 

@@ -12,40 +12,32 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-public class UpdateManager extends Service  {
-  
-    
-	public IBinder onBind(Intent arg0) {
+public class UpdateManager extends Service
+{
+	public IBinder onBind(Intent arg0)
+	{
 		return null;
 	}
-	
-	public void onStart(Intent intent,int startId){
-		
-		super.onStart(intent, startId);
 
+	public void onStart(Intent intent, int startId)
+	{
+		super.onStart(intent, startId);
 		Log.d("myApp", "Started Service");
 		// call async task
-		try{
-		new Connection().execute("UPDATE");
-		this.stopSelf();
-		}
-		catch(Exception e){
+		try
+		{
+			new Connection().execute("UPDATE");
+			this.stopSelf();
+		} catch (Exception e)
+		{
 			this.stopSelf();
 		}
-	
-	
 	}
-	
-	public void onDestroy(){
+
+	public void onDestroy()
+	{
 		super.onDestroy();
-		
 		Log.d("myApp", "destroyed");
 	}
-
-
-	 // cant do network on broadcast receiver
-	
-	
-	 
-	}
-
+	// cant do network on broadcast receiver
+}

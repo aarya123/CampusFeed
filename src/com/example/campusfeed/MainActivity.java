@@ -63,6 +63,7 @@ public class MainActivity extends TabActivity
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
 	}
+
 	/**
 	 * Executes whenever something on the action bar is clicked
 	 */
@@ -76,6 +77,7 @@ public class MainActivity extends TabActivity
 		}
 		return super.onMenuItemSelected(featureId, item);
 	}
+
 	/**
 	 * Sets up Action Bar
 	 */
@@ -87,7 +89,6 @@ public class MainActivity extends TabActivity
 		bar.setTitle("CampusFeed");
 		bar.setBackgroundDrawable(actionBarColor);
 	}
-
 }
 
 /*
@@ -106,7 +107,6 @@ public class MainActivity extends TabActivity
 // onPostExecute is what you use to update the ui thread.
 class Connection extends AsyncTask<String, Void, String>
 {
-
 	// the return here will basically pass the string or whatever to
 	// onPostExecute
 	// maybe if we arent using this method to return our actual data, we
@@ -115,7 +115,6 @@ class Connection extends AsyncTask<String, Void, String>
 	// did not connect. so if no, then set some ui element
 	// to say, "Please have an internet connection ready" or
 	// something...
-
 	protected String doInBackground(String... params)
 	{
 		// in this method, you do any network, and etc jobs.
@@ -124,7 +123,6 @@ class Connection extends AsyncTask<String, Void, String>
 		// I changed method run to "Download"
 		main.Download();
 		Log.d("APP", "IN BACKGROUND");
-
 		// the return here will basically pass the string or whatever to
 		// onPostExecute
 		// maybe if we arent using this method to return our actual data, we
@@ -133,7 +131,6 @@ class Connection extends AsyncTask<String, Void, String>
 		// did not connect. so if no, then set some ui element
 		// to say, "Please have an internet connection ready" or
 		// something...
-
 		return params[0];
 	}
 
@@ -152,16 +149,15 @@ class Connection extends AsyncTask<String, Void, String>
 		try
 		{
 			Tab2.a.clear();
-			Tab2.a.add(EventOrganizer
-					.getEvents(EventOrganizer.Sorter.popular));
+			Tab1.a.clear();
+			Tab2.a.add(EventOrganizer.getEvents(EventOrganizer.Sorter.popular));
+			Tab1.a.add(EventOrganizer.getEvents(EventOrganizer.Sorter.today));
 			Tab2.a.notifyDataSetChanged();
-
-			// finish for list 1
-
+			Tab1.a.notifyDataSetChanged();
 		} catch (Exception e)
 		{
 			// since null pointer might go off if the array adapter has not
-			// loaded yet.
+			// loaded yet
 		}
 	}
 }

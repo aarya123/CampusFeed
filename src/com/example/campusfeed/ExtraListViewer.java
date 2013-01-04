@@ -24,7 +24,7 @@ public class ExtraListViewer extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_extra_list_viewer);
 		setupActionBar();
-		listView = (ListView) findViewById(R.id.extraList);
+		listView = (ListView) findViewById(R.id.extraListSorter);
 		TextView sortTypeText = (TextView) findViewById(R.id.sortTypeText);
 		sortTypeText.setText(sortTypeText.getText()
 				+ getIntent().getExtras().getString("sort"));

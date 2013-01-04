@@ -1,25 +1,15 @@
 package com.example.campusfeed;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import android.app.Activity;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 public class Tab2 extends Activity
 {
@@ -57,7 +47,9 @@ public class Tab2 extends Activity
 		{
 		case R.id.refresh:
 			new Connection().execute();
-			Log.d("APP", "BUTTON PRESSED");
+			Log.d("APP", "REFRESH BUTTON PRESSED");
+			Toast.makeText(getApplicationContext(), "Updated Event List",
+					Toast.LENGTH_LONG).show();
 			return true;
 		}
 		return super.onMenuItemSelected(featureId, item);
