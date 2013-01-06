@@ -15,5 +15,7 @@
     <string name="Today">Today</string>
     <string name="Popular">Popular</string>
     <string name="More">More</string>
+    <string name="title_activity_extra_sorters">ExtraSorters</string>
+    <string name="title_activity_extra_list_viewer">ExtraListViewer</string>
 
 </resources>

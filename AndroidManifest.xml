@@ -57,6 +57,19 @@
             android:value="AIzaSyCtUqmZ2xaYZ4mdb5HwaZLsIxoJmoB1XcE" />
 
         <uses-library android:name="com.google.android.maps" />
+
+        <activity
+            android:name="com.example.campusfeed.ExtraSorters"
+            android:label="@string/title_activity_extra_sorters" >
+        </activity>
+
+        <service android:name="com.example.campusfeed.UpdateManager" >
+        </service>
+
+        <activity
+            android:name="com.example.campusfeed.ExtraListViewer"
+            android:label="@string/title_activity_extra_list_viewer" >
+        </activity>
     </application>
 
 </manifest>

@@ -10,14 +10,25 @@ public class EventOrganizer
 
 	public enum Sorter
 	{
-		popular, today, social, sports, organizations, academic, sales;
+		popular, today, social, sports, organizations, academic, sales, location, date, time;
 	}
 
+	/**
+	 * Gets the holding ArrayList<HashMap<String, Event>>
+	 * 
+	 * @return returns ArrayList<HashMap<String, Event>>
+	 */
 	public static ArrayList<HashMap<String, Event>> getList()
 	{
 		return eventList;
 	}
 
+	/**
+	 * Add event to the list of events
+	 * 
+	 * @param event
+	 *            to add
+	 */
 	public static void addEvent(Event event)
 	{
 		HashMap<String, Event> map = new HashMap<String, Event>();
@@ -25,51 +36,106 @@ public class EventOrganizer
 		eventList.add(map);
 	}
 
+	/**
+	 * Gets a specified event by index
+	 * 
+	 * @param index
+	 *            of event wanted
+	 * @return event specified
+	 */
 	public static Event getEvent(int index)
 	{
 		return eventList.get(index).get("Events");
 	}
 
+	/**
+	 * Gets the number of events in the list
+	 * 
+	 * @return amount of events
+	 */
 	public static int getNumOfEvents()
 	{
 		return eventList.size();
 	}
 
-	public static String[] getEventNames(Enum<Sorter> sorter)
+	/**
+	 * Gets a list of events depending on the sort type
+	 * 
+	 * @param Enum
+	 *            <Sorter> method
+	 * @return ArrayList<Event> in order of method
+	 */
+	public static ArrayList<Event> getEvents(Enum<Sorter> sorter)
 	{
-		ArrayList<String> names = new ArrayList<String>();
+		ArrayList<Event> names = new ArrayList<Event>();
 		if (sorter == Sorter.popular)
 		{
 			ArrayList<Event> events = new ArrayList<Event>();
 			for (int i = 0; i < getNumOfEvents(); i++)
 				events.add(getEvent(i));
 			events = sort(events);
-			for (int i = events.size()-1; i > -1; i--)
-				names.add(events.get(i).getName());
+			for (int i = events.size() - 1; i > -1; i--)
+				names.add(events.get(i));
+
 		}
 		if (sorter == Sorter.today)
 		{
 			Calendar c = Calendar.getInstance();
 			String date = (c.get(Calendar.MONTH) + 1) + "/"
 					+ c.get(Calendar.DATE) + "/" + c.get(Calendar.YEAR);
-			System.out.println(date);
+
 			for (int i = 0; i < getNumOfEvents(); i++)
 				if (getEvent(i).getDate().equals(date))
-					names.add(getEvent(i).getName());
-			if(names.size()==0)
-				names.add("No Events Today!");
+					names.add(getEvent(i));
 		} else
 		{
 			for (int i = 0; i < getNumOfEvents(); i++)
-				if (getEvent(i).getCategory() == sorter.toString())
-					names.add(getEvent(i).getName());
+				if (getEvent(i).getCategory().equals(sorter.toString()))
+					names.add(getEvent(i));
 		}
-		String[] returnNames = new String[names.size()];
-		for (int i = 0; i < names.size(); i++)
-			returnNames[i] = names.get(i);
-		return returnNames;
+		return names;
 	}
 
+	/**
+	 * Gets a list of events depending on the sort type
+	 * 
+	 * @param Enum
+	 *            <Sorter> method
+	 * @param Event
+	 *            to compare to
+	 * @return ArrayList<Event> in order of method
+	 */
+	public static ArrayList<Event> getEvents(Sorter sorter, Event event)
+	{
+		ArrayList<Event> names = new ArrayList<Event>();
+		if (sorter == Sorter.location)
+		{
+			for (int i = 0; i < getNumOfEvents(); i++)
+				if (getEvent(i).getLocation().equals(event.getLocation()))
+					names.add(getEvent(i));
+		}
+		if (sorter == Sorter.date)
+		{
+			for (int i = 0; i < getNumOfEvents(); i++)
+				if (getEvent(i).getDate().equals(event.getDate()))
+					names.add(getEvent(i));
+		}
+		if (sorter == Sorter.time)
+		{
+			for (int i = 0; i < getNumOfEvents(); i++)
+				if (getEvent(i).getTime().equals(event.getTime()))
+					names.add(getEvent(i));
+		}
+		return names;
+	}
+
+	/**
+	 * Gets an event by its name
+	 * 
+	 * @param Event
+	 *            name
+	 * @return Event of specified name
+	 */
 	public static Event getEventByName(String name)
 	{
 		for (int i = 0; i < getNumOfEvents(); i++)
@@ -78,6 +144,26 @@ public class EventOrganizer
 		return null;
 	}
 
+	/**
+	 * Gets an event by its id
+	 * 
+	 * @param Event
+	 *            id
+	 * @return Event of specified id
+	 */
+	public static Event getEventById(String id)
+	{
+		for (int i = 0; i < getNumOfEvents(); i++)
+			if (id.equalsIgnoreCase(getEvent(i).getId()))
+				return getEvent(i);
+		return null;
+	}
+
+	/**
+	 * Gets a list of event names
+	 * 
+	 * @return String[] of event names
+	 */
 	public static String[] getEventNames()
 	{
 		String[] eventNames = new String[getNumOfEvents()];
@@ -86,6 +172,13 @@ public class EventOrganizer
 		return eventNames;
 	}
 
+	/**
+	 * Preconditions of a quicksort
+	 * 
+	 * @param ArrayList
+	 *            <Event> to sort
+	 * @return ArrayList<Event> sorted by popularity
+	 */
 	private static ArrayList<Event> sort(ArrayList<Event> events)
 	{
 		if (events == null || events.size() == 0 || events.size() == 1)
@@ -95,6 +188,15 @@ public class EventOrganizer
 		return quicksort(0, events.size() - 1, events);
 	}
 
+	/**
+	 * Quicksort by popularity
+	 * 
+	 * @param int begin index
+	 * @param int end index
+	 * @param ArrayList
+	 *            <Event> to sort
+	 * @return ArrayList<Event> sorted by popularity
+	 */
 	private static ArrayList<Event> quicksort(int low, int high,
 			ArrayList<Event> toSort)
 	{
@@ -124,6 +226,14 @@ public class EventOrganizer
 		return toSort;
 	}
 
+	/**
+	 * Swaps to indices
+	 * 
+	 * @param int first index to swap
+	 * @param int last index to swap
+	 * @param ArrayList
+	 *            <Event> list to swap
+	 */
 	private static void swap(int i, int j, ArrayList<Event> list)
 	{
 		Event temp = list.get(i);

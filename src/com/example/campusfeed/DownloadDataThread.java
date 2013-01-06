@@ -11,16 +11,15 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.json.*;
 
+import android.util.Log;
+
 public class DownloadDataThread extends Thread
 {
 	// I'll upgrade this class to work with when the user does not have an
 	// internet connection, so it does not just crash.
-
 	public void Download()
 	{
 		// USING HTTP OBJECTS
-		// provided by Apache Foundation for android
-		// more secure and fast
 		HttpGet httpGet = new HttpGet(
 				"http://ezevents.6te.net/playingaroundandroid.php");
 		HttpClient h = new DefaultHttpClient();
@@ -31,10 +30,10 @@ public class DownloadDataThread extends Thread
 			r = h.execute(httpGet);
 		} catch (ClientProtocolException e1)
 		{
-			e1.printStackTrace();
+			Log.d("APP", e1.getMessage());
 		} catch (IOException e1)
 		{
-			e1.printStackTrace();
+			Log.d("APP", e1.getMessage());
 		}
 		String response = null;
 		String jsonArray = null;
@@ -44,10 +43,10 @@ public class DownloadDataThread extends Thread
 			response = EntityUtils.toString(r.getEntity());
 		} catch (ParseException e1)
 		{
-			e1.printStackTrace();
+			Log.d("APP", e1.getMessage());
 		} catch (IOException e1)
 		{
-			e1.printStackTrace();
+			Log.d("APP", e1.getMessage());
 		}
 		// decode it.
 		jsonArray = URLDecoder.decode(response);
@@ -58,26 +57,49 @@ public class DownloadDataThread extends Thread
 			json = new JSONArray(jsonArray);
 		} catch (JSONException e)
 		{
-			e.printStackTrace();
+			Log.d("APP", e.getMessage());
 		}
-
 		for (int i = 0; i < json.length(); i++)
 		{
 			try
 			{
 				JSONObject event = json.getJSONObject(i);
-				EventOrganizer.addEvent(new Event(event.getString("unique_id"),
-						event.getString("title"), "active", event
-								.getString("location"),
-						event.getString("user"), event.getString("category"),
-						event.getString("desc"), event.getString("latlng"),
-						event.getString("location_details"), event
-								.getString("date"),event.getInt("interest"),event.getString("latlng").replace(" ", "").replace("\n", "")));
+				Event e = EventOrganizer.getEventById(event
+						.getString("unique_id"));
+				if (e == null)
+				{
+					EventOrganizer.addEvent(new Event(event
+							.getString("unique_id"), event.getString("title"),
+							"active", event.getString("location"), event
+									.getString("user"), event
+									.getString("category"), event
+									.getString("desc"), event
+									.getString("location_details"), event
+									.getString("date"), event
+									.getInt("interest"), event
+									.getString("latlng").replace(" ", "")
+									.replace("\n", "")));
+				} else
+				{
+					// update all sections
+					e.Update(
+							event.getString("unique_id"),
+							event.getString("title"),
+							"active",
+							event.getString("location"),
+							event.getString("user"),
+							event.getString("category"),
+							event.getString("desc"),
+							event.getString("location_details"),
+							event.getString("date"),
+							event.getInt("interest"),
+							event.getString("latlng").replace(" ", "")
+									.replace("\n", ""));
+				}
 			} catch (JSONException e)
 			{
-				e.printStackTrace();
+				Log.d("APP", e.getMessage());
 			}
 		}
 	}
-
 }

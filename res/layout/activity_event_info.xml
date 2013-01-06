@@ -22,8 +22,25 @@
             android:background="#2388cd"
             android:gravity="center"
             android:text="@string/EventName"
-            android:textColor="#FFFAFA"
-            android:textSize="20sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+
+        <View
+            android:id="@+id/separator"
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:background="#FFFFFF"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#2388cd"
+            android:gravity="center"
+            android:text="@string/Description"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/eventInfo"
@@ -40,14 +57,16 @@
             android:background="#2388cd"
             android:gravity="center"
             android:text="@string/When"
-            android:textColor="#FFFAFA"
-            android:textSize="20sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:gravity="center"
+            android:onClick="onClick"
             android:text="@string/EventTime"
             android:textSize="20sp" />
 
@@ -55,7 +74,9 @@
             android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:gravity="center"
+            android:onClick="onClick"
             android:text="@string/EventDate"
             android:textSize="20sp" />
 
@@ -66,14 +87,16 @@
             android:background="#2388cd"
             android:gravity="center"
             android:text="@string/Location"
-            android:textColor="#FFFAFA"
-            android:textSize="20sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/eventLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:gravity="center"
+            android:onClick="onClick"
             android:text="@string/EventLocation"
             android:textSize="20sp" />
 
@@ -90,14 +113,6 @@
             android:name="com.google.android.gms.maps.MapFragment"
             android:layout_width="match_parent"
             android:layout_height="512dp" />
-
-        <!--
-             <com.google.android.maps.MapView
-            android:id="@+id/map"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:apiKey="AIzaSyBqbunJ58pvEmi8im6JBwm2AUSKBxy3j8E"/>
-        -->
     </LinearLayout>
 
 </ScrollView>
