@@ -19,7 +19,7 @@
             <TabWidget
                 android:id="@android:id/tabs"
                 android:layout_width="match_parent"
-                android:layout_height="56dp" >
+                android:layout_height="wrap_content" >
             </TabWidget>
 
             <FrameLayout
@@ -37,13 +37,15 @@
                     android:id="@+id/tab2"
                     
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
+                    android:layout_height="match_parent"
+                    android:text="@string/Popular" >
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/tab3"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
+                    android:layout_height="match_parent" 
+                    android:text="@string/More">
                 </LinearLayout>
             </FrameLayout>
         </LinearLayout>

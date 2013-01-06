@@ -3,5 +3,17 @@
 
     <string name="app_name">CampusFeed</string>
     <string name="title_activity_event_info">EventInfo</string>
+    <string name="EventName">Event Name</string>
+    <string name="Description">Description</string>
+    <string name="EventInfo">Event Info</string>
+    <string name="When">When</string>
+    <string name="EventTime">Event Time</string>
+    <string name="EventDate">Event Date</string>
+    <string name="EventLocation">Event Location</string>
+    <string name="EventLocationSpecifics">Event Location Specifics</string>
+    <string name="Location">Location</string>
+    <string name="Today">Today</string>
+    <string name="Popular">Popular</string>
+    <string name="More">More</string>
 
 </resources>
