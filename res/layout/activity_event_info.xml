@@ -33,16 +33,6 @@
             android:visibility="visible" />
 
         <TextView
-            android:id="@+id/description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#2388cd"
-            android:gravity="center"
-            android:text="@string/Description"
-            android:textColor="#FFFFFF"
-            android:textSize="25sp" />
-
-        <TextView
             android:id="@+id/eventInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
