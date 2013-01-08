@@ -27,13 +27,19 @@ public class Tab1 extends Activity
 		{
 			a = new CustomAdapter(getApplicationContext(), R.id.list,
 					EventOrganizer.getEvents(EventOrganizer.Sorter.today));
+		} else
+		{
+			a = new ArrayAdapter<String>(getApplicationContext(),
+					R.layout.plainlistlayout, R.id.eventTitle,
+					new String[] { "No Events Today!" });
 		}
-		else{
-			a = new ArrayAdapter<String>(
-					getApplicationContext(), R.layout.plainlistlayout,
-					R.id.eventTitle, new String[]{"No Events Today!"});
+		try
+		{
+			listView.setAdapter(a);
+		} catch (NullPointerException e)
+		{
+			Log.d("ERROR", e.getMessage());
 		}
-		listView.setAdapter(a);
 		listView.setOnItemClickListener(new OnItemClickListener()
 		{
 			public void onItemClick(AdapterView<?> parent, View view,

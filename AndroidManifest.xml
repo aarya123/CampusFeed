@@ -19,7 +19,7 @@
 
     <uses-sdk
         android:minSdkVersion="11"
-        android:targetSdkVersion="14" />
+        android:targetSdkVersion="17" />
 
     <application
         android:allowBackup="true"
@@ -69,6 +69,10 @@
         <activity
             android:name="com.example.campusfeed.ExtraListViewer"
             android:label="@string/title_activity_extra_list_viewer" >
+        </activity>
+        <activity
+            android:name="com.example.campusfeed.CreateAccount"
+            android:label="@string/title_activity_create_account" >
         </activity>
     </application>
 

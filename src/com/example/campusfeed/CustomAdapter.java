@@ -2,6 +2,7 @@ package com.example.campusfeed;
 
 import java.util.ArrayList;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,8 +55,13 @@ public class CustomAdapter extends ArrayAdapter<Event>
 		if (events.get(position) != null)
 		{
 			// set the elements
+			try{
 			holder.one.setText(events.get(position).getName());
 			holder.two.setText(events.get(position).getDateandTime());
+			}catch(ClassCastException e)
+			{
+				Log.d("ERROR", e.getMessage());
+			}
 		}
 		return v;
 	}

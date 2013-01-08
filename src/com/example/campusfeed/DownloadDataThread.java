@@ -59,6 +59,7 @@ public class DownloadDataThread extends Thread
 		{
 			Log.d("APP", e.getMessage());
 		}
+		try{
 		for (int i = 0; i < json.length(); i++)
 		{
 			try
@@ -101,5 +102,9 @@ public class DownloadDataThread extends Thread
 				Log.d("APP", e.getMessage());
 			}
 		}
+	}catch(NullPointerException e)
+	{
+		Log.d("ERROR", "JSON ARRAY IS EMPTY");
+	}
 	}
 }

@@ -10,12 +10,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MenuItem.OnActionExpandListener;
+import android.view.MenuItem.OnMenuItemClickListener;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 import android.widget.Toast;
 
 public class MainActivity extends TabActivity
 {
+	boolean isExpanded = false;
+
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
@@ -52,7 +56,6 @@ public class MainActivity extends TabActivity
 		manager.setRepeating(AlarmManager.RTC, System.currentTimeMillis(),
 				60000, pending);
 		tabs.refreshDrawableState();
-		// new Updater().execute();
 	}
 
 	public boolean onCreateOptionsMenu(Menu menu)
@@ -72,6 +75,10 @@ public class MainActivity extends TabActivity
 			Toast.makeText(getApplicationContext(), "Updated Events",
 					Toast.LENGTH_LONG).show();
 			new Connection().execute("UPDATE");
+			return true;
+		case R.id.signIn:
+			return true;
+		case R.id.createAcc:
 			return true;
 		}
 		return super.onMenuItemSelected(featureId, item);

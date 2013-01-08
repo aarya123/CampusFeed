@@ -17,5 +17,8 @@
     <string name="More">More</string>
     <string name="title_activity_extra_sorters">ExtraSorters</string>
     <string name="title_activity_extra_list_viewer">ExtraListViewer</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_create_account">CreateAccount</string>
 
 </resources>

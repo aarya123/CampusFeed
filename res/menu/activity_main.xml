@@ -5,6 +5,18 @@
         android:icon="@drawable/ic_menu_refresh"
         android:showAsAction="ifRoom"
         android:title="Check For New Events"/>
-
+    <item
+        android:id="@+id/dropDown"
+        android:icon="@drawable/ic_action_settings"
+        android:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/signIn"
+                android:title="Sign In"/>
+            <item
+                android:id="@+id/createAcc"
+                android:title="Create an Account"/>
+        </menu>
+    </item>
 
 </menu>
