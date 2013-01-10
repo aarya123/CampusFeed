@@ -12,6 +12,10 @@ public final class R {
         public static final int slide_in_up=0x7f040000;
         public static final int slide_out_down=0x7f040001;
     }
+    public static final class array {
+        public static final int listdialogoptions=0x7f0a0001;
+        public static final int locations=0x7f0a0000;
+    }
     public static final class attr {
         /** <p>Must be a floating point value, such as "<code>1.2</code>".
 <p>This may also be a reference to a resource (in the form
@@ -131,53 +135,90 @@ containing a value of this type.
          */
         public static final int zOrderOnTop=0x7f01000d;
     }
-    public static final class color {
-        public static final int cf_blue=0x7f070000;
+    public static final class dimen {
+        public static final int list_item_padding=0x7f060001;
+        public static final int list_padding=0x7f060000;
     }
     public static final class drawable {
-        public static final int ic_action_settings=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
-        public static final int ic_menu_refresh=0x7f020002;
+        public static final int event_not_yet=0x7f020000;
+        public static final int event_on=0x7f020001;
+        public static final int ic_action_create_icon=0x7f020002;
+        public static final int ic_action_post_event=0x7f020003;
+        public static final int ic_chooser=0x7f020004;
+        public static final int ic_file=0x7f020005;
+        public static final int ic_folder=0x7f020006;
+        public static final int ic_launcher=0x7f020007;
+        public static final int ic_list_template=0x7f020008;
+        public static final int ic_menu_refresh=0x7f020009;
+        public static final int navigation_next_item=0x7f02000a;
+        public static final int poster=0x7f02000b;
+        public static final int tabone=0x7f02000c;
     }
     public static final class id {
-        public static final int cats=0x7f05001c;
-        public static final int choiceList=0x7f050017;
-        public static final int createAcc=0x7f050025;
-        public static final int date=0x7f05000f;
-        public static final int date_time=0x7f05001e;
-        public static final int dropDown=0x7f050023;
-        public static final int email=0x7f050005;
-        public static final int eventInfo=0x7f05000c;
-        public static final int eventLocation=0x7f050011;
-        public static final int eventLocationSpecifics=0x7f050012;
-        public static final int eventTitle=0x7f05001f;
-        public static final int extraList=0x7f050018;
-        public static final int extraListSorter=0x7f050015;
-        public static final int list=0x7f050020;
-        public static final int location=0x7f050010;
-        public static final int map=0x7f050013;
-        public static final int menu_settings=0x7f050021;
-        public static final int name=0x7f05000a;
-        public static final int none=0x7f050000;
-        public static final int normal=0x7f050001;
-        public static final int passWord=0x7f050007;
-        public static final int refresh=0x7f050022;
-        public static final int satellite=0x7f050002;
-        public static final int scrollView=0x7f050009;
-        public static final int separator=0x7f05000b;
-        public static final int signIn=0x7f050024;
-        public static final int sortTypeText=0x7f050014;
-        public static final int submit=0x7f050008;
-        public static final int tab1=0x7f050019;
-        public static final int tab2=0x7f05001a;
-        public static final int tab3=0x7f05001b;
-        public static final int terrain=0x7f050003;
-        public static final int textView1=0x7f050004;
-        public static final int time=0x7f05000e;
-        public static final int title=0x7f05001d;
-        public static final int userName=0x7f050006;
-        public static final int viewSwitcher=0x7f050016;
-        public static final int when=0x7f05000d;
+        public static final int EventHandout=0x7f09000e;
+        public static final int Eventposter=0x7f09000d;
+        public static final int ViewHandout=0x7f09003a;
+        public static final int ViewPoster=0x7f090039;
+        public static final int button1=0x7f09002d;
+        public static final int button2=0x7f09002f;
+        public static final int cats=0x7f090020;
+        public static final int choiceList=0x7f09001a;
+        public static final int create=0x7f09003d;
+        public static final int createAcc=0x7f09003f;
+        public static final int date=0x7f090012;
+        public static final int date_time=0x7f090034;
+        public static final int description=0x7f09000c;
+        public static final int email=0x7f090005;
+        public static final int eventDescription=0x7f090024;
+        public static final int eventInfo=0x7f09000f;
+        public static final int eventLocation=0x7f090014;
+        public static final int eventLocationDetails=0x7f09002b;
+        public static final int eventLocationSpecifics=0x7f090015;
+        public static final int eventTitle=0x7f090022;
+        public static final int event_poster_upload_textview=0x7f09002c;
+        public static final int explorer_fragment=0x7f090021;
+        public static final int extraList=0x7f09001b;
+        public static final int extraListSorter=0x7f090018;
+        public static final int file_icon=0x7f090030;
+        public static final int file_name=0x7f090031;
+        public static final int imageView1=0x7f090033;
+        public static final int list=0x7f090037;
+        public static final int location=0x7f090013;
+        public static final int map=0x7f090016;
+        public static final int menu_settings=0x7f09003b;
+        public static final int name=0x7f09000a;
+        public static final int none=0x7f090000;
+        public static final int normal=0x7f090001;
+        public static final int passWord=0x7f090007;
+        public static final int postEvent=0x7f090038;
+        public static final int progressBar1=0x7f090035;
+        public static final int promotion_slider=0x7f09001c;
+        public static final int refresh=0x7f09003c;
+        public static final int satellite=0x7f090002;
+        public static final int scrollView=0x7f090009;
+        public static final int separator=0x7f09000b;
+        public static final int setDate=0x7f090028;
+        public static final int setTime=0x7f090026;
+        public static final int signIn=0x7f09003e;
+        public static final int sortTypeText=0x7f090017;
+        public static final int status_post_event=0x7f090036;
+        public static final int submit=0x7f090008;
+        public static final int tab1=0x7f09001d;
+        public static final int tab2=0x7f09001e;
+        public static final int tab3=0x7f09001f;
+        public static final int terrain=0x7f090003;
+        public static final int textView1=0x7f090004;
+        public static final int textView2=0x7f090023;
+        public static final int textView3=0x7f090025;
+        public static final int textView4=0x7f090027;
+        public static final int textView5=0x7f090029;
+        public static final int textView6=0x7f09002a;
+        public static final int textView8=0x7f09002e;
+        public static final int time=0x7f090011;
+        public static final int title=0x7f090032;
+        public static final int userName=0x7f090006;
+        public static final int viewSwitcher=0x7f090019;
+        public static final int when=0x7f090010;
     }
     public static final class layout {
         public static final int activity_create_account=0x7f030000;
@@ -186,83 +227,81 @@ containing a value of this type.
         public static final int activity_extra_sorters=0x7f030003;
         public static final int activity_main=0x7f030004;
         public static final int categories=0x7f030005;
-        public static final int list_layout=0x7f030006;
-        public static final int plainlistlayout=0x7f030007;
-        public static final int tabs=0x7f030008;
+        public static final int categories_layout=0x7f030006;
+        public static final int chooser=0x7f030007;
+        public static final int create_event=0x7f030008;
+        public static final int file=0x7f030009;
+        public static final int list_layout=0x7f03000a;
+        public static final int on_event_post_dialog=0x7f03000b;
+        public static final int plainlistlayout=0x7f03000c;
+        public static final int promo_layout=0x7f03000d;
+        public static final int slide1=0x7f03000e;
+        public static final int slide2=0x7f03000f;
+        public static final int splashscreen=0x7f030010;
+        public static final int tabs=0x7f030011;
     }
     public static final class menu {
-        public static final int activity_create_account=0x7f090000;
-        public static final int activity_event_info=0x7f090001;
-        public static final int activity_extra_list_viewer=0x7f090002;
-        public static final int activity_extra_sorters=0x7f090003;
-        public static final int activity_main=0x7f090004;
+        public static final int activity_create_event=0x7f0b0000;
+        public static final int activity_event_info=0x7f0b0001;
+        public static final int activity_extra_sorters=0x7f0b0002;
+        public static final int activity_main=0x7f0b0003;
     }
     public static final class string {
-        public static final int Description=0x7f06000e;
-        public static final int EventDate=0x7f060012;
-        public static final int EventInfo=0x7f06000f;
-        public static final int EventLocation=0x7f060013;
-        public static final int EventLocationSpecifics=0x7f060014;
-        public static final int EventName=0x7f06000d;
-        public static final int EventTime=0x7f060011;
-        public static final int Location=0x7f060015;
-        public static final int More=0x7f060018;
-        public static final int Popular=0x7f060017;
-        public static final int Today=0x7f060016;
-        public static final int When=0x7f060010;
-        public static final int app_name=0x7f06000b;
+        public static final int app_name=0x7f07000f;
+        public static final int choose_file=0x7f070002;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=30] 
          */
-        public static final int common_google_play_services_enable_button=0x7f060006;
+        public static final int common_google_play_services_enable_button=0x7f07000a;
         /**  Message in confirmation dialog informing user they need to enable
         Google Play services in application settings [CHAR LIMIT=NONE] 
          */
-        public static final int common_google_play_services_enable_text=0x7f060005;
+        public static final int common_google_play_services_enable_text=0x7f070009;
         /**  Title of confirmation dialog informing user they need to enable
         Google Play services in application settings [CHAR LIMIT=40] 
          */
-        public static final int common_google_play_services_enable_title=0x7f060004;
+        public static final int common_google_play_services_enable_title=0x7f070008;
         /**  Button in confirmation dialog for installing Google Play services [CHAR LIMIT=30] 
          */
-        public static final int common_google_play_services_install_button=0x7f060003;
+        public static final int common_google_play_services_install_button=0x7f070007;
         /**  (For phones) Message in confirmation dialog informing user that
         they need to install Google Play services (from Play Store) [CHAR LIMIT=NONE] 
          */
-        public static final int common_google_play_services_install_text_phone=0x7f060001;
+        public static final int common_google_play_services_install_text_phone=0x7f070005;
         /**  (For tablets) Message in confirmation dialog informing user that
         they need to install Google Play services (from Play Store) [CHAR LIMIT=NONE] 
          */
-        public static final int common_google_play_services_install_text_tablet=0x7f060002;
+        public static final int common_google_play_services_install_text_tablet=0x7f070006;
         /**  Title of confirmation dialog informing user that they need to install
         Google Play services (from Play Store) [CHAR LIMIT=40] 
          */
-        public static final int common_google_play_services_install_title=0x7f060000;
+        public static final int common_google_play_services_install_title=0x7f070004;
         /**  Message in confirmation dialog informing user there is an unknow issue in Google Player
         services [CHAR LIMIT=NONE] 
          */
-        public static final int common_google_play_services_unknown_issue=0x7f060009;
+        public static final int common_google_play_services_unknown_issue=0x7f07000d;
         /**  Button in confirmation dialog for updating Google Play services [CHAR LIMIT=20] 
          */
-        public static final int common_google_play_services_update_button=0x7f06000a;
+        public static final int common_google_play_services_update_button=0x7f07000e;
         /**  Message in confirmation dialog informing user that they need to update
         Google Play services (from Play Store) [CHAR LIMIT=NONE] 
          */
-        public static final int common_google_play_services_update_text=0x7f060008;
+        public static final int common_google_play_services_update_text=0x7f07000c;
         /**  Title of confirmation dialog informing user that they need to update
         Google Play services (from Play Store) [CHAR LIMIT=40] 
          */
-        public static final int common_google_play_services_update_title=0x7f060007;
-        public static final int hello_world=0x7f06001b;
-        public static final int menu_settings=0x7f06001c;
-        public static final int title_activity_create_account=0x7f06001d;
-        public static final int title_activity_event_info=0x7f06000c;
-        public static final int title_activity_extra_list_viewer=0x7f06001a;
-        public static final int title_activity_extra_sorters=0x7f060019;
+        public static final int common_google_play_services_update_title=0x7f07000b;
+        public static final int empty_directory=0x7f070000;
+        public static final int error_selecting_file=0x7f070003;
+        public static final int hello_world=0x7f070011;
+        public static final int location_prompt=0x7f070014;
+        public static final int menu_settings=0x7f070012;
+        public static final int storage_removed=0x7f070001;
+        public static final int title_activity_event_info=0x7f070010;
+        public static final int title_activity_extra_sorters=0x7f070013;
     }
     public static final class style {
-        public static final int ActionBar=0x7f080002;
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -284,10 +323,16 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f080000;
+        public static final int AppBaseTheme=0x7f080002;
         /**  Application theme. 
+ All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f080001;
+        public static final int AppTheme=0x7f080003;
+        public static final int fileChooserIcon=0x7f080001;
+        public static final int fileChooserName=0x7f080000;
+    }
+    public static final class xml {
+        public static final int mimetypes=0x7f050000;
     }
     public static final class styleable {
         /** Attributes that can be used with a MapAttrs.

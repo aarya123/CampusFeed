@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+    <ScrollView
+      xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+      <LinearLayout
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="vertical" >
+
+          <TextView
+              android:id="@+id/textView1"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Title"
+       
+              android:textAppearance="?android:attr/textAppearanceMedium" />
+
+          <EditText
+              android:id="@+id/eventTitle"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:ems="10" >
+
+              <requestFocus />
+          </EditText>
+
+          <TextView
+              android:id="@+id/textView2"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Description"
+              android:textAppearance="?android:attr/textAppearanceMedium" />
+
+          <EditText
+              android:id="@+id/eventDescription"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:ems="10"
+              android:inputType="textMultiLine" />
+
+          <TextView
+              android:id="@+id/textView3"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Time:"
+              android:textAppearance="?android:attr/textAppearanceMedium" />
+
+          <Button
+              android:id="@+id/setTime"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="Pick a Time" />
+
+          <TextView
+              android:id="@+id/textView4"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Date:"
+              android:textAppearance="?android:attr/textAppearanceMedium" />
+
+          <Button
+              android:id="@+id/setDate"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="Pick a date" />
+
+          <TextView
+              android:id="@+id/textView5"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Location"
+              android:textAppearance="?android:attr/textAppearanceMedium" />
+
+          <Spinner
+              android:id="@+id/eventLocation"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:entries="@array/locations"
+              android:prompt="@string/location_prompt" />
+
+          <TextView
+              android:id="@+id/textView6"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Location Details"
+              android:textAppearance="?android:attr/textAppearanceMedium" />
+
+          <EditText
+              android:id="@+id/eventLocationDetails"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:ems="10"
+              android:inputType="textMultiLine" />
+
+        <TextView
+              android:id="@+id/event_poster_upload_textview"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Upload a poster (Optional)" />
+
+          <Button
+              android:id="@+id/button1"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="Choose Poster Image" />
+
+          <TextView
+              android:id="@+id/textView8"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Upload a handout (pdf,docx,and etc.) Optional" />
+
+          <Button
+              android:id="@+id/button2"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="Choose Handout" />
+      </LinearLayout>
+
+    </ScrollView>

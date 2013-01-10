@@ -93,7 +93,7 @@ public class ExtraSorters extends Activity
 			Toast.makeText(getApplicationContext(),
 		               "Updated Events", Toast.LENGTH_LONG).show();
 
-			new Connection().execute("UPDATE");
+			new Connection(getApplicationContext(),"UPDATE");
 			return true;
 		}
 		return super.onMenuItemSelected(featureId, item);

@@ -1,6 +1,9 @@
 package com.example.campusfeed;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.net.URLDecoder;
 import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
@@ -11,17 +14,25 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.json.*;
 
+import android.app.DownloadManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Environment;
 import android.util.Log;
 
 public class DownloadDataThread extends Thread
 {
 	// I'll upgrade this class to work with when the user does not have an
 	// internet connection, so it does not just crash.
+
 	public void Download()
 	{
 		// USING HTTP OBJECTS
+		// provided by Apache Foundation for android
+		// more secure and fast
 		HttpGet httpGet = new HttpGet(
-				"http://ezevents.6te.net/playingaroundandroid.php");
+				"http://ezevents.6te.net/mobile_sorter_final.php");
 		HttpClient h = new DefaultHttpClient();
 		HttpResponse r = null;
 		try
@@ -30,10 +41,10 @@ public class DownloadDataThread extends Thread
 			r = h.execute(httpGet);
 		} catch (ClientProtocolException e1)
 		{
-			Log.d("APP", e1.getMessage());
+			Log.d("APP", "ERROR1");
 		} catch (IOException e1)
 		{
-			Log.d("APP", e1.getMessage());
+		Log.d("APP", "ERROR2");
 		}
 		String response = null;
 		String jsonArray = null;
@@ -43,10 +54,10 @@ public class DownloadDataThread extends Thread
 			response = EntityUtils.toString(r.getEntity());
 		} catch (ParseException e1)
 		{
-			Log.d("APP", e1.getMessage());
+			Log.d("APP", "ERROR3");
 		} catch (IOException e1)
 		{
-			Log.d("APP", e1.getMessage());
+			Log.d("APP", "ERROR4");
 		}
 		// decode it.
 		jsonArray = URLDecoder.decode(response);
@@ -57,18 +68,19 @@ public class DownloadDataThread extends Thread
 			json = new JSONArray(jsonArray);
 		} catch (JSONException e)
 		{
-			Log.d("APP", e.getMessage());
+			Log.d("APP", e.toString());
 		}
-		try{
-		for (int i = 0; i < json.length(); i++)
+		// I am just clearing out the list for now and adding in all the data. The problem was with deleting events and the arraylist still keeping it. The memoy use is still low.
+		EventOrganizer.eventList.clear();
+		int i;
+		for ( i = 0; i < json.length(); i++)
 		{
 			try
 			{
 				JSONObject event = json.getJSONObject(i);
-				Event e = EventOrganizer.getEventById(event
-						.getString("unique_id"));
-				if (e == null)
-				{
+				Event e=EventOrganizer.getEventById(event.getString("unique_id"));
+				
+				
 					EventOrganizer.addEvent(new Event(event
 							.getString("unique_id"), event.getString("title"),
 							"active", event.getString("location"), event
@@ -79,32 +91,35 @@ public class DownloadDataThread extends Thread
 									.getString("date"), event
 									.getInt("interest"), event
 									.getString("latlng").replace(" ", "")
-									.replace("\n", "")));
-				} else
-				{
-					// update all sections
-					e.Update(
-							event.getString("unique_id"),
-							event.getString("title"),
-							"active",
-							event.getString("location"),
-							event.getString("user"),
-							event.getString("category"),
-							event.getString("desc"),
-							event.getString("location_details"),
-							event.getString("date"),
-							event.getInt("interest"),
-							event.getString("latlng").replace(" ", "")
-									.replace("\n", ""));
-				}
+									.replace("\n", ""),null,null));
+				
+					
+				
 			} catch (JSONException e)
 			{
-				Log.d("APP", e.getMessage());
+				Log.d("APP", e.toString()+i);
 			}
 		}
-	}catch(NullPointerException e)
-	{
-		Log.d("ERROR", "JSON ARRAY IS EMPTY");
 	}
+	
+	// DISREGARD THIS. IT IS NOT IN USE YET.
+	public static void getPoster(String unique_id){
+		
+		DownloadManager.Request r=new DownloadManager.Request(Uri.parse("http://ezevents.6te.net/posters"+unique_id));
+		// This put the download in the same Download dir the browser uses
+		r.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "fileName");
+		r.setAllowedOverRoaming(false);
+		// When downloading music and videos they will be listed in the player
+		// (Seems to be available since Honeycomb only)
+		r.allowScanningByMediaScanner();
+
+		// Notify user when download is completed
+		// (Seems to be available since Honeycomb only)
+		r.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+
+		// Start download
+		DownloadManager dm = (DownloadManager) MainActivity.dl;
+		dm.enqueue(r);
 	}
+
 }

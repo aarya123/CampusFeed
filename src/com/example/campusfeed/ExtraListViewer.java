@@ -21,7 +21,7 @@ public class ExtraListViewer extends Activity
 	CustomAdapter a;
 
 	protected void onCreate(Bundle savedInstanceState)
-	{
+	{ 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_extra_list_viewer);
 		listView = (ListView) findViewById(R.id.extraListSorter);
@@ -50,7 +50,7 @@ public class ExtraListViewer extends Activity
 
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
-		getMenuInflater().inflate(R.menu.activity_extra_list_viewer, menu);
+		//getMenuInflater().inflate(R.menu.activity_extra_list_viewer, menu);
 		return true;
 	}
 
@@ -66,7 +66,7 @@ public class ExtraListViewer extends Activity
 			Toast.makeText(getApplicationContext(),
 		               "Updated Events", Toast.LENGTH_LONG).show();
 
-			new Connection().execute("UPDATE");
+			new Connection(getApplicationContext(),"UPDATE");
 			return true;
 		}
 		return super.onMenuItemSelected(featureId, item);

@@ -1,7 +1,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-<item
-        android:id="@+id/refresh"
-        android:icon="@drawable/ic_menu_refresh"
+  <item
+        android:id="@+id/ViewPoster"
+        android:icon="@drawable/ic_action_post_event"
         android:showAsAction="ifRoom"
-        android:title="Check For New Events"/>
+        android:title="Create an Event"/>
+   <item
+        android:id="@+id/ViewHandout"
+        android:icon="@drawable/ic_action_post_event"
+        android:showAsAction="ifRoom"
+        android:title="Create an Event"/>
 </menu>

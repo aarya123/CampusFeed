@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+   <item
+        android:id="@+id/postEvent"
+        android:icon="@drawable/ic_action_post_event"
+        android:showAsAction="ifRoom"
+        android:title="Create an Event"/>
+    
+</menu>

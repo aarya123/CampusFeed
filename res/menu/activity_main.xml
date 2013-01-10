@@ -6,9 +6,14 @@
         android:showAsAction="ifRoom"
         android:title="Check For New Events"/>
     <item
-        android:id="@+id/dropDown"
-        android:icon="@drawable/ic_action_settings"
-        android:showAsAction="ifRoom">
+        android:id="@+id/create"
+        android:icon="@drawable/ic_action_create_icon"
+        android:showAsAction="ifRoom"
+        android:title="Create an Event"/>
+    <item
+        android:icon="@drawable/ic_action_create_icon"
+        android:showAsAction="ifRoom"
+        android:title="Search">
         <menu>
             <item
                 android:id="@+id/signIn"

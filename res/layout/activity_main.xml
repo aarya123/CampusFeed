@@ -16,10 +16,17 @@
             android:layout_height="match_parent"
             android:orientation="vertical" >
 
+        
+
+          <android.support.v4.view.ViewPager
+    android:layout_width="match_parent"
+    android:layout_height="140dp"
+    android:id="@+id/promotion_slider"/>
+
             <TabWidget
                 android:id="@android:id/tabs"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="56dp" >
             </TabWidget>
 
             <FrameLayout
@@ -37,15 +44,13 @@
                     android:id="@+id/tab2"
                     
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/Popular" >
+                    android:layout_height="match_parent" >
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/tab3"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" 
-                    android:text="@string/More">
+                    android:layout_height="match_parent" >
                 </LinearLayout>
             </FrameLayout>
         </LinearLayout>

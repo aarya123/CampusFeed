@@ -48,12 +48,6 @@ public class CreateAccount extends Activity
 				});
 	}
 
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
-		getMenuInflater().inflate(R.menu.activity_create_account, menu);
-		return true;
-	}
-
 }
 
 class createAcc extends AsyncTask<String, Void, String>
@@ -69,7 +63,8 @@ class createAcc extends AsyncTask<String, Void, String>
 
 	protected String doInBackground(String... params)
 	{
-		String url="http://ezevents.6te.net/createaccount.php"+"?email="+email+"&username="+user+"&password="+pass;
+		String url = "http://ezevents.6te.net/createaccount.php" + "?email="
+				+ email + "&username=" + user + "&password=" + pass;
 		HttpGet httpGet = new HttpGet(url);
 		HttpClient h = new DefaultHttpClient();
 		HttpResponse r = null;
