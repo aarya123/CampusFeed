@@ -1,22 +1,29 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
+  
     <item
         android:id="@+id/refresh"
         android:icon="@drawable/ic_menu_refresh"
         android:showAsAction="ifRoom"
         android:title="Check For New Events"/>
-    <item
-        android:id="@+id/dropDown"
-        android:icon="@drawable/ic_action_settings"
-        android:showAsAction="ifRoom">
-        <menu>
-            <item
-                android:id="@+id/signIn"
-                android:title="Sign In"/>
-            <item
-                android:id="@+id/createAcc"
-                android:title="Create an Account"/>
-        </menu>
-    </item>
+      <item
+        android:id="@+id/create"
+        android:icon="@drawable/ic_action_create_icon"
+        android:showAsAction="ifRoom"
+        android:title="Create an Event"/>
+      <item
+    android:icon="@drawable/ic_action_create_icon"
+    android:showAsAction="ifRoom"
+    android:title="Search">
+    <menu>
+        <item
+            android:id="@+id/menuSortNewest"
+            android:title="Sort by newest" />
+        <item
+            android:id="@+id/menuSortRating"
+            android:title="Sort by rating" />
+    </menu>
+</item>
+
 
 </menu>

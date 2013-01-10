@@ -19,9 +19,9 @@
             android:id="@+id/name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="#2388cd"
+            android:background="#1E90FF"
             android:gravity="center"
-            android:text="@string/EventName"
+            android:text="Event Name"
             android:textColor="#FFFFFF"
             android:textSize="30sp" />
 
@@ -32,21 +32,65 @@
             android:background="#FFFFFF"
             android:visibility="visible" />
 
+         <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#1E90FF"
+            android:gravity="center"
+            android:text="Handouts"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
+
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content" >
+
+             <ImageView
+                 android:id="@+id/Eventposter"
+                 android:layout_width="80dp"
+                 android:layout_height="80dp"
+                 android:layout_alignParentRight="true"
+                 android:layout_alignParentTop="true"
+                 android:layout_marginRight="86dp"
+                 android:src="@android:drawable/alert_dark_frame" />
+
+             <ImageView
+                 android:id="@+id/EventHandout"
+                 android:layout_width="80dp"
+                 android:layout_height="80dp"
+                 android:layout_alignParentTop="true"
+                 android:layout_marginRight="38dp"
+                 android:layout_toLeftOf="@+id/Eventposter"
+                 android:src="@android:drawable/alert_light_frame" />
+
+         </RelativeLayout>
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#1E90FF"
+            android:gravity="center"
+            android:text="Description"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
+
         <TextView
             android:id="@+id/eventInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/EventInfo"
-            android:textSize="18sp" />
+            android:text="Event Info"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/when"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#2388cd"
+            android:background="#1E90FF"
             android:gravity="center"
-            android:text="@string/When"
+            android:text="When"
             android:textColor="#FFFFFF"
             android:textSize="25sp" />
 
@@ -54,29 +98,25 @@
             android:id="@+id/time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true"
             android:gravity="center"
-            android:onClick="onClick"
-            android:text="@string/EventTime"
+            android:text="Event Time"
             android:textSize="20sp" />
 
         <TextView
             android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true"
             android:gravity="center"
-            android:onClick="onClick"
-            android:text="@string/EventDate"
+            android:text="Event Date"
             android:textSize="20sp" />
 
         <TextView
             android:id="@+id/location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#2388cd"
+            android:background="#1E90FF"
             android:gravity="center"
-            android:text="@string/Location"
+            android:text="Event Location"
             android:textColor="#FFFFFF"
             android:textSize="25sp" />
 
@@ -84,10 +124,8 @@
             android:id="@+id/eventLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true"
             android:gravity="center"
-            android:onClick="onClick"
-            android:text="@string/EventLocation"
+            android:text="Event Location"
             android:textSize="20sp" />
 
         <TextView
@@ -95,14 +133,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/EventLocationSpecifics"
+            android:text="Event Location Specifics"
             android:textSize="17sp" />
 
-        <fragment
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.MapFragment"
-            android:layout_width="match_parent"
-            android:layout_height="512dp" />
+      <fragment
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          android:id="@+id/map"
+          android:layout_width="match_parent"
+          android:layout_height="290dp"
+          class="com.google.android.gms.maps.MapFragment" />
+
     </LinearLayout>
 
 </ScrollView>

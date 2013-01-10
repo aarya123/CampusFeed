@@ -1,78 +1,101 @@
 package com.example.campusfeed;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import android.app.Activity;
+import android.app.DialogFragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnLongClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class Tab1 extends Activity
 {
 	// full scope vars for use in async task
 	public static ListView listView;
-	public static ArrayAdapter a;
+  
 
+	   public static CustomAdapter a;
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tabs);
 		listView = (ListView) findViewById(R.id.list);
-		if (EventOrganizer.getEvents(EventOrganizer.Sorter.today).size() > 0)
-		{
-			a = new CustomAdapter(getApplicationContext(), R.id.list,
-					EventOrganizer.getEvents(EventOrganizer.Sorter.today));
-		} else
-		{
-			a = new ArrayAdapter<String>(getApplicationContext(),
-					R.layout.plainlistlayout, R.id.eventTitle,
-					new String[] { "No Events Today!" });
-		}
-		try
-		{
-			listView.setAdapter(a);
-		} catch (NullPointerException e)
-		{
-			Log.d("ERROR", e.getMessage());
-		}
+
+
+		 a=new CustomAdapter(getApplicationContext(),R.id.list,EventOrganizer.getEvents(EventOrganizer.Sorter.today));
+		
+		
+		
+        listView.setAdapter(a);
 		listView.setOnItemClickListener(new OnItemClickListener()
 		{
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id)
 			{
-				if (!listView.getItemAtPosition(position).toString()
-						.equals("No Events Today!"))
+				if (!(listView.getItemAtPosition(0)==null))
 				{
-					Event goingTo = (Event) a.getItem(position);
+					Event goingTo=a.getItem(position);
 					Intent eventInfo = new Intent(Tab1.this, EventInfo.class);
-					Log.d("APP", goingTo.getId());
-					eventInfo.putExtra("eventId", goingTo.getId());
+					eventInfo.putExtra("eventId",
+					goingTo.getId());
+			
 					Tab1.this.startActivity(eventInfo);
+				}
+				else{
+					// go to creating event page.
 				}
 			}
 		});
-	}
+		listView.setOnItemLongClickListener(new OnItemLongClickListener(){
 
-	/**
-	 * Executes whenever something on the action bar is clicked
-	 */
+			@Override
+			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+				 // fire off the dialog box
+				    ListOptionsDialog.longClicked=a.getItem(arg2);
+				    FragmentManager fm = getFragmentManager();
+			        ListOptionsDialog d = new ListOptionsDialog();
+			        d.show(fm, "options");
+					return false;
+			}
+			 
+		});
+		
+		}
+	
+		
+	    
+	
+	@Override
+	public void onResume(){
+		super.onResume();
+	    // download again and update the list
+		//call the async task
+		
+	
+	}
 	public boolean onMenuItemSelected(int featureId, MenuItem item)
 	{
 		switch (item.getItemId())
 		{
 		case R.id.refresh:
-			new Connection().execute();
-			Log.d("APP", "REFRESH BUTTON PRESSED");
-			Toast.makeText(getApplicationContext(), "Updated Event List",
-					Toast.LENGTH_LONG).show();
+			new Connection(getApplicationContext(),"UPDATE");
 			return true;
 		}
 		return super.onMenuItemSelected(featureId, item);
 	}
-
+	
+	
 }
