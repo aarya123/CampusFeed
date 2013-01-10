@@ -36,6 +36,7 @@ public class CreateAccount extends Activity
 		userName = ((EditText) this.findViewById(R.id.userName));
 		passWord = (EditText) this.findViewById(R.id.passWord);
 		email = (EditText) this.findViewById(R.id.email);
+		//TODO Add check for email and username
 		((Button) this.findViewById(R.id.submit))
 				.setOnClickListener(new OnClickListener()
 				{

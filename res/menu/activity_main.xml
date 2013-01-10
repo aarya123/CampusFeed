@@ -6,14 +6,9 @@
         android:showAsAction="ifRoom"
         android:title="Check For New Events"/>
     <item
-        android:id="@+id/create"
-        android:icon="@drawable/ic_action_create_icon"
+        android:icon="@drawable/ic_action_settings"
         android:showAsAction="ifRoom"
-        android:title="Create an Event"/>
-    <item
-        android:icon="@drawable/ic_action_create_icon"
-        android:showAsAction="ifRoom"
-        android:title="Search">
+        android:title="Settings">
         <menu>
             <item
                 android:id="@+id/signIn"
@@ -23,5 +18,11 @@
                 android:title="Create an Account"/>
         </menu>
     </item>
+    <item
+        android:id="@+id/createEvent"
+        android:icon="@drawable/ic_action_create_icon"
+        android:showAsAction="ifRoom"
+        android:title="Create an Event"/>
+    
 
 </menu>

@@ -22,7 +22,7 @@
         android:required="true" />
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="13"
         android:targetSdkVersion="14" />
 
     <application
@@ -79,6 +79,11 @@
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyBKZ2aR4_Bd1aWLnnvhHuysytmFHwZ_GcE" />
+
+        <activity
+            android:name="com.example.campusfeed.CreateAccount"
+            android:label="@string/title_activity_create_account" >
+        </activity>
     </application>
 
 </manifest>

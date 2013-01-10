@@ -1,23 +1,16 @@
 package com.example.campusfeed;
 
-import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -32,19 +25,18 @@ import android.widget.Toast;
 
 public class EventInfo extends Activity
 {
-public Event currentEvent;
-public ProgressBar fetching;
+	public Event currentEvent;
+	public ProgressBar fetching;
+
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setupActionBar();
-		
 		setContentView(R.layout.activity_event_info);
-	currentEvent= EventOrganizer.getEventById(getIntent()
-				.getExtras().getString("eventId"));
-		//fetching =(ProgressBar)findViewById(R.id.fetchPosteAndHandout);
+		currentEvent = EventOrganizer.getEventById(getIntent().getExtras()
+				.getString("eventId"));
+		// fetching =(ProgressBar)findViewById(R.id.fetchPosteAndHandout);
 		TextView name = (TextView) findViewById(R.id.name);
-		//new getPosterandHandouts().execute();
+		// new getPosterandHandouts().execute();
 		name.setText(currentEvent.getName());
 		TextView description = (TextView) findViewById(R.id.eventInfo);
 		description.setText(currentEvent.getDescription());
@@ -54,7 +46,8 @@ public ProgressBar fetching;
 		date.setText(currentEvent.getDate());
 		TextView location = (TextView) findViewById(R.id.eventLocation);
 		location.setText(currentEvent.getLocation());
-		Toast.makeText(getApplicationContext(), currentEvent.posterPath, Toast.LENGTH_LONG).show();
+		Toast.makeText(getApplicationContext(), currentEvent.posterPath,
+				Toast.LENGTH_LONG).show();
 		TextView locationSpecs = (TextView) findViewById(R.id.eventLocationSpecifics);
 		locationSpecs.setText(currentEvent.getLocationSpecifics());
 		GoogleMap map = ((MapFragment) getFragmentManager().findFragmentById(
@@ -80,22 +73,27 @@ public ProgressBar fetching;
 			}
 		});
 	}
-	public void onClick(View v) {
-		if (v.getId() == R.id.date) {
+
+	public void onClick(View v)
+	{
+		if (v.getId() == R.id.date)
+		{
 			Intent extraListViewer = new Intent(EventInfo.this,
 					ExtraListViewer.class);
 			extraListViewer.putExtra("sort", "date");
 			extraListViewer.putExtra("eventId", currentEvent.getId());
 			EventInfo.this.startActivity(extraListViewer);
 		}
-		if (v.getId() == R.id.time) {
+		if (v.getId() == R.id.time)
+		{
 			Intent extraListViewer = new Intent(EventInfo.this,
 					ExtraListViewer.class);
 			extraListViewer.putExtra("sort", "time");
 			extraListViewer.putExtra("eventId", currentEvent.getId());
 			EventInfo.this.startActivity(extraListViewer);
 		}
-		if (v.getId() == R.id.eventLocation) {
+		if (v.getId() == R.id.eventLocation)
+		{
 			Intent extraListViewer = new Intent(EventInfo.this,
 					ExtraListViewer.class);
 			extraListViewer.putExtra("sort", "location");
@@ -107,86 +105,81 @@ public ProgressBar fetching;
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		getMenuInflater().inflate(R.menu.activity_event_info, menu);
-		//SearchView search=(SearchView)menu.findItem(R.id.menu_search).getActionView();
-		//search.setQueryHint("Search an Organization or event name");
-		
-		
+		// SearchView
+		// search=(SearchView)menu.findItem(R.id.menu_search).getActionView();
+		// search.setQueryHint("Search an Organization or event name");
 		return true;
 	}
-	@Override
+
 	public boolean onMenuItemSelected(int featureId, MenuItem item)
 	{
 		switch (item.getItemId())
 		{
 		case R.id.ViewHandout:
-		
+
 			// get handout
-			
+
 			return true;
-		case R.id.create:
+		case R.id.createEvent:
 			// get poster
-		return true;
-		
+			return true;
+
 		}
-	
+
 		return super.onMenuItemSelected(featureId, item);
 	}
-	
 
-
-	public void setupActionBar()
+	class getPosterandHandouts extends AsyncTask<String, Void, Bitmap>
 	{
-		ActionBar bar = getActionBar();
-		ColorDrawable actionBarColor = new ColorDrawable();
-		actionBarColor.setColor(Color.rgb(49, 132, 189));
-		bar.setTitle("CampusFeed");
-		bar.setBackgroundDrawable(actionBarColor);
-	}
-	class getPosterandHandouts extends AsyncTask<String,Void,Bitmap>{
 
 		@Override
-		protected Bitmap doInBackground(String... arg0) {
-			// TODO Auto-generated method stub
+		protected Bitmap doInBackground(String... arg0)
+		{
 			URL url;
-			Bitmap bitmap=null;
-			try {
-				url = new URL("http://ezevents.6te.net/"+currentEvent.posterPath);
+			Bitmap bitmap = null;
+			try
+			{
+				url = new URL("http://ezevents.6te.net/"
+						+ currentEvent.posterPath);
 				URLConnection connection = url.openConnection();
 				connection.setUseCaches(true);
 				Object response = connection.getContent();
-				if (response instanceof Bitmap) {
-				   bitmap = (Bitmap)response;
-				} 
-				else{
+				if (response instanceof Bitmap)
+				{
+					bitmap = (Bitmap) response;
+				} else
+				{
 					// get the files
-				//	Log.d("sgdfgsdgdfsg","http://ezevents.6te.net/"+currentEvent.posterPath );
-					//InputStream pic1=new URL("http://ezevents.6te.net/"+currentEvent.posterPath).openStream();
-					//BitmapFactory.Options options=new BitmapFactory.Options();
-					//options.inJustDecodeBounds=true;
-					//options.inSampleSize
-					//bitmap=BitmapFactory.decodeStream(pic1, outPadding, opts);
+					// Log.d("sgdfgsdgdfsg","http://ezevents.6te.net/"+currentEvent.posterPath
+					// );
+					// InputStream pic1=new
+					// URL("http://ezevents.6te.net/"+currentEvent.posterPath).openStream();
+					// BitmapFactory.Options options=new
+					// BitmapFactory.Options();
+					// options.inJustDecodeBounds=true;
+					// options.inSampleSize
+					// bitmap=BitmapFactory.decodeStream(pic1, outPadding,
+					// opts);
 				}
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			} catch (Exception e)
+			{
+				Log.d("ERROR", e.getMessage());
 			}
-			
 			return bitmap;
 		}
-		@Override
-		protected void onPostExecute(Bitmap poster){
-			if(poster==null){
+
+		protected void onPostExecute(Bitmap poster)
+		{
+			if (poster == null)
+			{
+				fetching.setVisibility(View.GONE);
+			} else
+			{
+				ImageView posterimage = (ImageView) findViewById(R.id.Eventposter);
+				posterimage.setImageBitmap(Bitmap.createScaledBitmap(poster,
+						60, 60, true));
 				fetching.setVisibility(View.GONE);
 			}
-			else
-			{
-			ImageView posterimage=(ImageView)findViewById(R.id.Eventposter);
-			posterimage.setImageBitmap(Bitmap.createScaledBitmap(poster, 60, 60, true));
-			fetching.setVisibility(View.GONE);
-			}
-			
 		}
-		
-		
 	}
 }
