@@ -79,6 +79,11 @@ public class MainActivity extends TabActivity
 		case R.id.signIn:
 			return true;
 		case R.id.createAcc:
+			this.overridePendingTransition(R.anim.slide_in_up,
+					R.anim.slide_out_down);
+			Intent createAcc = new Intent(MainActivity.this,
+					CreateAccount.class);
+			MainActivity.this.startActivity(createAcc);
 			return true;
 		}
 		return super.onMenuItemSelected(featureId, item);
