@@ -64,4 +64,17 @@
         android:text="Join!"
         android:textColor="#FFFFFF" />
 
+    <TextView
+        android:id="@+id/error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/submit"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="Invalid Username and/or Password!
+        	No whitspaces"
+        android:textColor="#FF0000"
+        android:textSize="15sp"
+        android:visibility="gone" />
+
 </RelativeLayout>
