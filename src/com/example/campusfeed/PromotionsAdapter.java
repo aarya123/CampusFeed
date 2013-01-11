@@ -30,27 +30,7 @@ public class PromotionsAdapter extends PagerAdapter
 	{
 		LayoutInflater inflater = (LayoutInflater) collection.getContext()
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		int resId = 0;
-		// TODO Fix this
-		switch (position)
-		{
-		case 0:
-			resId = R.layout.promo_layout;
-			break;
-		case 1:
-			resId = R.layout.promo_layout;
-			break;
-		case 2:
-			resId = R.layout.promo_layout;
-			break;
-		case 3:
-			resId = R.layout.promo_layout;
-			break;
-		case 4:
-			resId = R.layout.promo_layout;
-			break;
-		}
-		View view = inflater.inflate(resId, null);
+		View view = inflater.inflate(R.layout.promo_layout, null);
 		((ViewPager) collection).addView(view, 0);
 		ImageView i = (ImageView) view.findViewById(R.id.imageView1);
 		i.setImageBitmap(Bitmap.createScaledBitmap(this.promotions[position],

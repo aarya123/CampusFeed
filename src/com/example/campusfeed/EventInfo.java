@@ -115,24 +115,15 @@ public class EventInfo extends Activity
 	{
 		switch (item.getItemId())
 		{
-		case R.id.ViewHandout:
-
-			// get handout
-
-			return true;
-		case R.id.createEvent:
-			// get poster
-			return true;
+		default:
+			return super.onMenuItemSelected(featureId, item);
 
 		}
 
-		return super.onMenuItemSelected(featureId, item);
 	}
 
 	class getPosterandHandouts extends AsyncTask<String, Void, Bitmap>
 	{
-
-		@Override
 		protected Bitmap doInBackground(String... arg0)
 		{
 			URL url;

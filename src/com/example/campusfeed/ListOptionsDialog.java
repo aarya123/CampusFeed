@@ -21,7 +21,7 @@ public class ListOptionsDialog extends DialogFragment
 				{
 					public void onClick(DialogInterface dialog, int which)
 					{
-						//TODO Fix this
+						//TODO Star Event
 						Accounts.starEvent(longClicked.getId(),
 								"mayank2333@gmail.com");
 						switch (which)

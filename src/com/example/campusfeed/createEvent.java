@@ -115,7 +115,6 @@ public class createEvent extends Activity
 	{
 		switch (requestCode)
 		{
-		// TODO Fix this
 		case 00011:
 			if (resultCode == RESULT_OK)
 			{

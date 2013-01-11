@@ -102,11 +102,43 @@ public class MainActivity extends TabActivity implements
 			startActivity(createAcc);
 			return true;
 		case R.id.createEvent:
-			Intent create = new Intent(this, createEvent.class);
-			startActivity(create);
+			Intent createEvent = new Intent(MainActivity.this,
+					createEvent.class);
+			startActivity(createEvent);
 			return true;
+		default:
+			return super.onMenuItemSelected(featureId, item);
+
 		}
-		return super.onMenuItemSelected(featureId, item);
+	}
+
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		// Handle item selection
+		switch (item.getItemId())
+		{
+		case R.id.refresh:
+			Toast.makeText(getApplicationContext(), "Updated Events",
+					Toast.LENGTH_LONG).show();
+			new Connection(getApplicationContext(), "UPDATE");
+			return true;
+		case R.id.signIn:
+			return true;
+		case R.id.createAcc:
+			// this.overridePendingTransition(R.anim.slide_in_up,
+			// R.anim.slide_out_down);
+			Intent createAcc = new Intent(MainActivity.this,
+					CreateAccount.class);
+			startActivity(createAcc);
+			return true;
+		case R.id.createEvent:
+			Intent createEvent = new Intent(MainActivity.this,
+					createEvent.class);
+			startActivity(createEvent);
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
 
 	public void onPause()
