@@ -1,31 +1,29 @@
 package com.example.campusfeed;
 
 import java.text.SimpleDateFormat;
-
-import android.graphics.Bitmap;
-
 import com.google.android.gms.maps.model.LatLng;
 import java.util.*;
 
 public class Event
 {
 	private String name, id, status, location, host, category, description,
-			 locationSpecifics;
+			locationSpecifics;
 	private Date datetime;
 	private int interest;
 	private LatLng latlng;
-	public String posterPath,handoutPath;
+	public String posterPath, handoutPath;
 
 	public Event(String id, String name, String status, String location,
 			String host, String category, String description,
-			String locationSpecifics, String date, int interest, String latlng,String posterPath, String handoutPath)
+			String locationSpecifics, String date, int interest, String latlng,
+			String posterPath, String handoutPath)
 	{
 		this.id = id;
 		this.name = name;
 		this.status = status;
 		this.location = location;
-		this.posterPath=posterPath;
-		this.handoutPath=handoutPath;
+		this.posterPath = posterPath;
+		this.handoutPath = handoutPath;
 		this.host = host;
 		this.category = category;
 		this.description = description;
@@ -55,6 +53,7 @@ public class Event
 		this.latlng = new LatLng(Double.parseDouble(latAndLang[0]),
 				Double.parseDouble(latAndLang[1]));
 	}
+
 	public String getLocation()
 	{
 		return location;
@@ -83,12 +82,12 @@ public class Event
 		return sdf.format(datetime);
 
 	}
-	
-	public String getDateandTime(){
+
+	public String getDateandTime()
+	{
 		SimpleDateFormat sdf = new SimpleDateFormat("M/d/yy h:mm a");
 		return sdf.format(datetime);
 	}
-	
 
 	// good stuff happening here :D
 	public String getTime()
@@ -124,7 +123,14 @@ public class Event
 	{
 		return latlng;
 	}
-	public String getId(){
+
+	public String getId()
+	{
 		return this.id;
+	}
+
+	public String getHost()
+	{
+		return host;
 	}
 }

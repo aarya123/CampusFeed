@@ -4,12 +4,10 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ViewSwitcher;
 
@@ -40,7 +38,7 @@ public class ExtraSorters extends Activity
 			{
 				clickCount = 1;
 				eventListView = (ListView) findViewById(R.id.extraList);
-				 b = null;
+				b = null;
 				if (position == 0)
 					b = new CustomAdapter(getApplicationContext(), R.id.list,
 							EventOrganizer
@@ -82,22 +80,6 @@ public class ExtraSorters extends Activity
 		});
 	}
 
-	/**
-	 * Executes whenever something on the action bar is clicked
-	 */
-	public boolean onMenuItemSelected(int featureId, MenuItem item)
-	{
-		switch (item.getItemId())
-		{
-		case R.id.refresh:
-			Toast.makeText(getApplicationContext(),
-		               "Updated Events", Toast.LENGTH_LONG).show();
-
-			new Connection(getApplicationContext(),"UPDATE");
-			return true;
-		}
-		return super.onMenuItemSelected(featureId, item);
-	}
 	public void onBackPressed()
 	{
 		if (clickCount == 1)

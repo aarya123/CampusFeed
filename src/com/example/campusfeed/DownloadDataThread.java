@@ -44,7 +44,7 @@ public class DownloadDataThread extends Thread
 			Log.d("APP", "ERROR1");
 		} catch (IOException e1)
 		{
-		Log.d("APP", "ERROR2");
+			Log.d("APP", "ERROR2");
 		}
 		String response = null;
 		String jsonArray = null;
@@ -70,44 +70,42 @@ public class DownloadDataThread extends Thread
 		{
 			Log.d("APP", e.toString());
 		}
-		// I am just clearing out the list for now and adding in all the data. The problem was with deleting events and the arraylist still keeping it. The memoy use is still low.
+		// I am just clearing out the list for now and adding in all the data.
+		// The problem was with deleting events and the arraylist still keeping
+		// it. The memoy use is still low.
 		EventOrganizer.eventList.clear();
 		int i;
-		for ( i = 0; i < json.length(); i++)
+		for (i = 0; i < json.length(); i++)
 		{
 			try
 			{
 				JSONObject event = json.getJSONObject(i);
-				Event e=EventOrganizer.getEventById(event.getString("unique_id"));
-				
-				
-					EventOrganizer.addEvent(new Event(event
-							.getString("unique_id"), event.getString("title"),
-							"active", event.getString("location"), event
-									.getString("user"), event
-									.getString("category"), event
-									.getString("desc"), event
-									.getString("location_details"), event
-									.getString("date"), event
-									.getInt("interest"), event
-									.getString("latlng").replace(" ", "")
-									.replace("\n", ""),null,null));
-				
-					
-				
+				EventOrganizer.addEvent(new Event(event.getString("unique_id"),
+						event.getString("title"), "active", event
+								.getString("location"),
+						event.getString("user"), event.getString("category"),
+						event.getString("desc"), event
+								.getString("location_details"), event
+								.getString("date"), event.getInt("interest"),
+						event.getString("latlng").replace(" ", "")
+								.replace("\n", ""), null, null));
+
 			} catch (JSONException e)
 			{
-				Log.d("APP", e.toString()+i);
+				Log.d("APP", e.toString() + i);
 			}
 		}
 	}
-	
+
 	// DISREGARD THIS. IT IS NOT IN USE YET.
-	public static void getPoster(String unique_id){
-		
-		DownloadManager.Request r=new DownloadManager.Request(Uri.parse("http://ezevents.6te.net/posters"+unique_id));
+	public static void getPoster(String unique_id)
+	{
+
+		DownloadManager.Request r = new DownloadManager.Request(
+				Uri.parse("http://ezevents.6te.net/posters" + unique_id));
 		// This put the download in the same Download dir the browser uses
-		r.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "fileName");
+		r.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,
+				"fileName");
 		r.setAllowedOverRoaming(false);
 		// When downloading music and videos they will be listed in the player
 		// (Seems to be available since Honeycomb only)

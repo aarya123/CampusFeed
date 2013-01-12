@@ -6,27 +6,24 @@
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_extra_sorters">ExtraSorters</string>
+    <string name="location_prompt">Where is it happening?</string>
 
-    
-     <string name="location_prompt">Where is it happening?</string>
- 
     <string-array name="locations">
         <item>Lawson Computer Science Building</item>
         <item>Purude Student Health Center</item>
         <item>Purdue Memorial Union</item>
         <item>Cary Quadrangle</item>
         <item>Electrical Engineering Building</item>
-        
     </string-array>
     <string-array name="listdialogoptions">
         <item>View</item>
         <item>Star Event</item>
         <item>Star User</item>
-         <item>Share by text message</item>
-          <item>Share by Email</item>
-           <item>Share on Facebook</item>
-        
-        
+        <item>Share by text message</item>
+        <item>Share by Email</item>
+        <item>Share on Facebook</item>
     </string-array>
-    
+
+    <string name="title_activity_create_account">CreateAccount</string>
+
 </resources>
