@@ -13,6 +13,7 @@ import android.util.Log;
 
 public class Accounts
 {
+	static String s;
 	// TODO Fix this
 	public Accounts(){
 		

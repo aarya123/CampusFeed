@@ -25,7 +25,10 @@ public class DatePicker extends DialogFragment implements
 	public void onDateSet(android.widget.DatePicker arg0, int arg1, int arg2,
 			int arg3)
 	{
-		String date = arg1 + "-" + (arg2 + 1) + "-" + (arg3) + " ";
-		createEvent.date = date;
+		String dateMysql = arg1 + "-" + (arg2 + 1) + "-" + (arg3) + " ";
+		createEvent.date = dateMysql;
+	
+		createEvent.setDate.setText("Selected: "+(arg2+1)+"/"+arg3+"/"+arg1);
+		
 	}
 }
