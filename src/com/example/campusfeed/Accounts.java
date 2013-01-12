@@ -14,28 +14,59 @@ import android.util.Log;
 public class Accounts
 {
 	// TODO Fix this
-	public Accounts(){
-		
+	static String s;
+	static String username, password,email;
+	static String[] starredEvents, createdEvents;
+
+	public static void setUsername(String user)
+	{
+		username = user;
+	}
+
+	public static void setPassword(String pass)
+	{
+		password = pass;
+	}
+	public static void setEmail(String addy){
+		email=addy;
+	}
+
+	public static void setStarredEvents(String[] events)
+	{
+		starredEvents = events;
+	}
+
+	public static void setCreatedEvents(String[] events)
+	{
+		createdEvents = events;
+	}
+
+	public static String getUsername()
+	{
+		return username;
+	}
+	public static String getEmail(){
+		return email;
+	}
+
+	public static String getPassword()
+	{
+		return password;
+	}
+
+	public static String[] getStarredEvents()
+	{
+		return starredEvents;
+	}
+
+	public static String[] setCreatedEvents()
+	{
+		return createdEvents;
 	}
 
 	public static void starEvent(String uniqueId, String email)
 	{
 		new AccountOnline().execute(uniqueId, email);
-	}
-
-	public static void ReadAccountInfo()
-	{
-
-	}
-
-	public static void MyEvents()
-	{
-
-	}
-
-	public static void starredEvents()
-	{
-
 	}
 }
 

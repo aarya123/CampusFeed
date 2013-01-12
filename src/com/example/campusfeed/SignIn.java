@@ -109,6 +109,10 @@ public class SignIn extends Activity
 				error.setVisibility(View.VISIBLE);
 			} else
 			{
+				Accounts.setUsername(userName.getText().toString());
+				Accounts.setPassword(passWord.getText().toString());
+				String[] array=result.split("|");
+				Accounts.setEmail(array[0]);
 				error.setVisibility(View.GONE);
 				p.dismiss();
 				SignIn.this.finish();

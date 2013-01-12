@@ -2,10 +2,13 @@ package com.example.campusfeed;
 
 import java.io.IOException;
 import org.apache.http.HttpResponse;
+import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
@@ -19,7 +22,7 @@ import android.widget.TextView;
 public class CreateAccount extends Activity
 {
 	EditText userName, passWord, email;
-	static TextView error;
+	TextView error;
 
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -52,34 +55,48 @@ public class CreateAccount extends Activity
 					}
 				});
 	}
-}
 
-class createAcc extends AsyncTask<String, Void, String>
-{
-
-	protected String doInBackground(String... params)
+	class createAcc extends AsyncTask<String, Void, String>
 	{
-		String url = "http://ezevents.6te.net/createaccount.php" + "?email="
-				+ params[0] + "&username=" + params[1] + "&password="
-				+ params[2];
-		HttpGet httpGet = new HttpGet(url);
-		HttpClient h = new DefaultHttpClient();
-		HttpResponse r = null;
-		try
+
+		protected String doInBackground(String... params)
 		{
-			// execute request
-			r = h.execute(httpGet);
-		} catch (ClientProtocolException e1)
-		{
-			Log.d("APP", e1.getMessage());
-		} catch (IOException e1)
-		{
-			Log.d("APP", e1.getMessage());
+			String url = "http://ezevents.6te.net/createaccount.php"
+					+ "?email=" + params[0] + "&username=" + params[1]
+					+ "&password=" + params[2];
+			HttpGet httpGet = new HttpGet(url);
+			HttpClient h = new DefaultHttpClient();
+			HttpResponse r = null;
+			try
+			{
+				// execute request
+				r = h.execute(httpGet);
+			} catch (ClientProtocolException e1)
+			{
+				Log.d("APP", e1.getMessage());
+			} catch (IOException e1)
+			{
+				Log.d("APP", e1.getMessage());
+			}
+			try
+			{
+				return EntityUtils.toString(r.getEntity());
+			} catch (ParseException e)
+			{
+				Log.d("ERROR", e.getMessage());
+			} catch (IOException e)
+			{
+				Log.d("ERROR", e.getMessage());
+			}
+			return null;
 		}
-		if (r.getEntity().equals("fail"))
-			CreateAccount.error.setVisibility(View.VISIBLE);
-		else
-			CreateAccount.error.setVisibility(View.GONE);
-		return null;
+
+		protected void onPostExecute(String response)
+		{
+			if (response.equals("fail") || response == null)
+				error.setVisibility(View.VISIBLE);
+			else
+				CreateAccount.this.finish();
+		}
 	}
 }
