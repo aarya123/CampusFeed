@@ -1,7 +1,6 @@
 package com.example.campusfeed;
 
 import java.io.IOException;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
@@ -105,11 +104,19 @@ public class SignIn extends Activity
 			{
 				Accounts.setUsername(userName.getText().toString());
 				Accounts.setPassword(passWord.getText().toString());
-				String[] array=result.split("|");
+				String[] array = result.split("\\|");
 				Accounts.setEmail(array[0]);
 				Accounts.setStarredEvents(array[1].split(",,,"));
 				Accounts.setCreatedEvents(array[2].split(",,,"));
 				error.setVisibility(View.GONE);
+				Tab1.listView.invalidateViews();
+				try
+				{
+					Tab2.listView.invalidateViews();
+				} catch (NullPointerException e)
+				{
+					// Tab 2 hasn't been opened yet
+				}
 				p.dismiss();
 				SignIn.this.finish();
 			}

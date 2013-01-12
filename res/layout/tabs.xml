@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
  		android:divider="#EDEDED"
         android:dividerHeight="15.0dp"
-        android:layout_height="281dp" >
+        android:layout_height="match_parent" >
     </ListView>
 
 </LinearLayout>

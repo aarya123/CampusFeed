@@ -3,6 +3,7 @@ package com.example.campusfeed;
 import java.util.ArrayList;
 import java.util.Date;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +40,6 @@ public class CustomAdapter extends ArrayAdapter<Event>
 		public ImageView status;
 	}
 
-	@Override
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
 		View v = convertView;
@@ -60,26 +60,22 @@ public class CustomAdapter extends ArrayAdapter<Event>
 
 		if (events.get(position) != null)
 		{
-
 			holder.one.setText(events.get(position).getName());
 			holder.two.setText(events.get(position).getDateandTime());
 			Date date = events.get(position).getDateTime();
-
 			if (date.before(new Date()))
-			{
 				// set the icon to a green dot
 				holder.status.setImageResource(R.drawable.event_on);
-			} else
-			{
+			else
 				holder.status.setImageResource(R.drawable.event_not_yet);
-			}
-
+			if (Accounts.contains(events.get(position).getId()))
+				v.setBackgroundColor(Color.YELLOW);
+			else
+				v.setBackgroundColor(Color.WHITE);
 		} else
 		{
-
 			holder.one.setText("No events going on yet!");
 			holder.two.setText("Why don't you add one?");
-
 		}
 		return v;
 	}

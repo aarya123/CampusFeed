@@ -24,7 +24,7 @@
         android:paddingTop="7dp"
         android:layout_alignParentRight="true"
         android:paddingLeft="5dp"
-        android:src="@drawable/navigation_next_item" />
+        android:src="@drawable/event_not_yet" />
 
     <TextView
         android:id="@+id/date_time"

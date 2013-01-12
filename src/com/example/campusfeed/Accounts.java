@@ -63,9 +63,27 @@ public class Accounts
 		return starredEvents;
 	}
 
-	public static String[] setCreatedEvents()
+	public static String[] getCreatedEvents()
 	{
 		return createdEvents;
+	}
+
+	public static Boolean contains(String uniqueID)
+	{
+		try
+		{
+			//System.out.println(uniqueID);
+			for (int i = 0; i < starredEvents.length; i++)
+			{
+				if (starredEvents[i].equals(uniqueID))
+					return true;
+				//System.out.println(starredEvents[i]);
+			}
+			return false;
+		} catch (NullPointerException e)
+		{
+			return false;
+		}
 	}
 
 	public static void starEvent(String uniqueId, String email)

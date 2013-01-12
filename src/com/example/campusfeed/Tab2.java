@@ -13,7 +13,7 @@ import android.widget.ListView;
 public class Tab2 extends Activity
 {
 	// full scope vars for use in async task
-	public ListView listView;
+	public static ListView listView;
 	public static CustomAdapter a;
 
 	public void onCreate(Bundle savedInstanceState)
