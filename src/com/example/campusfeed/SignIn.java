@@ -9,17 +9,11 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
-
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.graphics.Bitmap;
-import android.graphics.Point;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.Display;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -113,6 +107,8 @@ public class SignIn extends Activity
 				Accounts.setPassword(passWord.getText().toString());
 				String[] array=result.split("|");
 				Accounts.setEmail(array[0]);
+				Accounts.setStarredEvents(array[1].split(",,,"));
+				Accounts.setCreatedEvents(array[2].split(",,,"));
 				error.setVisibility(View.GONE);
 				p.dismiss();
 				SignIn.this.finish();

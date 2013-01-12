@@ -15,8 +15,8 @@ public class Accounts
 {
 	// TODO Fix this
 	static String s;
-	static String username, password, email;
-	static String[] starredEvents, createdEvents;
+	static String username = null, password = null, email = null;
+	static String[] starredEvents = null, createdEvents = null;
 
 	public static void setUsername(String user)
 	{
