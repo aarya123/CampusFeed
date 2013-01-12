@@ -13,6 +13,7 @@ import android.util.Log;
 
 public class Accounts
 {
+	static String s;
 	// TODO Fix this
 	static String s;
 	static String username, password,email;

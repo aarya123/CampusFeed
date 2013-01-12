@@ -42,6 +42,7 @@ public class createEvent extends Activity
 	public Spinner location;
 	public File poster = null;
 	public File handout = null;
+	public static Button setTime,setDate;
 
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -56,8 +57,8 @@ public class createEvent extends Activity
 		title = (EditText) findViewById(R.id.eventTitle);
 		desc = (EditText) findViewById(R.id.eventDescription);
 		locationDetails = (EditText) findViewById(R.id.eventLocationDetails);
-		Button setTime = (Button) findViewById(R.id.setTime);
-		Button setDate = (Button) findViewById(R.id.setDate);
+	    setTime = (Button) findViewById(R.id.setTime);
+		setDate = (Button) findViewById(R.id.setDate);
 		Button upPoster = (Button) findViewById(R.id.button1);
 		Button upHandout = (Button) findViewById(R.id.button2);
 		setTime.setOnClickListener(new View.OnClickListener()

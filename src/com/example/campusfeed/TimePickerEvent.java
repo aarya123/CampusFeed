@@ -1,6 +1,9 @@
 package com.example.campusfeed;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import android.app.DialogFragment;
 import android.app.Dialog;
@@ -25,7 +28,18 @@ public class TimePickerEvent extends DialogFragment implements
 
 	public void onTimeSet(android.widget.TimePicker arg0, int arg1, int arg2)
 	{
-		String time = arg1 + ":" + arg2 + ":" + "00";
-		createEvent.time = time;
+		String timePhp = arg1 + ":" + arg2 + ":" + "00";
+		SimpleDateFormat timeFormat=new SimpleDateFormat("h:mm:ss");
+		Date d=null;
+		try {
+			d=timeFormat.parse(timePhp);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		SimpleDateFormat formatView=new SimpleDateFormat("h:mm a");
+		
+		createEvent.setTime.setText("Selected: "+formatView.format(d));
+		createEvent.time = timePhp;
 	}
 }
