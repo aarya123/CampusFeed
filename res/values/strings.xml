@@ -25,5 +25,6 @@
     </string-array>
 
     <string name="title_activity_create_account">CreateAccount</string>
+    <string name="title_activity_sign_in">SignIn</string>
 
 </resources>

@@ -93,22 +93,21 @@ public class MainActivity extends TabActivity implements
 			new Connection(getApplicationContext(), "UPDATE");
 			return true;
 		case R.id.signIn:
+			Intent signIn = new Intent(this, SignIn.class);
+			startActivity(signIn);
 			return true;
 		case R.id.createAcc:
 			// this.overridePendingTransition(R.anim.slide_in_up,
 			// R.anim.slide_out_down);
-			Intent createAcc = new Intent(MainActivity.this,
-					CreateAccount.class);
+			Intent createAcc = new Intent(this, CreateAccount.class);
 			startActivity(createAcc);
 			return true;
 		case R.id.createEvent:
-			Intent createEvent = new Intent(MainActivity.this,
-					createEvent.class);
+			Intent createEvent = new Intent(this, createEvent.class);
 			startActivity(createEvent);
 			return true;
 		default:
 			return super.onMenuItemSelected(featureId, item);
-
 		}
 	}
 
@@ -123,17 +122,17 @@ public class MainActivity extends TabActivity implements
 			new Connection(getApplicationContext(), "UPDATE");
 			return true;
 		case R.id.signIn:
+			Intent signIn = new Intent(this, SignIn.class);
+			startActivity(signIn);
 			return true;
 		case R.id.createAcc:
 			// this.overridePendingTransition(R.anim.slide_in_up,
 			// R.anim.slide_out_down);
-			Intent createAcc = new Intent(MainActivity.this,
-					CreateAccount.class);
+			Intent createAcc = new Intent(this, CreateAccount.class);
 			startActivity(createAcc);
 			return true;
 		case R.id.createEvent:
-			Intent createEvent = new Intent(MainActivity.this,
-					createEvent.class);
+			Intent createEvent = new Intent(this, createEvent.class);
 			startActivity(createEvent);
 			return true;
 		default:

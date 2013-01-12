@@ -84,6 +84,10 @@
             android:name="com.example.campusfeed.CreateAccount"
             android:label="@string/title_activity_create_account" >
         </activity>
+        <activity
+            android:name="com.example.campusfeed.SignIn"
+            android:label="@string/title_activity_sign_in" >
+        </activity>
     </application>
 
 </manifest>

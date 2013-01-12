@@ -14,7 +14,9 @@ import android.util.Log;
 public class Accounts
 {
 	// TODO Fix this
-	public static String s = "none yet";
+	public Accounts(){
+		
+	}
 
 	public static void starEvent(String uniqueId, String email)
 	{

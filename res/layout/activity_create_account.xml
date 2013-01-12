@@ -72,7 +72,7 @@
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:text="Invalid Username and/or Password!
-        	No whitspaces"
+        	Account email or username may already be in use! No whitspaces as well!"
         android:textColor="#FF0000"
         android:textSize="15sp"
         android:visibility="gone" />

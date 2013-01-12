@@ -117,9 +117,7 @@ public class EventInfo extends Activity
 		{
 		default:
 			return super.onMenuItemSelected(featureId, item);
- 
 		}
-
 	}
 
 	class getPosterandHandouts extends AsyncTask<String, Void, Bitmap>
