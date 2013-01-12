@@ -130,6 +130,22 @@ public class EventOrganizer
 	}
 
 	/**
+	 * Seach the list of events for a specific title
+	 * 
+	 * @param Query
+	 *            string to search
+	 * @return ArrayList<Event> of results
+	 */
+	public static ArrayList<Event> searchEvents(String query)
+	{
+		ArrayList<Event> names = new ArrayList<Event>();
+		for (int i = 0; i < getNumOfEvents(); i++)
+			if (getEvent(i).getName().contains(query))
+				names.add(getEvent(i));
+		return names;
+	}
+
+	/**
 	 * Gets an event by its name
 	 * 
 	 * @param Event
