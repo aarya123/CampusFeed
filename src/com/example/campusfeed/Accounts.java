@@ -13,10 +13,9 @@ import android.util.Log;
 
 public class Accounts
 {
-	static String s;
 	// TODO Fix this
 	static String s;
-	static String username, password,email;
+	static String username, password, email;
 	static String[] starredEvents, createdEvents;
 
 	public static void setUsername(String user)
@@ -28,8 +27,10 @@ public class Accounts
 	{
 		password = pass;
 	}
-	public static void setEmail(String addy){
-		email=addy;
+
+	public static void setEmail(String addy)
+	{
+		email = addy;
 	}
 
 	public static void setStarredEvents(String[] events)
@@ -46,7 +47,9 @@ public class Accounts
 	{
 		return username;
 	}
-	public static String getEmail(){
+
+	public static String getEmail()
+	{
 		return email;
 	}
 
