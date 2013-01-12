@@ -140,7 +140,7 @@ public class EventOrganizer
 	{
 		ArrayList<Event> names = new ArrayList<Event>();
 		for (int i = 0; i < getNumOfEvents(); i++)
-			if (getEvent(i).getName().contains(query))
+			if (getEvent(i).getName().toLowerCase().contains(query.toLowerCase()))
 				names.add(getEvent(i));
 		return names;
 	}
