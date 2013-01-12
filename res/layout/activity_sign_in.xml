@@ -1,0 +1,66 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2388cd"
+    tools:context=".SignIn" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/userNameSignIn"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="Welcome!"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp" />
+
+    <EditText
+        android:id="@+id/userNameSignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/passWordSignIn"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Enter Username"
+        android:inputType="textNoSuggestions"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF" />
+
+    <EditText
+        android:id="@+id/passWordSignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Enter Password"
+        android:inputType="textPassword"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF" >
+    </EditText>
+
+    <Button
+        android:id="@+id/submitSignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/passWordSignIn"
+        android:layout_centerHorizontal="true"
+        android:text="Join!"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/errorSignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/submitSignIn"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="Invalid Username and/or Password!"
+        android:textColor="#FF0000"
+        android:textSize="15sp"
+        android:visibility="gone" />
+
+</RelativeLayout>
