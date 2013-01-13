@@ -19,11 +19,11 @@
             android:id="@+id/name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="#1E90FF"
+            android:background="#2388cd"
             android:gravity="center"
             android:text="Event Name"
             android:textColor="#FFFFFF"
-            android:textSize="30sp" />
+            android:textSize="25sp" />
 
         <View
             android:id="@+id/separator"
@@ -32,49 +32,10 @@
             android:background="#FFFFFF"
             android:visibility="visible" />
 
-         <TextView
-            android:id="@+id/description"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#1E90FF"
-            android:gravity="center"
-            android:text="Handouts"
-            android:textColor="#FFFFFF"
-            android:textSize="25sp" />
-
-         <RelativeLayout
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content" >
-
-             <ImageView
-                 android:id="@+id/Eventposter"
-                 android:layout_width="80dp"
-                 android:layout_height="80dp"
-                 android:layout_alignParentRight="true"
-                 android:layout_alignParentTop="true"
-                 android:layout_marginRight="86dp"
-                 android:src="@android:drawable/alert_dark_frame" />
-
-             <ImageView
-                 android:id="@+id/EventHandout"
-                 android:layout_width="80dp"
-                 android:layout_height="80dp"
-                 android:layout_alignParentTop="true"
-                 android:layout_marginRight="38dp"
-                 android:layout_toLeftOf="@+id/Eventposter"
-                 android:src="@android:drawable/alert_light_frame" />
-
-         </RelativeLayout>
-
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#1E90FF"
-            android:gravity="center"
-            android:text="Description"
-            android:textColor="#FFFFFF"
-            android:textSize="25sp" />
+            android:layout_height="wrap_content" >
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/eventInfo"
@@ -85,10 +46,29 @@
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#2388cd"
+            android:gravity="center"
+            android:text="Handouts"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
+
+        <ImageView
+            android:id="@+id/handout_download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="78dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:src="@drawable/download_handout" />
+
+        <TextView
             android:id="@+id/when"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#1E90FF"
+            android:background="#2388cd"
             android:gravity="center"
             android:text="When"
             android:textColor="#FFFFFF"
@@ -114,7 +94,7 @@
             android:id="@+id/location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#1E90FF"
+            android:background="#2388cd"
             android:gravity="center"
             android:text="Event Location"
             android:textColor="#FFFFFF"
@@ -136,13 +116,12 @@
             android:text="Event Location Specifics"
             android:textSize="17sp" />
 
-      <fragment
-          xmlns:android="http://schemas.android.com/apk/res/android"
-          android:id="@+id/map"
-          android:layout_width="match_parent"
-          android:layout_height="290dp"
-          class="com.google.android.gms.maps.MapFragment" />
-
+        <fragment
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="290dp"
+            class="com.google.android.gms.maps.MapFragment" />
     </LinearLayout>
 
 </ScrollView>

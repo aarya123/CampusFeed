@@ -119,7 +119,7 @@ public class EventInfo extends Activity
 			return super.onMenuItemSelected(featureId, item);
 		}
 	}
-
+/*
 	class getPosterandHandouts extends AsyncTask<String, Void, Bitmap>
 	{
 		protected Bitmap doInBackground(String... arg0)
@@ -171,4 +171,5 @@ public class EventInfo extends Activity
 			}
 		}
 	}
+	*/
 }
