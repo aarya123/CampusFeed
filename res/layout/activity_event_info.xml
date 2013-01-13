@@ -36,14 +36,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
         </RelativeLayout>
-
-        <TextView
+        
+        
+           <TextView
             android:id="@+id/eventInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
+          
+			
             android:gravity="center"
             android:text="Event Info"
             android:textSize="20sp" />
+       
 
         <TextView
             android:id="@+id/description"

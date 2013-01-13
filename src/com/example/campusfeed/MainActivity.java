@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.app.SearchManager;
 import android.app.TabActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -80,18 +81,21 @@ public class MainActivity extends TabActivity implements
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		getMenuInflater().inflate(R.menu.activity_main, menu);
-		return true;
+		
+		// Get the SearchView and set the searchable configuration
+	    SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+	    SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
+	    searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+	    searchView.setIconifiedByDefault(true); // Do not iconify the widget; expand it by default
+		
+	    return super.onCreateOptionsMenu(menu);
 	}
 
 	public boolean onMenuItemSelected(int featureId, MenuItem item)
 	{
 		switch (item.getItemId())
 		{
-		case R.id.refresh:
-			Toast.makeText(getApplicationContext(), "Updated Events",
-					Toast.LENGTH_LONG).show();
-			new Connection(getApplicationContext(), "UPDATE");
-			return true;
+	
 		case R.id.signIn:
 			Intent signIn = new Intent(this, SignIn.class);
 			startActivity(signIn);
@@ -116,11 +120,6 @@ public class MainActivity extends TabActivity implements
 		// Handle item selection
 		switch (item.getItemId())
 		{
-		case R.id.refresh:
-			Toast.makeText(getApplicationContext(), "Updated Events",
-					Toast.LENGTH_LONG).show();
-			new Connection(getApplicationContext(), "UPDATE");
-			return true;
 		case R.id.signIn:
 			Intent signIn = new Intent(this, SignIn.class);
 			startActivity(signIn);
