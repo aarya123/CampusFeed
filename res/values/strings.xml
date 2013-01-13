@@ -17,8 +17,8 @@
     </string-array>
     <string-array name="listdialogoptions">
         <item>View</item>
-        <item>Star Event</item>
-        <item>Star User</item>
+        <item>Star/Unstar Event</item>
+        <item>Star/Unstar User</item>
         <item>Share by text message</item>
         <item>Share by Email</item>
         <item>Share on Facebook</item>

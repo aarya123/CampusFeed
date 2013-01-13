@@ -1,6 +1,8 @@
 package com.example.campusfeed;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
@@ -16,7 +18,13 @@ public class Accounts
 	// TODO Fix this
 	static String s;
 	static String username = null, password = null, email = null;
-	static String[] starredEvents = null, createdEvents = null;
+	static ArrayList<String> starredEvents = null, createdEvents = null;
+	static boolean signedIn = false;
+
+	public static Boolean isSignedIn()
+	{
+		return signedIn;
+	}
 
 	public static void setUsername(String user)
 	{
@@ -33,12 +41,12 @@ public class Accounts
 		email = addy;
 	}
 
-	public static void setStarredEvents(String[] events)
+	public static void setStarredEvents(ArrayList<String> events)
 	{
 		starredEvents = events;
 	}
 
-	public static void setCreatedEvents(String[] events)
+	public static void setCreatedEvents(ArrayList<String> events)
 	{
 		createdEvents = events;
 	}
@@ -58,12 +66,12 @@ public class Accounts
 		return password;
 	}
 
-	public static String[] getStarredEvents()
+	public static ArrayList<String> getStarredEvents()
 	{
 		return starredEvents;
 	}
 
-	public static String[] getCreatedEvents()
+	public static ArrayList<String> getCreatedEvents()
 	{
 		return createdEvents;
 	}
@@ -72,12 +80,10 @@ public class Accounts
 	{
 		try
 		{
-			//System.out.println(uniqueID);
-			for (int i = 0; i < starredEvents.length; i++)
+			for (int i = 0; i < starredEvents.size(); i++)
 			{
-				if (starredEvents[i].equals(uniqueID))
+				if (starredEvents.get(i).equals(uniqueID))
 					return true;
-				//System.out.println(starredEvents[i]);
 			}
 			return false;
 		} catch (NullPointerException e)
@@ -86,44 +92,8 @@ public class Accounts
 		}
 	}
 
-	public static void starEvent(String uniqueId, String email)
+	public static void starEvent(String uniqueId)
 	{
-		new AccountOnline().execute(uniqueId, email);
-	}
-}
-
-class AccountOnline extends AsyncTask<String, Void, String>
-{
-	protected String doInBackground(String... params)
-	{
-		HttpGet httpGet = new HttpGet(
-				"http://ezevents.6te.net/accounts_mobile.php?ACCOUNT="
-						+ params[1] + "&event_id=" + params[0]);
-		HttpClient h = new DefaultHttpClient();
-		HttpResponse r = null;
-		try
-		{
-			// execute request
-			r = h.execute(httpGet);
-		} catch (ClientProtocolException e1)
-		{
-			Log.d("ERROR", e1.getMessage());
-		} catch (IOException e1)
-		{
-			Log.d("ERROR", e1.getMessage());
-		}
-		try
-		{
-			// will return the full json array outputted by php
-			Accounts.s = EntityUtils.toString(r.getEntity());
-		} catch (ParseException e1)
-		{
-			Log.d("ERROR", e1.getMessage());
-		} catch (IOException e1)
-		{
-			Log.d("ERROR", e1.getMessage());
-		}
-		return "DONE";
-		// connect to php file and add in starred
+		starredEvents.add(uniqueId);
 	}
 }

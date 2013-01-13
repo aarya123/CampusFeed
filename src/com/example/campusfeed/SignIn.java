@@ -1,6 +1,8 @@
 package com.example.campusfeed;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
@@ -106,8 +108,16 @@ public class SignIn extends Activity
 				Accounts.setPassword(passWord.getText().toString());
 				String[] array = result.split("\\|");
 				Accounts.setEmail(array[0]);
-				Accounts.setStarredEvents(array[1].split(",,,"));
-				Accounts.setCreatedEvents(array[2].split(",,,"));
+				ArrayList<String> events=new ArrayList<String>();
+				String[] tempEvents=array[1].split(",,,");
+				for(int i=0;i<tempEvents.length;i++)
+					events.add(tempEvents[i]);
+				Accounts.setStarredEvents(events);
+				events=new ArrayList<String>();
+				tempEvents=array[2].split(",,,");
+				for(int i=0;i<tempEvents.length;i++)
+					events.add(tempEvents[i]);
+				Accounts.setCreatedEvents(events);
 				error.setVisibility(View.GONE);
 				Tab1.listView.invalidateViews();
 				try
@@ -117,6 +127,7 @@ public class SignIn extends Activity
 				{
 					// Tab 2 hasn't been opened yet
 				}
+				Accounts.signedIn=true;
 				p.dismiss();
 				SignIn.this.finish();
 			}
