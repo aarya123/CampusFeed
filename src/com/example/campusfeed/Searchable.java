@@ -4,8 +4,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 import java.io.IOException;
 import org.apache.http.HttpResponse;
@@ -24,42 +27,58 @@ import android.content.Intent;
  */
 
 public class Searchable extends Activity {
-	
+
 	public static ListView listView;
 
 	public static CustomAdapter a;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-	    super.onCreate(savedInstanceState);
-	    setContentView(R.layout.activity_searchable);
-	   
-	    handleIntent(getIntent());
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_searchable);
+
+		handleIntent(getIntent());
 	}
 
 	@Override
 	protected void onNewIntent(Intent intent) {
-	    setIntent(intent);
-	    handleIntent(intent);
-	   
+		setIntent(intent);
+		handleIntent(intent);
+
 	}
 
 	private void handleIntent(Intent intent) {
-	    if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-	      String query = intent.getStringExtra(SearchManager.QUERY);
-	      
-	      // Calling EventOrganizer to obtain list of events
-	      listView = (ListView) findViewById(R.id.searchlist);
+		if (Intent.ACTION_SEARCH.equals(intent.getAction())) 
+		{
+			String query = intent.getStringExtra(SearchManager.QUERY);
+
+			// Calling EventOrganizer to store list of events
+			// in
+			listView = (ListView) findViewById(R.id.searchlist);
 			a = new CustomAdapter(getApplicationContext(), R.id.searchlist,
 					EventOrganizer.searchEvents(query));
 			listView.setAdapter(a);
-	      
-	      EventOrganizer.searchEvents(query);
-	      Toast.makeText(getApplicationContext(), query, Toast.LENGTH_SHORT).show();
-	    }
+
+			listView.setOnItemClickListener(new OnItemClickListener()
+			{
+				public void onItemClick(AdapterView<?> parent, View view,
+						int position, long id)
+				{
+					if (!(listView.getItemAtPosition(0) == null))
+					{
+						Event selectedEvent = a.getItem(position);
+						Intent eventInfo = new Intent(Searchable.this, EventInfo.class);
+						eventInfo.putExtra("eventId", selectedEvent.getId());
+
+						Searchable.this.startActivity(eventInfo);
+					}
+				}
+
+			});
+		}
 	}
-	
-	
-	
+
+
+
 
 }
