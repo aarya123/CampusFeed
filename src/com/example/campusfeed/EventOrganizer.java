@@ -128,20 +128,22 @@ public class EventOrganizer
 		}
 		return names;
 	}
-
+	
 	/**
-	 * Seach the list of events for a specific title
+	 * Returns list of events whose name contains the search query
 	 * 
-	 * @param Query
-	 *            string to search
-	 * @return ArrayList<Event> of results
+	 * @param query
+	 * 				The string sent by the Searchable activity
+	 * 				(the search query)
 	 */
 	public static ArrayList<Event> searchEvents(String query)
 	{
 		ArrayList<Event> names = new ArrayList<Event>();
-		for (int i = 0; i < getNumOfEvents(); i++)
+		for(int i = 0; i < getNumOfEvents(); i++)
+		{
 			if (getEvent(i).getName().toLowerCase().contains(query.toLowerCase()))
 				names.add(getEvent(i));
+		}
 		return names;
 	}
 
@@ -159,6 +161,8 @@ public class EventOrganizer
 				return getEvent(i);
 		return null;
 	}
+	
+	
 
 	/**
 	 * Gets an event by its id
