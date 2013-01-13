@@ -212,7 +212,7 @@ public class MainActivity extends TabActivity implements
 				try
 				{
 					InputStream pic1 = new URL(
-							"http://ezevents.6te.net/promos/promo1.jpg")
+							"http://ezevents.6te.net/promos/promotion1display.png")
 							.openStream();
 					promos[0] = BitmapFactory.decodeStream(pic1);
 					promos[1] = promos[0];
