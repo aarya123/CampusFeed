@@ -78,10 +78,7 @@
         <service android:name="com.example.campusfeed.UpdateManager" >
         </service>
 
-        <meta-data
-            android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyBKZ2aR4_Bd1aWLnnvhHuysytmFHwZ_GcE" />
-
+       
         <activity
             android:name="com.example.campusfeed.CreateAccount"
             android:label="@string/title_activity_create_account" >
@@ -97,7 +94,10 @@
    			</intent-filter>
    		    <meta-data android:name="android.app.searchable" android:resource="@xml/searchable" />
 		</activity>
-		
+		 <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyBKZ2aR4_Bd1aWLnnvhHuysytmFHwZ_GcE" />
+        
     </application>
 
 </manifest>
