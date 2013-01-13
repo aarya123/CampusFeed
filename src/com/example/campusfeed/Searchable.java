@@ -57,7 +57,7 @@ public class Searchable extends Activity {
 			
 			int numberOfMatches = EventOrganizer.searchEvents(query).size();
 			TextView queryinfo = (TextView)findViewById(R.id.number_of_matches);
-			queryinfo.setText("Searching for '"+ query + "' ("+ numberOfMatches + " matches)");
+			queryinfo.setText("Searching for '"+ query + "' ("+ numberOfMatches + " result(s))");
 			
 			
 			

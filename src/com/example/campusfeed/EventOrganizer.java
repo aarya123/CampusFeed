@@ -139,11 +139,32 @@ public class EventOrganizer
 	public static ArrayList<Event> searchEvents(String query)
 	{
 		ArrayList<Event> names = new ArrayList<Event>();
+		
+		// Splitting query on " "
+		
+		String arrquery[] = query.split(" ");
+		
+		// Adding events to the ArrayList
+		
 		for(int i = 0; i < getNumOfEvents(); i++)
 		{
-			if (getEvent(i).getName().toLowerCase().contains(query.toLowerCase()))
+			// Checking if event tag contains the full query
+			
+			int containsFullQuery = 1;
+			for(int k=0 ; k<arrquery.length; k++)
+			{		
+				String temparr[] = arrquery[k].split(":");
+				if (!(getEvent(i).getTag().toLowerCase().contains(temparr[0].toLowerCase())))
+					containsFullQuery = 0;
+			}
+			
+			// If event tag contains the full query, I'm adding it to the list
+			
+			if(containsFullQuery == 1)
 				names.add(getEvent(i));
 		}
+			
+			
 		return names;
 	}
 
