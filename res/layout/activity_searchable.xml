@@ -9,8 +9,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" >
+        android:layout_marginTop="44dp" >
 
     </ListView>
+
+    <TextView
+        android:id="@+id/number_of_matches"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="l"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
    
 </RelativeLayout>

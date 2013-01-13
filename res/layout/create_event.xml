@@ -54,8 +54,9 @@
 
           <Button
               android:id="@+id/setTime"
-              android:layout_width="match_parent"
+              android:layout_width="250dp"
               android:layout_height="wrap_content"
+              android:layout_marginLeft="32dp"
               android:text="Pick a Time" />
 
           <TextView

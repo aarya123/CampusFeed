@@ -87,7 +87,7 @@ public class MainActivity extends TabActivity implements
 	    SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
 	    
 	    searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-	    searchView.setIconifiedByDefault(true); // Do not iconify the widget; expand it by default
+	    searchView.setIconifiedByDefault(true); 
 		
 	    return super.onCreateOptionsMenu(menu);
 	}

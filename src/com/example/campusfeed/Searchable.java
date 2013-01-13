@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
@@ -52,8 +53,17 @@ public class Searchable extends Activity {
 		{
 			String query = intent.getStringExtra(SearchManager.QUERY);
 
-			// Calling EventOrganizer to store list of events
-			// in
+			// getting number of results
+			
+			int numberOfMatches = EventOrganizer.searchEvents(query).size();
+			TextView queryinfo = (TextView)findViewById(R.id.number_of_matches);
+			queryinfo.setText("Searching for '"+ query + "' ("+ numberOfMatches + " matches)");
+			
+			
+			
+			
+			// Storing results in listView using CustomAdapter
+			
 			listView = (ListView) findViewById(R.id.searchlist);
 			a = new CustomAdapter(getApplicationContext(), R.id.searchlist,
 					EventOrganizer.searchEvents(query));
