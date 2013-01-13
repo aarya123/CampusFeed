@@ -57,9 +57,8 @@ public class EventInfo extends Activity
 				.title(currentEvent.getName()));
 		map.moveCamera(CameraUpdateFactory.newLatLngZoom(
 				currentEvent.getLatLng(), 17));
-		// set onLONGclick listener so once the use holds the touch for some
-		// seconds, it'll fire off into google
-		// maps with the lat and lng.
+		// set onLongClick listener so once the use holds the touch for some
+		// seconds, it'll fire off into google maps with the lat and lng.
 		map.setOnMapLongClickListener(new OnMapLongClickListener()
 		{
 			public void onMapLongClick(LatLng click)
@@ -78,27 +77,24 @@ public class EventInfo extends Activity
 	{
 		if (v.getId() == R.id.date)
 		{
-			Intent extraListViewer = new Intent(EventInfo.this,
-					ExtraListViewer.class);
+			Intent extraListViewer = new Intent(this, TDLSortViewer.class);
 			extraListViewer.putExtra("sort", "date");
 			extraListViewer.putExtra("eventId", currentEvent.getId());
-			EventInfo.this.startActivity(extraListViewer);
+			startActivity(extraListViewer);
 		}
 		if (v.getId() == R.id.time)
 		{
-			Intent extraListViewer = new Intent(EventInfo.this,
-					ExtraListViewer.class);
+			Intent extraListViewer = new Intent(this, TDLSortViewer.class);
 			extraListViewer.putExtra("sort", "time");
 			extraListViewer.putExtra("eventId", currentEvent.getId());
-			EventInfo.this.startActivity(extraListViewer);
+			startActivity(extraListViewer);
 		}
 		if (v.getId() == R.id.eventLocation)
 		{
-			Intent extraListViewer = new Intent(EventInfo.this,
-					ExtraListViewer.class);
+			Intent extraListViewer = new Intent(this, TDLSortViewer.class);
 			extraListViewer.putExtra("sort", "location");
 			extraListViewer.putExtra("eventId", currentEvent.getId());
-			EventInfo.this.startActivity(extraListViewer);
+			startActivity(extraListViewer);
 		}
 	}
 

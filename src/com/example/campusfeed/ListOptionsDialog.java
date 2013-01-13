@@ -46,8 +46,24 @@ public class ListOptionsDialog extends DialogFragment
 
 							break;
 						case 1:
-							Accounts.starEvent(longClicked.getId());
-							new AccountOnline().execute(Accounts.getUsername(), longClicked.getId());
+							if (Accounts.isSignedIn())
+							{
+								int index;
+								if ((index = Accounts.isStarred(longClicked
+										.getId())) == -1)
+								{
+									Accounts.starEvent(longClicked.getId());
+									new AccountOnline().execute(
+											Accounts.getUsername(),
+											longClicked.getId(), "star");
+								} else
+								{
+									Accounts.unStar(index);
+									new AccountOnline().execute(
+											Accounts.getUsername(),
+											longClicked.getId(), "unstar");
+								}
+							}
 							break;
 						case 2:
 							// view creator
@@ -65,38 +81,76 @@ public class ListOptionsDialog extends DialogFragment
 	{
 		protected String doInBackground(String... params)
 		{
-			HttpGet httpGet = new HttpGet(
-					"http://ezevents.6te.net/accounts_mobile.php?username="
-							+ params[0] + "&starring_event_id=" + params[1]
-							+ "&action=star_event");
-			HttpClient h = new DefaultHttpClient();
-			HttpResponse r = null;
-			try
+			if (params[2].equals("star"))
 			{
-				// execute request
-				r = h.execute(httpGet);
-			} catch (ClientProtocolException e1)
-			{
-				Log.d("ERROR", e1.getMessage());
-			} catch (IOException e1)
-			{
-				Log.d("ERROR", e1.getMessage());
+				HttpGet httpGet = new HttpGet(
+						"http://ezevents.6te.net/accounts_mobile.php?username="
+								+ params[0] + "&starring_event_id=" + params[1]
+								+ "&action=star_event");
+				HttpClient h = new DefaultHttpClient();
+				HttpResponse r = null;
+				try
+				{
+					// execute request
+					r = h.execute(httpGet);
+				} catch (ClientProtocolException e1)
+				{
+					Log.d("ERROR", e1.getMessage());
+				} catch (IOException e1)
+				{
+					Log.d("ERROR", e1.getMessage());
+				}
+				try
+				{
+					// will return the full json array outputted by php
+					Accounts.s = EntityUtils.toString(r.getEntity());
+				} catch (ParseException e1)
+				{
+					Log.d("ERROR", e1.getMessage());
+				} catch (IOException e1)
+				{
+					Log.d("ERROR", e1.getMessage());
+				}
+				// Tab1.listView.invalidateViews();
+				// Tab2.listView.invalidateViews();
+				return "DONE";
+				// connect to php file and add in starred
 			}
-			try
-			{
-				// will return the full json array outputted by php
-				Accounts.s = EntityUtils.toString(r.getEntity());
-			} catch (ParseException e1)
-			{
-				Log.d("ERROR", e1.getMessage());
-			} catch (IOException e1)
-			{
-				Log.d("ERROR", e1.getMessage());
+			else{
+				HttpGet httpGet = new HttpGet(
+						"http://ezevents.6te.net/accounts_mobile.php?username="
+								+ params[0] + "&unstarring_event_id=" + params[1]
+								+ "&action=unstar_event");
+				HttpClient h = new DefaultHttpClient();
+				HttpResponse r = null;
+				try
+				{
+					// execute request
+					r = h.execute(httpGet);
+				} catch (ClientProtocolException e1)
+				{
+					Log.d("ERROR", e1.getMessage());
+				} catch (IOException e1)
+				{
+					Log.d("ERROR", e1.getMessage());
+				}
+				try
+				{
+					// will return the full json array outputted by php
+					Accounts.s = EntityUtils.toString(r.getEntity());
+				} catch (ParseException e1)
+				{
+					Log.d("ERROR", e1.getMessage());
+				} catch (IOException e1)
+				{
+					Log.d("ERROR", e1.getMessage());
+				}
+				// Tab1.listView.invalidateViews();
+				// Tab2.listView.invalidateViews();
+				return "DONE";
+				// connect to php file and add in starred
 			}
-			//Tab1.listView.invalidateViews();
-			//Tab2.listView.invalidateViews();
-			return "DONE";
-			// connect to php file and add in starred
 		}
+		
 	}
 }
