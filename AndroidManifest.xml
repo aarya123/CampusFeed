@@ -27,7 +27,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/ic_launch"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <uses-library android:name="com.google.android.maps" />
