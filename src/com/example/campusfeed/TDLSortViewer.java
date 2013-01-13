@@ -10,7 +10,7 @@ import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
 
-public class ExtraListViewer extends Activity
+public class TDLSortViewer extends Activity
 {
 	ListView listView;
 	CustomAdapter a;
@@ -18,7 +18,7 @@ public class ExtraListViewer extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_extra_list_viewer);
+		setContentView(R.layout.activity_tdlsort_viewer);
 		listView = (ListView) findViewById(R.id.extraListSorter);
 		TextView sortTypeText = (TextView) findViewById(R.id.sortTypeText);
 		sortTypeText.setText(sortTypeText.getText()
@@ -35,10 +35,9 @@ public class ExtraListViewer extends Activity
 					int position, long id)
 			{
 				Event goingTo = a.getItem(position);
-				Intent eventInfo = new Intent(ExtraListViewer.this,
-						EventInfo.class);
+				Intent eventInfo = new Intent(TDLSortViewer.this, EventInfo.class);
 				eventInfo.putExtra("eventId", goingTo.getId());
-				ExtraListViewer.this.startActivity(eventInfo);
+				startActivity(eventInfo);
 			}
 		});
 	}

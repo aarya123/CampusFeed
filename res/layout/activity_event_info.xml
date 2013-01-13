@@ -32,23 +32,13 @@
             android:background="#FFFFFF"
             android:visibility="visible" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-        </RelativeLayout>
-        
-        
-           <TextView
+        <TextView
             android:id="@+id/eventInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
-          
-			
             android:gravity="center"
             android:text="Event Info"
             android:textSize="20sp" />
-       
 
         <TextView
             android:id="@+id/description"
@@ -83,7 +73,9 @@
             android:id="@+id/time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:gravity="center"
+            android:onClick="onClick"
             android:text="Event Time"
             android:textSize="20sp" />
 
@@ -91,7 +83,9 @@
             android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:gravity="center"
+            android:onClick="onClick"
             android:text="Event Date"
             android:textSize="20sp" />
 
@@ -109,7 +103,9 @@
             android:id="@+id/eventLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:gravity="center"
+            android:onClick="onClick"
             android:text="Event Location"
             android:textSize="20sp" />
 

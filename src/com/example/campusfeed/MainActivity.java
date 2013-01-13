@@ -85,6 +85,7 @@ public class MainActivity extends TabActivity implements
 		// Get the SearchView and set the searchable configuration
 	    SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 	    SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
+	    
 	    searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 	    searchView.setIconifiedByDefault(true); // Do not iconify the widget; expand it by default
 		
@@ -213,8 +214,11 @@ public class MainActivity extends TabActivity implements
 					InputStream pic1 = new URL(
 							"http://ezevents.6te.net/promos/promotion1display.png")
 							.openStream();
+					InputStream pic2 = new URL(
+							"http://ezevents.6te.net/promos/promo2.png")
+							.openStream();
 					promos[0] = BitmapFactory.decodeStream(pic1);
-					promos[1] = promos[0];
+					promos[1] = BitmapFactory.decodeStream(pic2);
 					promos[2] = promos[0];
 					promos[3] = promos[0];
 					promos[4] = promos[0];

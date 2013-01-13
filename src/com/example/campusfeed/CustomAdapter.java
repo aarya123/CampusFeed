@@ -70,8 +70,9 @@ public class CustomAdapter extends ArrayAdapter<Event>
 				holder.status.setImageResource(R.drawable.event_not_yet);
 			if (Accounts.contains(events.get(position).getId()))
 				v.setBackgroundColor(Color.YELLOW);
-			else
+			else{
 				v.setBackgroundColor(Color.WHITE);
+			}
 		} else
 		{
 			holder.one.setText("No events going on yet!");

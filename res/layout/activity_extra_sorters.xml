@@ -17,7 +17,7 @@
 
             <ListView
                 android:id="@+id/choiceList"
-                android:dividerHeight="20.0dp"
+                android:dividerHeight="7.0dp"
                 android:divider="#ededed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" >

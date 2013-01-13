@@ -1,17 +1,6 @@
 package com.example.campusfeed;
 
-import java.io.IOException;
 import java.util.ArrayList;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.ParseException;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
-import android.os.AsyncTask;
-import android.util.Log;
 
 public class Accounts
 {
@@ -24,6 +13,19 @@ public class Accounts
 	public static Boolean isSignedIn()
 	{
 		return signedIn;
+	}
+
+	public static int isStarred(String uniqueID)
+	{
+		for (int i = 0; i < starredEvents.size(); i++)
+			if (starredEvents.get(i).equals(uniqueID))
+				return i;
+		return -1;
+	}
+
+	public static void unStar(int index)
+	{
+		starredEvents.remove(index);
 	}
 
 	public static void setUsername(String user)

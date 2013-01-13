@@ -24,22 +24,24 @@
         <item>Share on Facebook</item>
     </string-array>
 
-    <string name="title_activity_event_info">EventInfo</string> 
-    <string name="EventName">Event Name</string> 
-    <string name="Description">Description</string> 
-    <string name="EventInfo">Event Info</string> 
-    <string name="When">When</string> 
-    <string name="EventTime">Event Time</string> 
-    <string name="EventDate">Event Date</string> 
-    <string name="EventLocation">Event Location</string> 
-    <string name="EventLocationSpecifics">Event Location Specifics</string> 
-    <string name="Location">Location</string> <string name="Today">Today</string> 
-    <string name="Popular">Popular</string> <string name="More">More</string> 
-    <string name="title_activity_extra_sorters">ExtraSorters</string> 
+    <string name="title_activity_event_info">EventInfo</string>
+    <string name="EventName">Event Name</string>
+    <string name="Description">Description</string>
+    <string name="EventInfo">Event Info</string>
+    <string name="When">When</string>
+    <string name="EventTime">Event Time</string>
+    <string name="EventDate">Event Date</string>
+    <string name="EventLocation">Event Location</string>
+    <string name="EventLocationSpecifics">Event Location Specifics</string>
+    <string name="Location">Location</string>
+    <string name="Today">Today</string>
+    <string name="Popular">Popular</string>
+    <string name="More">More</string>
+    <string name="title_activity_extra_sorters">ExtraSorters</string>
     <string name="title_activity_extra_list_viewer">ExtraListViewer</string>
     <string name="title_activity_create_account">CreateAccount</string>
     <string name="title_activity_sign_in">SignIn</string>
     <string name="search_hint">Enter Event Name</string>
-    
+    <string name="title_activity_tdlsort_viewer">TDLSortViewer</string>
 
 </resources>

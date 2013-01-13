@@ -41,8 +41,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-               <meta-data android:name="android.app.default_searchable"
-                   android:value=".Searchable" />
+
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".Searchable" />
         </activity>
         <activity
             android:name="com.example.campusfeed.EventInfo"
@@ -78,7 +80,6 @@
         <service android:name="com.example.campusfeed.UpdateManager" >
         </service>
 
-       
         <activity
             android:name="com.example.campusfeed.CreateAccount"
             android:label="@string/title_activity_create_account" >
@@ -87,17 +88,25 @@
             android:name="com.example.campusfeed.SignIn"
             android:label="@string/title_activity_sign_in" >
         </activity>
-        
-        <activity android:name="Searchable" android:excludeFromRecents="true">
-    		<intent-filter>
-       		<action android:name="android.intent.action.SEARCH" />
-   			</intent-filter>
-   		    <meta-data android:name="android.app.searchable" android:resource="@xml/searchable" />
-		</activity>
-		 <meta-data
+        <activity
+            android:name="com.example.campusfeed.Searchable"
+            android:excludeFromRecents="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name="com.example.campusfeed.TDLSortViewer"
+            android:label="@string/title_activity_tdlsort_viewer" >
+        </activity>
+
+        <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyBKZ2aR4_Bd1aWLnnvhHuysytmFHwZ_GcE" />
-        
     </application>
 
 </manifest>
