@@ -1,7 +1,5 @@
 package com.example.campusfeed;
 
-import java.net.URL;
-import java.net.URLConnection;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
@@ -10,18 +8,13 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class EventInfo extends Activity
 {
@@ -46,8 +39,6 @@ public class EventInfo extends Activity
 		date.setText(currentEvent.getDate());
 		TextView location = (TextView) findViewById(R.id.eventLocation);
 		location.setText(currentEvent.getLocation());
-		Toast.makeText(getApplicationContext(), currentEvent.posterPath,
-				Toast.LENGTH_LONG).show();
 		TextView locationSpecs = (TextView) findViewById(R.id.eventLocationSpecifics);
 		locationSpecs.setText(currentEvent.getLocationSpecifics());
 		GoogleMap map = ((MapFragment) getFragmentManager().findFragmentById(
@@ -115,56 +106,57 @@ public class EventInfo extends Activity
 			return super.onMenuItemSelected(featureId, item);
 		}
 	}
-
-	class getPosterandHandouts extends AsyncTask<String, Void, Bitmap>
-	{
-		protected Bitmap doInBackground(String... arg0)
+	/*
+		class getPosterandHandouts extends AsyncTask<String, Void, Bitmap>
 		{
-			URL url;
-			Bitmap bitmap = null;
-			try
+			protected Bitmap doInBackground(String... arg0)
 			{
-				url = new URL("http://ezevents.6te.net/"
-						+ currentEvent.posterPath);
-				URLConnection connection = url.openConnection();
-				connection.setUseCaches(true);
-				Object response = connection.getContent();
-				if (response instanceof Bitmap)
+				URL url;
+				Bitmap bitmap = null;
+				try
 				{
-					bitmap = (Bitmap) response;
+					url = new URL("http://ezevents.6te.net/"
+							+ currentEvent.posterPath);
+					URLConnection connection = url.openConnection();
+					connection.setUseCaches(true);
+					Object response = connection.getContent();
+					if (response instanceof Bitmap)
+					{
+						bitmap = (Bitmap) response;
+					} else
+					{
+						// get the files
+						// Log.d("sgdfgsdgdfsg","http://ezevents.6te.net/"+currentEvent.posterPath
+						// );
+						// InputStream pic1=new
+						// URL("http://ezevents.6te.net/"+currentEvent.posterPath).openStream();
+						// BitmapFactory.Options options=new
+						// BitmapFactory.Options();
+						// options.inJustDecodeBounds=true;
+						// options.inSampleSize
+						// bitmap=BitmapFactory.decodeStream(pic1, outPadding,
+						// opts);
+					}
+				} catch (Exception e)
+				{
+					Log.d("ERROR", e.getMessage());
+				}
+				return bitmap;
+			}
+
+			protected void onPostExecute(Bitmap poster)
+			{
+				if (poster == null)
+				{
+					fetching.setVisibility(View.GONE);
 				} else
 				{
-					// get the files
-					// Log.d("sgdfgsdgdfsg","http://ezevents.6te.net/"+currentEvent.posterPath
-					// );
-					// InputStream pic1=new
-					// URL("http://ezevents.6te.net/"+currentEvent.posterPath).openStream();
-					// BitmapFactory.Options options=new
-					// BitmapFactory.Options();
-					// options.inJustDecodeBounds=true;
-					// options.inSampleSize
-					// bitmap=BitmapFactory.decodeStream(pic1, outPadding,
-					// opts);
+					ImageView posterimage = (ImageView) findViewById(R.id.Eventposter);
+					posterimage.setImageBitmap(Bitmap.createScaledBitmap(poster,
+							60, 60, true));
+					fetching.setVisibility(View.GONE);
 				}
-			} catch (Exception e)
-			{
-				Log.d("ERROR", e.getMessage());
-			}
-			return bitmap;
-		}
-
-		protected void onPostExecute(Bitmap poster)
-		{
-			if (poster == null)
-			{
-				fetching.setVisibility(View.GONE);
-			} else
-			{
-				ImageView posterimage = (ImageView) findViewById(R.id.Eventposter);
-				posterimage.setImageBitmap(Bitmap.createScaledBitmap(poster,
-						60, 60, true));
-				fetching.setVisibility(View.GONE);
 			}
 		}
-	}
+		*/
 }
