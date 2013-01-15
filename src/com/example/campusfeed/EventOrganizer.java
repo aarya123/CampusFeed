@@ -130,11 +130,16 @@ public class EventOrganizer
 	}
 	
 	/**
+	 * searchEvents() is for the Search Widget on the home page, 
+	 * for advanced search, see "adv_searchEvents()"
+	 * 
 	 * Returns list of events whose name contains the search query
 	 * 
 	 * @param query
 	 * 				The string sent by the Searchable activity
 	 * 				(the search query)
+	 * 
+	 * Note: an event tag = "name location time"
 	 */
 	public static ArrayList<Event> searchEvents(String query)
 	{
@@ -144,7 +149,7 @@ public class EventOrganizer
 		
 		String arrquery[] = query.split(" ");
 		
-		// Adding events to the ArrayList
+		// This loop adds events to the ArrayList
 		
 		for(int i = 0; i < getNumOfEvents(); i++)
 		{
@@ -153,8 +158,17 @@ public class EventOrganizer
 			int containsFullQuery = 1;
 			for(int k=0 ; k<arrquery.length; k++)
 			{		
+				/*
+				 *  Ignoring the string after ":" so that
+				 *  when users type 6:25, the :25 is ignored and all
+				 *  events taking place from 6 to 7 will be displayed
+				 *  Note: Have to improve this later, but good enough 
+				 *  for the time being 
+				 */
+				
 				String temparr[] = arrquery[k].split(":");
-				if (!(getEvent(i).getTag().toLowerCase().contains(temparr[0].toLowerCase())))
+				
+				if (!(getEvent(i).getSimpleTag().toLowerCase().contains(temparr[0].toLowerCase())))
 					containsFullQuery = 0;
 			}
 			

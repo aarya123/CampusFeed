@@ -145,10 +145,17 @@ public class Event
 		return host;
 	}
 	
-	// This tag will be used by SearchView
+	// This tag will be used by the SearchView widget
 	
-	public String getTag()
+	public String getSimpleTag()
 	{
 		return (name+" "+location+" "+getHour());
 	}
+	
+	// This tag will be used by advanced search
+	
+	/*public String getAdvancedTag()
+	{
+		return (name+location+getHour()+);
+	}*/
 }

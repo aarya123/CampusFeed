@@ -230,15 +230,12 @@ public class createEvent extends Activity
 				r = h.execute(http);
 				response = EntityUtils.toString(r.getEntity());
 				// p.setMessage("Posting Event Poster and Handout...");
-			} catch (ClientProtocolException e1)
+			} catch (Exception e1)
 			{
 				Log.d("ERROR", e1.getMessage());
 				// p.setMessage("Something went wrong!");
-			} catch (IOException e1)
-			{
-				Log.d("ERROR", e1.getMessage());
-				// p.setMessage("Something went wrong!");
-			}
+			return e1.getMessage();
+			} 
 			// then connect again
 			new DownloadDataThread().Download();
 			return response;
@@ -246,12 +243,18 @@ public class createEvent extends Activity
 
 		public void onPostExecute(String result)
 		{
-			Intent eventInfo = new Intent(createEvent.this, EventInfo.class);
-			eventInfo.putExtra("eventId", result);
-			finish();
-			startActivity(eventInfo);
-			p.setMessage("Finished!");
-			p.dismiss();
+			
+				p.setMessage("Finished!");
+				p.dismiss();
+			//Intent eventInfo = new Intent(createEvent.this, EventInfo.class);
+		//	eventInfo.putExtra("eventId", result);
+			//finish();
+			
+			
+		Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+		Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+		
 		}
+		
 	}
 }

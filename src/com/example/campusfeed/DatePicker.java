@@ -28,7 +28,7 @@ public class DatePicker extends DialogFragment implements
 		String dateMysql = arg1 + "-" + (arg2 + 1) + "-" + (arg3) + " ";
 		createEvent.date = dateMysql;
 	
-		createEvent.setDate.setText("Selected: "+(arg2+1)+"/"+arg3+"/"+arg1);
+		createEvent.setDate.setText((arg2+1)+"/"+arg3+"/"+arg1);
 		
 	}
 }
