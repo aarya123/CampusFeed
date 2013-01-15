@@ -2,11 +2,10 @@ package com.example.campusfeed;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 
 public class EventOrganizer
 {
-	static ArrayList<HashMap<String, Event>> eventList = new ArrayList<HashMap<String, Event>>();
+	static ArrayList<Event> eventList = new ArrayList<Event>();
 
 	public enum Sorter
 	{
@@ -18,7 +17,7 @@ public class EventOrganizer
 	 * 
 	 * @return returns ArrayList<HashMap<String, Event>>
 	 */
-	public static ArrayList<HashMap<String, Event>> getList()
+	public static ArrayList<Event> getList()
 	{
 		return eventList;
 	}
@@ -31,9 +30,7 @@ public class EventOrganizer
 	 */
 	public static void addEvent(Event event)
 	{
-		HashMap<String, Event> map = new HashMap<String, Event>();
-		map.put("Events", event);
-		eventList.add(map);
+		eventList.add(event);
 	}
 
 	/**
@@ -45,7 +42,7 @@ public class EventOrganizer
 	 */
 	public static Event getEvent(int index)
 	{
-		return eventList.get(index).get("Events");
+		return eventList.get(index);
 	}
 
 	/**
@@ -76,14 +73,12 @@ public class EventOrganizer
 			events = sort(events);
 			for (int i = events.size() - 1; i > -1; i--)
 				names.add(events.get(i));
-
 		}
 		if (sorter == Sorter.today)
 		{
 			Calendar c = Calendar.getInstance();
 			String date = (c.get(Calendar.MONTH) + 1) + "/"
 					+ c.get(Calendar.DATE) + "/" + c.get(Calendar.YEAR);
-
 			for (int i = 0; i < getNumOfEvents(); i++)
 				if (getEvent(i).getDate().equals(date))
 					names.add(getEvent(i));
@@ -128,20 +123,20 @@ public class EventOrganizer
 		}
 		return names;
 	}
-	
+
 	/**
 	 * Returns list of events whose name contains the search query
 	 * 
 	 * @param query
-	 * 				The string sent by the Searchable activity
-	 * 				(the search query)
+	 *            The string sent by the Searchable activity (the search query)
 	 */
 	public static ArrayList<Event> searchEvents(String query)
 	{
 		ArrayList<Event> names = new ArrayList<Event>();
-		for(int i = 0; i < getNumOfEvents(); i++)
+		for (int i = 0; i < getNumOfEvents(); i++)
 		{
-			if (getEvent(i).getName().toLowerCase().contains(query.toLowerCase()))
+			if (getEvent(i).getName().toLowerCase()
+					.contains(query.toLowerCase()))
 				names.add(getEvent(i));
 		}
 		return names;
@@ -161,8 +156,6 @@ public class EventOrganizer
 				return getEvent(i);
 		return null;
 	}
-	
-	
 
 	/**
 	 * Gets an event by its id
