@@ -41,6 +41,7 @@ public class createEvent extends Activity
 	public EditText title, desc, locationDetails;
 	public Spinner location;
 	public File poster = null;
+	public Button upPoster,upHandout;
 	public File handout = null;
 	public static Button setTime,setDate;
 
@@ -59,8 +60,8 @@ public class createEvent extends Activity
 		locationDetails = (EditText) findViewById(R.id.eventLocationDetails);
 	    setTime = (Button) findViewById(R.id.setTime);
 		setDate = (Button) findViewById(R.id.setDate);
-		Button upPoster = (Button) findViewById(R.id.button1);
-		Button upHandout = (Button) findViewById(R.id.button2);
+		 upPoster = (Button) findViewById(R.id.button1);
+		 upHandout = (Button) findViewById(R.id.button2);
 		setTime.setOnClickListener(new View.OnClickListener()
 		{
 			public void onClick(View v)
@@ -129,6 +130,7 @@ public class createEvent extends Activity
 				{
 					handout = FileUtils.getFile(uri);
 				}
+			upHandout.setText(handout.getName());
 			}
 			break;
 		case 00012:
@@ -145,8 +147,7 @@ public class createEvent extends Activity
 				{
 					poster = FileUtils.getFile(uri);
 				}
-				Toast.makeText(getApplicationContext(), poster.getName(),
-						Toast.LENGTH_SHORT).show();
+				upPoster.setText(poster.getName());
 			}
 		}
 	}
@@ -244,15 +245,14 @@ public class createEvent extends Activity
 		public void onPostExecute(String result)
 		{
 			
-				p.setMessage("Finished!");
-				p.dismiss();
-			//Intent eventInfo = new Intent(createEvent.this, EventInfo.class);
-		//	eventInfo.putExtra("eventId", result);
-			//finish();
+		    p.setMessage("Finished!");
+		    p.dismiss();
+			Intent eventInfo = new Intent(createEvent.this, EventInfo.class);
+			eventInfo.putExtra("eventId", result);
+			finish();
+			startActivity(eventInfo);
 			
-			
-		Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
-		Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+		
 		
 		}
 		
