@@ -10,6 +10,8 @@ import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -24,6 +26,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class EventInfo extends Activity
 {
@@ -45,11 +48,12 @@ public class EventInfo extends Activity
 		TextView time = (TextView) findViewById(R.id.time);
 		time.setText(currentEvent.getTime());
 		TextView date = (TextView) findViewById(R.id.date);
-		TextView user=(TextView)findViewById(R.id.postedBy);
-		user.setText(currentEvent.getUser());
+		//TextView user=(TextView)findViewById(R.id.postedBy);
+		//user.setText(currentEvent.getUser());
 		date.setText(currentEvent.getDate());
 		TextView location = (TextView) findViewById(R.id.eventLocation);
-		 posterspot=(ImageView)findViewById(R.id.imageView1);
+		 posterspot=(ImageView)findViewById(R.id.event_info_poster_spot);
+		
 		location.setText(currentEvent.getLocation());
 		TextView locationSpecs = (TextView) findViewById(R.id.eventLocationSpecifics);
 		locationSpecs.setText(currentEvent.getLocationSpecifics());
@@ -60,7 +64,12 @@ public class EventInfo extends Activity
 				.title(currentEvent.getName()));
 		map.moveCamera(CameraUpdateFactory.newLatLngZoom(
 				currentEvent.getLatLng(), 17));
-		new getPosterandHandouts().execute();
+		//Toast.makeText(getApplicationContext(), currentEvent.posterPath, Toast.LENGTH_LONG).show();
+		try{
+		UrlImageViewHelper.setUrlDrawable(posterspot,"http://ezevents.6te.net/"+currentEvent.posterPath );
+		}catch(Exception e){
+			Log.d("Error", e.toString());
+		}
 		// set onLongClick listener so once the use holds the touch for some
 		// seconds, it'll fire off into google maps with the lat and lng.
 		map.setOnMapLongClickListener(new OnMapLongClickListener()
@@ -75,7 +84,20 @@ public class EventInfo extends Activity
 				startActivity(intent);
 			}
 		});
+		posterspot.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Log.d("clicked", "imageview");
+				Intent viewer=new Intent(v.getContext(),ViewPoster.class);
+				viewer.putExtra("url","http://ezevents.6te.net/"+currentEvent.posterPath );
+				startActivity(viewer);
+		
+			}
+		});
 	}
+	
 
 	public void onClick(View v)
 	{
@@ -100,7 +122,9 @@ public class EventInfo extends Activity
 			extraListViewer.putExtra("eventId", currentEvent.getId());
 			startActivity(extraListViewer);
 		}
+		
 	}
+	
 
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
@@ -128,17 +152,17 @@ public class EventInfo extends Activity
 				Bitmap bitmap = null;
 				try
 				{
-					url = new URL("http://ezevents.6te.net/"
-							+ currentEvent.posterPath);
-					URLConnection connection = url.openConnection();
+				//	url = new URL("http://ezevents.6te.net/"
+						//	+ currentEvent.posterPath);
+					//URLConnection connection = url.openConnection();
 					
 					
 					
 						 //get the files
 						 Log.d("GET","http://ezevents.6te.net/"+currentEvent.posterPath
 						 );
-						 InputStream pic1=new URL("http://ezevents.6te.net/"+currentEvent.posterPath).openStream();
-						bitmap=BitmapFactory.decodeStream(pic1);
+						// InputStream pic1=new URL("http://ezevents.6te.net/"+currentEvent.posterPath).openStream();
+						//bitmap=BitmapFactory.decodeStream(pic1);
 				
 				} catch (Exception e)
 				{
@@ -156,8 +180,8 @@ public class EventInfo extends Activity
 				} else
 				{
 					
-					posterspot.setImageBitmap(Bitmap.createScaledBitmap(poster,
-							74, 74, true));
+					
+					
 
 				}
 			}

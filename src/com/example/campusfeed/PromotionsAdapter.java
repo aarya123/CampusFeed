@@ -1,5 +1,7 @@
 package com.example.campusfeed;
 
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Parcelable;
@@ -11,15 +13,12 @@ import android.widget.ImageView;
 
 public class PromotionsAdapter extends PagerAdapter
 {
-	Bitmap[] promotions = null;
-	int w, h;
+	
 
-	public PromotionsAdapter(Bitmap[] promotions, int w, int h)
-	{
-		this.promotions = promotions;
-		this.w = w;
-		this.h = h;
-	}
+	String[] promotions=new String[]{"http://ezevents.6te.net/promos/promo2.png","http://ezevents.6te.net/promos/promotion1display.png","http://ezevents.6te.net/promos/promo2.png","http://ezevents.6te.net/promos/promotion1display.png","http://ezevents.6te.net/promos/promo2.png"};
+
+
+
 
 	public int getCount()
 	{
@@ -33,8 +32,8 @@ public class PromotionsAdapter extends PagerAdapter
 		View view = inflater.inflate(R.layout.promo_layout, null);
 		((ViewPager) collection).addView(view, 0);
 		ImageView i = (ImageView) view.findViewById(R.id.imageView1);
-		i.setImageBitmap(Bitmap.createScaledBitmap(this.promotions[position],
-				w, h, true));
+		
+				UrlImageViewHelper.setUrlDrawable(i, promotions[position]);
 		return view;
 	}
 

@@ -19,6 +19,7 @@
             <android.support.v4.view.ViewPager
                 android:id="@+id/promotion_slider"
                 android:layout_width="match_parent"
+                android:background="#000000"
                 android:layout_height="140dp" />
 
             <TabWidget

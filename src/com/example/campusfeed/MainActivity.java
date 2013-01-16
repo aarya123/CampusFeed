@@ -175,12 +175,17 @@ public class MainActivity extends TabActivity implements
 
 	public void setupSlides()
 	{
-		// download the promo flyers
 		new GetPromos().execute();
+		// download the promo flyers
+		ViewPager pager = (ViewPager) findViewById(R.id.promotion_slider);
+		
+		
+		PromotionsAdapter promos = new PromotionsAdapter();
+		pager.setAdapter(promos);
 		// add action swipe listener
 	}
 
-	class GetPromos extends AsyncTask<String, Void, Bitmap[]>
+	class GetPromos extends AsyncTask<String, Void, String>
 	{
 		public ProgressDialog p;
 		public boolean error = false;
@@ -205,14 +210,22 @@ public class MainActivity extends TabActivity implements
 				"Starting Up Campus Feed", "Please Wait...", false);
 		}
 
-		protected Bitmap[] doInBackground(String... arg0)
+		protected String doInBackground(String... arg0)
 		{
 			if (!isOnline())
 			{
 				error = true;
 				return null;
-			} else
+			}
+			else
 			{
+				try {
+					Thread.sleep(2200);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					return "done";
+				}
+				/*
 				Bitmap[] promos = new Bitmap[5];
 				try
 				{
@@ -239,10 +252,12 @@ public class MainActivity extends TabActivity implements
 					error = true;
 				}
 				return promos;
+				*/
+				return "done";
 			}
 		}
 
-		protected void onPostExecute(Bitmap[] promotionImages)
+		protected void onPostExecute(String result)
 		{	
 			if (error)
 			{
@@ -250,9 +265,10 @@ public class MainActivity extends TabActivity implements
 				p.dismiss();
 			} else
 			{
-				if(promotionImages==null){
+				if(result==null){
 					
 				}else{
+					/*
 				Display screen = getWindowManager().getDefaultDisplay();
 				Point size = new Point();
 				ViewPager pager = (ViewPager) findViewById(R.id.promotion_slider);
@@ -262,11 +278,13 @@ public class MainActivity extends TabActivity implements
 				PromotionsAdapter promos = new PromotionsAdapter(
 						promotionImages, width, height);
 				pager.setAdapter(promos);
+				*/
 				p.dismiss();
 				}
 			}
 		}
 	}
+	
 }
 
 /*

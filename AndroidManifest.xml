@@ -107,6 +107,10 @@
             android:name="com.example.campusfeed.AccountSettings"
             android:label="account_settings" >
         </activity>
+          <activity
+            android:name="com.example.campusfeed.ViewPoster"
+            android:label="view_poster" >
+        </activity>
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
