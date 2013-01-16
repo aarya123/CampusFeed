@@ -68,6 +68,7 @@ public class DownloadDataThread extends Thread
 		// The problem was with deleting events and the arraylist still keeping
 		// it. The memoy use is still low.
 		EventOrganizer.eventList.clear();
+		try{
 		for (int i = 0; i < json.length(); i++)
 		{
 			try
@@ -87,6 +88,10 @@ public class DownloadDataThread extends Thread
 			{
 				Log.d("APP", e.toString() + i);
 			}
+		}}
+		catch(NullPointerException e)
+		{
+			Log.d("ERROR",e.getMessage());
 		}
 	}
 

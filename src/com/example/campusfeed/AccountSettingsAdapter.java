@@ -1,9 +1,6 @@
 package com.example.campusfeed;
 
-import java.util.ArrayList;
-import java.util.Date;
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,12 +17,10 @@ public class AccountSettingsAdapter extends ArrayAdapter<String>
 			String[] choices)
 	{
 		super(context, textViewResourceId, choices);
-		this.choices=choices;
+		this.choices = choices;
 		this.c = context;
-	
 	}
 
-	
 	// hold the elements in the layout
 	public static class ViewHolder
 	{
@@ -35,7 +30,6 @@ public class AccountSettingsAdapter extends ArrayAdapter<String>
 
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
-
 		View v = convertView;
 		ViewHolder holder;
 		if (v == null)
@@ -43,47 +37,34 @@ public class AccountSettingsAdapter extends ArrayAdapter<String>
 			LayoutInflater vi = (LayoutInflater) c
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			v = vi.inflate(R.layout.account_settings_list, null);
-			/*
-			 * 
-			 * Each option has an icon and a textview. 
-			 * We need to set the icons accordingly. I already set the text accordingly. 
-			 * 
-			 */
-			holder = new ViewHolder();        
-			holder.icon =(ImageView)v.findViewById(R.id.account_choice_icon);
-		
-			holder.choice=(TextView)v.findViewById(R.id.account_choice_textview);
+			holder = new ViewHolder();
+			holder.icon = (ImageView) v.findViewById(R.id.account_choice_icon);
+			holder.choice = (TextView) v
+					.findViewById(R.id.account_choice_textview);
 			v.setTag(holder);
-		} else{
-		
-			
+		} else
+		{
 			holder = (ViewHolder) v.getTag();
+		}
 		holder.choice.setText(choices[position]);
-		switch(position){
-		
+		switch (position)
+		{
 		case 1:
-		// set the icon accordingly here
+			// set the icon accordingly here
 			break;
 		case 2:
 			// set the icon accordingly here
-			
 			break;
-			
-		case 3: 
+		case 3:
 			// set the icon accordingly here
 			break;
-			
 		case 4:
 			// set the icon accordingly here
 			break;
-			
 		case 5:
 			// set the icon accordingly here
 			break;
 		}
-		
-	}
 		return v;
 	}
-
 }

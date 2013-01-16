@@ -115,12 +115,12 @@ public class ListOptionsDialog extends DialogFragment
 				// Tab2.listView.invalidateViews();
 				return "DONE";
 				// connect to php file and add in starred
-			}
-			else{
+			} else
+			{
 				HttpGet httpGet = new HttpGet(
 						"http://ezevents.6te.net/accounts_mobile.php?username="
-								+ params[0] + "&unstarring_event_id=" + params[1]
-								+ "&action=unstar_event");
+								+ params[0] + "&unstarring_event_id="
+								+ params[1] + "&action=unstar_event");
 				HttpClient h = new DefaultHttpClient();
 				HttpResponse r = null;
 				try
@@ -145,12 +145,9 @@ public class ListOptionsDialog extends DialogFragment
 				{
 					Log.d("ERROR", e1.getMessage());
 				}
-				// Tab1.listView.invalidateViews();
-				// Tab2.listView.invalidateViews();
 				return "DONE";
-				// connect to php file and add in starred
 			}
 		}
-		
+
 	}
 }

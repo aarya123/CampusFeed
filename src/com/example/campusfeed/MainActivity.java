@@ -97,21 +97,10 @@ public class MainActivity extends TabActivity implements
 		switch (item.getItemId())
 		{
 	
-		case R.id.signIn:
-			Intent signIn = new Intent(this, SignIn.class);
-			startActivity(signIn);
+		case R.id.accSettings:
+			Intent accSettings = new Intent(this, AccountSettings.class);
+			startActivity(accSettings);
 			return true;
-		case R.id.createAcc:
-			// this.overridePendingTransition(R.anim.slide_in_up,
-			// R.anim.slide_out_down);
-			Intent createAcc = new Intent(this, CreateAccount.class);
-			startActivity(createAcc);
-			return true;
-		case R.id.createEvent:
-			Intent createEvent = new Intent(this, createEvent.class);
-			startActivity(createEvent);
-			return true;
-		
 		default:
 			return super.onMenuItemSelected(featureId, item);
 		}
@@ -119,26 +108,12 @@ public class MainActivity extends TabActivity implements
 
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
-		// Handle item selection
 		switch (item.getItemId())
 		{
-		case R.id.signIn:
-			Intent signIn = new Intent(this, SignIn.class);
-			startActivity(signIn);
-			return true;
-		case R.id.createAcc:
-			// this.overridePendingTransition(R.anim.slide_in_up,
-			// R.anim.slide_out_down);
-			Intent createAcc = new Intent(this, CreateAccount.class);
-			startActivity(createAcc);
-			return true;
-		case R.id.createEvent:
-			Intent createEvent = new Intent(this, createEvent.class);
-			startActivity(createEvent);
-			return true;
-		case R.id.myAccount:
-			Intent account = new Intent(this, AccountSettings.class);
-			startActivity(account);
+	
+		case R.id.accSettings:
+			Intent accSettings = new Intent(this, AccountSettings.class);
+			startActivity(accSettings);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
