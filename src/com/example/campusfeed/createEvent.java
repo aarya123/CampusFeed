@@ -41,9 +41,9 @@ public class createEvent extends Activity
 	public EditText title, desc, locationDetails;
 	public Spinner location;
 	public File poster = null;
-	public Button upPoster,upHandout;
+	public Button upPoster, upHandout;
 	public File handout = null;
-	public static Button setTime,setDate;
+	public static Button setTime, setDate;
 
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -58,10 +58,10 @@ public class createEvent extends Activity
 		title = (EditText) findViewById(R.id.eventTitle);
 		desc = (EditText) findViewById(R.id.eventDescription);
 		locationDetails = (EditText) findViewById(R.id.eventLocationDetails);
-	    setTime = (Button) findViewById(R.id.setTime);
+		setTime = (Button) findViewById(R.id.setTime);
 		setDate = (Button) findViewById(R.id.setDate);
-		 upPoster = (Button) findViewById(R.id.button1);
-		 upHandout = (Button) findViewById(R.id.button2);
+		upPoster = (Button) findViewById(R.id.button1);
+		upHandout = (Button) findViewById(R.id.button2);
 		setTime.setOnClickListener(new View.OnClickListener()
 		{
 			public void onClick(View v)
@@ -130,7 +130,7 @@ public class createEvent extends Activity
 				{
 					handout = FileUtils.getFile(uri);
 				}
-			upHandout.setText(handout.getName());
+				upHandout.setText(handout.getName());
 			}
 			break;
 		case 00012:
@@ -223,7 +223,7 @@ public class createEvent extends Activity
 				entity.addPart("location_details", new StringBody(
 						locationDetailsString));
 				entity.addPart("title", new StringBody(titleString));
-				entity.addPart("user", new StringBody("mayank2333@gmail.com"));
+				entity.addPart("user", new StringBody(Accounts.getUsername()));
 				entity.addPart("description", new StringBody(descString));
 				entity.addPart("cat", new StringBody("social"));
 				http.setEntity(entity);
@@ -235,8 +235,8 @@ public class createEvent extends Activity
 			{
 				Log.d("ERROR", e1.getMessage());
 				// p.setMessage("Something went wrong!");
-			return e1.getMessage();
-			} 
+				return e1.getMessage();
+			}
 			// then connect again
 			new DownloadDataThread().Download();
 			return response;
@@ -244,17 +244,13 @@ public class createEvent extends Activity
 
 		public void onPostExecute(String result)
 		{
-			
-		    p.setMessage("Finished!");
-		    p.dismiss();
+			p.setMessage("Finished!");
+			p.dismiss();
 			Intent eventInfo = new Intent(createEvent.this, EventInfo.class);
 			eventInfo.putExtra("eventId", result);
 			finish();
-			startActivity(eventInfo);
-			
-		
-		
+			//startActivity(eventInfo);
+			Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
 		}
-		
 	}
 }
