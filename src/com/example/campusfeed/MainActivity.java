@@ -201,8 +201,8 @@ public class MainActivity extends TabActivity implements
 
 		protected void onPreExecute()
 		{
-			//p = ProgressDialog.show(MainActivity.this,
-			//		"Starting Up Campus Feed", "Please Wait...", false);
+			p = ProgressDialog.show(MainActivity.this,
+				"Starting Up Campus Feed", "Please Wait...", false);
 		}
 
 		protected Bitmap[] doInBackground(String... arg0)
@@ -262,7 +262,7 @@ public class MainActivity extends TabActivity implements
 				PromotionsAdapter promos = new PromotionsAdapter(
 						promotionImages, width, height);
 				pager.setAdapter(promos);
-				//p.dismiss();
+				p.dismiss();
 				}
 			}
 		}
