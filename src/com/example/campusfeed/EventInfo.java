@@ -1,5 +1,9 @@
 package com.example.campusfeed;
 
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
@@ -8,11 +12,16 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -20,7 +29,7 @@ public class EventInfo extends Activity
 {
 	public Event currentEvent;
 	public ProgressBar fetching;
-
+	public 	ImageView posterspot;
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
@@ -36,8 +45,11 @@ public class EventInfo extends Activity
 		TextView time = (TextView) findViewById(R.id.time);
 		time.setText(currentEvent.getTime());
 		TextView date = (TextView) findViewById(R.id.date);
+		TextView user=(TextView)findViewById(R.id.postedBy);
+		user.setText(currentEvent.getUser());
 		date.setText(currentEvent.getDate());
 		TextView location = (TextView) findViewById(R.id.eventLocation);
+		 posterspot=(ImageView)findViewById(R.id.imageView1);
 		location.setText(currentEvent.getLocation());
 		TextView locationSpecs = (TextView) findViewById(R.id.eventLocationSpecifics);
 		locationSpecs.setText(currentEvent.getLocationSpecifics());
@@ -48,6 +60,7 @@ public class EventInfo extends Activity
 				.title(currentEvent.getName()));
 		map.moveCamera(CameraUpdateFactory.newLatLngZoom(
 				currentEvent.getLatLng(), 17));
+		new getPosterandHandouts().execute();
 		// set onLongClick listener so once the use holds the touch for some
 		// seconds, it'll fire off into google maps with the lat and lng.
 		map.setOnMapLongClickListener(new OnMapLongClickListener()
@@ -106,7 +119,7 @@ public class EventInfo extends Activity
 			return super.onMenuItemSelected(featureId, item);
 		}
 	}
-	/*
+	
 		class getPosterandHandouts extends AsyncTask<String, Void, Bitmap>
 		{
 			protected Bitmap doInBackground(String... arg0)
@@ -118,28 +131,19 @@ public class EventInfo extends Activity
 					url = new URL("http://ezevents.6te.net/"
 							+ currentEvent.posterPath);
 					URLConnection connection = url.openConnection();
-					connection.setUseCaches(true);
-					Object response = connection.getContent();
-					if (response instanceof Bitmap)
-					{
-						bitmap = (Bitmap) response;
-					} else
-					{
-						// get the files
-						// Log.d("sgdfgsdgdfsg","http://ezevents.6te.net/"+currentEvent.posterPath
-						// );
-						// InputStream pic1=new
-						// URL("http://ezevents.6te.net/"+currentEvent.posterPath).openStream();
-						// BitmapFactory.Options options=new
-						// BitmapFactory.Options();
-						// options.inJustDecodeBounds=true;
-						// options.inSampleSize
-						// bitmap=BitmapFactory.decodeStream(pic1, outPadding,
-						// opts);
-					}
+					
+					
+					
+						 //get the files
+						 Log.d("GET","http://ezevents.6te.net/"+currentEvent.posterPath
+						 );
+						 InputStream pic1=new URL("http://ezevents.6te.net/"+currentEvent.posterPath).openStream();
+						bitmap=BitmapFactory.decodeStream(pic1);
+				
 				} catch (Exception e)
 				{
 					Log.d("ERROR", e.getMessage());
+					return null;
 				}
 				return bitmap;
 			}
@@ -148,15 +152,15 @@ public class EventInfo extends Activity
 			{
 				if (poster == null)
 				{
-					fetching.setVisibility(View.GONE);
+					
 				} else
 				{
-					ImageView posterimage = (ImageView) findViewById(R.id.Eventposter);
-					posterimage.setImageBitmap(Bitmap.createScaledBitmap(poster,
-							60, 60, true));
-					fetching.setVisibility(View.GONE);
+					
+					posterspot.setImageBitmap(Bitmap.createScaledBitmap(poster,
+							74, 74, true));
+
 				}
 			}
 		}
-		*/
+		
 }

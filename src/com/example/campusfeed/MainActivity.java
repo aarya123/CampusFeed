@@ -177,7 +177,7 @@ public class MainActivity extends TabActivity implements
 		protected void onPreExecute()
 		{
 			p = ProgressDialog.show(MainActivity.this,
-					"Starting Up Campus Feed", "Please Wait...", false);
+				"Starting Up Campus Feed", "Please Wait...", false);
 		}
 
 		protected Bitmap[] doInBackground(String... arg0)
@@ -196,7 +196,9 @@ public class MainActivity extends TabActivity implements
 							.openStream();
 					InputStream pic2 = new URL(
 							"http://ezevents.6te.net/promos/promo2.png")
+				
 							.openStream();
+			
 					promos[0] = BitmapFactory.decodeStream(pic1);
 					promos[1] = BitmapFactory.decodeStream(pic2);
 					promos[2] = promos[0];
@@ -216,13 +218,16 @@ public class MainActivity extends TabActivity implements
 		}
 
 		protected void onPostExecute(Bitmap[] promotionImages)
-		{
+		{	
 			if (error)
 			{
 				p.setMessage("Internet Connection Required");
 				p.dismiss();
 			} else
 			{
+				if(promotionImages==null){
+					
+				}else{
 				Display screen = getWindowManager().getDefaultDisplay();
 				Point size = new Point();
 				ViewPager pager = (ViewPager) findViewById(R.id.promotion_slider);
@@ -233,6 +238,7 @@ public class MainActivity extends TabActivity implements
 						promotionImages, width, height);
 				pager.setAdapter(promos);
 				p.dismiss();
+				}
 			}
 		}
 	}

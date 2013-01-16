@@ -82,7 +82,7 @@ public class DownloadDataThread extends Thread
 								.getString("location_details"), event
 								.getString("date"), event.getInt("interest"),
 						event.getString("latlng").replace(" ", "")
-								.replace("\n", ""), null, null));
+								.replace("\n", ""), event.getString("poster"), event.getString("handout"),event.getString("user")));
 
 			} catch (JSONException e)
 			{
