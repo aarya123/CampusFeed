@@ -9,6 +9,7 @@
     <string name="location_prompt">Where is it happening?</string>
 
     <string-array name="locations">
+        <item>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Any</item>
         <item>Lawson Computer Science Building</item>
         <item>Purude Student Health Center</item>
         <item>Purdue Memorial Union</item>

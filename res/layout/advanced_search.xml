@@ -68,14 +68,13 @@
             android:text="Location (optional):"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <Button
+        <Spinner
             android:id="@+id/advsrch_setlocation"
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="8dp"
-            android:onClick="onClick"
-            android:text="Select Location" />
+            android:layout_marginTop="8dp" 
+            android:entries="@array/locations"
+            android:prompt="@string/location_prompt"/>
 
         <Button
             android:id="@+id/advsrch_submit"
@@ -83,6 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
+            android:onClick="onClick"
             android:text="SUBMIT" />
 
     </LinearLayout>

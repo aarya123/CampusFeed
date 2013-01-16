@@ -88,6 +88,13 @@
             android:name="com.example.campusfeed.SignIn"
             android:label="@string/title_activity_sign_in" >
         </activity>
+        
+        <activity
+            android:name="com.example.campusfeed.AdvacedSearch"
+            android:label="Advanced Search"
+            android:screenOrientation="portrait" >
+        </activity>
+        
         <activity
             android:name="com.example.campusfeed.Searchable"
             android:excludeFromRecents="true" >

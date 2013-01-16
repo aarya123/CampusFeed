@@ -97,20 +97,28 @@ public class MainActivity extends TabActivity implements
 		switch (item.getItemId())
 		{
 	
+		case R.id.adv_search:
+			Intent advsrch = new Intent(this, AdvacedSearch.class);
+			startActivity(advsrch);
+			return true;
+			
 		case R.id.signIn:
 			Intent signIn = new Intent(this, SignIn.class);
 			startActivity(signIn);
 			return true;
+			
 		case R.id.createAcc:
 			// this.overridePendingTransition(R.anim.slide_in_up,
 			// R.anim.slide_out_down);
 			Intent createAcc = new Intent(this, CreateAccount.class);
 			startActivity(createAcc);
 			return true;
+			
 		case R.id.createEvent:
 			Intent createEvent = new Intent(this, createEvent.class);
 			startActivity(createEvent);
 			return true;
+			
 		default:
 			return super.onMenuItemSelected(featureId, item);
 		}
@@ -121,6 +129,11 @@ public class MainActivity extends TabActivity implements
 		// Handle item selection
 		switch (item.getItemId())
 		{
+		case R.id.adv_search:
+			Intent advsrch = new Intent(this, AdvacedSearch.class);
+			startActivity(advsrch);
+			return true;
+			
 		case R.id.signIn:
 			Intent signIn = new Intent(this, SignIn.class);
 			startActivity(signIn);
