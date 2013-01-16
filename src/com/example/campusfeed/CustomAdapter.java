@@ -54,7 +54,6 @@ public class CustomAdapter extends ArrayAdapter<Event>
 			v = vi.inflate(R.layout.list_layout, null);
 			holder = new ViewHolder();
 			holder.one = (TextView) v.findViewById(R.id.title);
-
 			holder.two = (TextView) v.findViewById(R.id.date_time);
 			holder.status = (ImageView) v.findViewById(R.id.event_status);
 			holder.poster=(ImageView)v.findViewById(R.id.list_event_poster);
@@ -75,7 +74,8 @@ public class CustomAdapter extends ArrayAdapter<Event>
 				holder.status.setImageResource(R.drawable.event_not_yet);
 			if (Accounts.contains(events.get(position).getId()))
 				v.setBackgroundColor(Color.YELLOW);
-			else{
+			else
+			{
 				v.setBackgroundColor(Color.WHITE);
 			}
 		} else

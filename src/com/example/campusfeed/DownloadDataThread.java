@@ -68,25 +68,36 @@ public class DownloadDataThread extends Thread
 		// The problem was with deleting events and the arraylist still keeping
 		// it. The memoy use is still low.
 		EventOrganizer.eventList.clear();
-		for (int i = 0; i < json.length(); i++)
+		try
 		{
-			try
+			for (int i = 0; i < json.length(); i++)
 			{
-				JSONObject event = json.getJSONObject(i);
-				EventOrganizer.addEvent(new Event(event.getString("unique_id"),
-						event.getString("title"), "active", event
-								.getString("location"),
-						event.getString("user"), event.getString("category"),
-						event.getString("desc"), event
-								.getString("location_details"), event
-								.getString("date"), event.getInt("interest"),
-						event.getString("latlng").replace(" ", "")
-								.replace("\n", ""), event.getString("poster"), event.getString("handout"),event.getString("user")));
+				try
+				{
+					JSONObject event = json.getJSONObject(i);
+					EventOrganizer.addEvent(new Event(event
+							.getString("unique_id"), event.getString("title"),
+							"active", event.getString("location"), event
+									.getString("user"), event
+									.getString("category"), event
+									.getString("desc"), event
+									.getString("location_details"), event
+									.getString("date"), event
+									.getInt("interest"), event
+									.getString("latlng").replace(" ", "")
+									.replace("\n", ""), event
+									.getString("poster"), event
+									.getString("handout"), event
+									.getString("user")));
 
-			} catch (JSONException e)
-			{
-				Log.d("APP", e.toString() + i);
+				} catch (JSONException e)
+				{
+					Log.d("APP", e.toString() + i);
+				}
 			}
+		} catch (NullPointerException e)
+		{
+			Log.d("ERROR", e.getMessage());
 		}
 	}
 

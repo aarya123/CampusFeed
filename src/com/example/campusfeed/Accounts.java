@@ -15,6 +15,16 @@ public class Accounts
 		return signedIn;
 	}
 
+	public static void signOut()
+	{
+		username = null;
+		password = null;
+		email = null;
+		starredEvents = null;
+		createdEvents = null;
+		signedIn = false;
+	}
+
 	public static int isStarred(String uniqueID)
 	{
 		for (int i = 0; i < starredEvents.size(); i++)
