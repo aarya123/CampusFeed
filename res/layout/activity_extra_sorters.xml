@@ -17,10 +17,10 @@
 
             <ListView
                 android:id="@+id/choiceList"
-                android:dividerHeight="7.0dp"
-                android:divider="#ededed"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:divider="#ededed"
+                android:dividerHeight="7.0dp" >
             </ListView>
         </LinearLayout>
 
@@ -37,11 +37,5 @@
             </ListView>
         </LinearLayout>
     </ViewSwitcher>
-
-    <SeekBar
-        android:id="@+id/seekBar1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true" />
 
 </RelativeLayout>

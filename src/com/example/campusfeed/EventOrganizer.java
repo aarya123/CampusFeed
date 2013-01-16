@@ -2,11 +2,10 @@ package com.example.campusfeed;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 
 public class EventOrganizer
 {
-	static ArrayList<HashMap<String, Event>> eventList = new ArrayList<HashMap<String, Event>>();
+	static ArrayList<Event> eventList = new ArrayList<Event>();
 
 	public enum Sorter
 	{
@@ -18,7 +17,7 @@ public class EventOrganizer
 	 * 
 	 * @return returns ArrayList<HashMap<String, Event>>
 	 */
-	public static ArrayList<HashMap<String, Event>> getList()
+	public static ArrayList<Event> getList()
 	{
 		return eventList;
 	}
@@ -31,9 +30,7 @@ public class EventOrganizer
 	 */
 	public static void addEvent(Event event)
 	{
-		HashMap<String, Event> map = new HashMap<String, Event>();
-		map.put("Events", event);
-		eventList.add(map);
+		eventList.add(event);
 	}
 
 	/**
@@ -45,7 +42,7 @@ public class EventOrganizer
 	 */
 	public static Event getEvent(int index)
 	{
-		return eventList.get(index).get("Events");
+		return eventList.get(index);
 	}
 
 	/**
@@ -76,14 +73,12 @@ public class EventOrganizer
 			events = sort(events);
 			for (int i = events.size() - 1; i > -1; i--)
 				names.add(events.get(i));
-
 		}
 		if (sorter == Sorter.today)
 		{
 			Calendar c = Calendar.getInstance();
 			String date = (c.get(Calendar.MONTH) + 1) + "/"
 					+ c.get(Calendar.DATE) + "/" + c.get(Calendar.YEAR);
-
 			for (int i = 0; i < getNumOfEvents(); i++)
 				if (getEvent(i).getDate().equals(date))
 					names.add(getEvent(i));
@@ -128,36 +123,30 @@ public class EventOrganizer
 		}
 		return names;
 	}
-	
+
 	/**
-	 * searchEvents() is for the Search Widget on the home page, 
-	 * for advanced search, see "adv_searchEvents()"
+	 * searchEvents() is for the Search Widget on the home page, for advanced
+	 * search, see "adv_searchEvents()"
 	 * 
 	 * Returns list of events whose name contains the search query
 	 * 
 	 * @param query
-	 * 				The string sent by the Searchable activity
-	 * 				(the search query)
+	 *            The string sent by the Searchable activity (the search query)
 	 * 
-	 * Note: an event tag = "name location time"
+	 *            Note: an event tag = "name location time"
 	 */
 	public static ArrayList<Event> searchEvents(String query)
 	{
 		ArrayList<Event> names = new ArrayList<Event>();
-		
 		// Splitting query on " "
-		
 		String arrquery[] = query.split(" ");
-		
 		// This loop adds events to the ArrayList
-		
-		for(int i = 0; i < getNumOfEvents(); i++)
+		for (int i = 0; i < getNumOfEvents(); i++)
 		{
 			// Checking if event tag contains the full query
-			
 			int containsFullQuery = 1;
-			for(int k=0 ; k<arrquery.length; k++)
-			{		
+			for (int k = 0; k < arrquery.length; k++)
+			{
 				/*
 				 *  Ignoring the string after ":" so that
 				 *  when users type 6:25, the :25 is ignored and all
@@ -165,20 +154,15 @@ public class EventOrganizer
 				 *  Note: Have to improve this later, but good enough 
 				 *  for the time being 
 				 */
-				
 				String temparr[] = arrquery[k].split(":");
-				
-				if (!(getEvent(i).getSimpleTag().toLowerCase().contains(temparr[0].toLowerCase())))
+				if (!(getEvent(i).getSimpleTag().toLowerCase()
+						.contains(temparr[0].toLowerCase())))
 					containsFullQuery = 0;
 			}
-			
 			// If event tag contains the full query, I'm adding it to the list
-			
-			if(containsFullQuery == 1)
+			if (containsFullQuery == 1)
 				names.add(getEvent(i));
 		}
-			
-			
 		return names;
 	}
 
@@ -196,8 +180,6 @@ public class EventOrganizer
 				return getEvent(i);
 		return null;
 	}
-	
-	
 
 	/**
 	 * Gets an event by its id
