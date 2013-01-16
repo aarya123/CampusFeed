@@ -1,12 +1,19 @@
 package com.example.campusfeed;
 
+import com.example.campusfeed.EventOrganizer.Sorter;
+
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class AccountSettingsAdapter extends ArrayAdapter<String>
 {
@@ -47,23 +54,21 @@ public class AccountSettingsAdapter extends ArrayAdapter<String>
 			holder = (ViewHolder) v.getTag();
 		}
 		holder.choice.setText(choices[position]);
-		switch (position)
+		if (choices[position].equals("Create an Event"))
 		{
-		case 1:
-			// set the icon accordingly here
-			break;
-		case 2:
-			// set the icon accordingly here
-			break;
-		case 3:
-			// set the icon accordingly here
-			break;
-		case 4:
-			// set the icon accordingly here
-			break;
-		case 5:
-			// set the icon accordingly here
-			break;
+		} else if (choices[position].equals("My Created Events"))
+		{
+		} else if (choices[position].equals("My Starred Events"))
+		{
+		} else if (choices[position].equals("Log Out"))
+		{
+			holder.icon.setImageResource(R.drawable.log_out);
+		} else if (choices[position].equals("Sign In"))
+		{
+			holder.icon.setImageResource(R.drawable.log_in);
+
+		} else if (choices[position].equals("Create an Account"))
+		{
 		}
 		return v;
 	}

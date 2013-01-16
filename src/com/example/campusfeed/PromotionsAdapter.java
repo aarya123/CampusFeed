@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -33,8 +34,14 @@ public class PromotionsAdapter extends PagerAdapter
 		View view = inflater.inflate(R.layout.promo_layout, null);
 		((ViewPager) collection).addView(view, 0);
 		ImageView i = (ImageView) view.findViewById(R.id.imageView1);
+		try{
 		i.setImageBitmap(Bitmap.createScaledBitmap(this.promotions[position],
 				w, h, true));
+		}
+		catch(NullPointerException e)
+		{
+			Log.d("ERROR",e.getMessage());
+		}
 		return view;
 	}
 

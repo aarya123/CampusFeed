@@ -5,6 +5,7 @@ import com.example.campusfeed.EventOrganizer.Sorter;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -24,6 +25,7 @@ public class AccountSettings extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_account_settings);
+		this.getActionBar().setBackgroundDrawable(new ColorDrawable(R.color.black));
 		switcher = (ViewSwitcher) findViewById(R.id.viewSwitcherSettings);
 		switchedList = (ListView) findViewById(R.id.settingsListView);
 		// ACCOUNT OPTIONS
