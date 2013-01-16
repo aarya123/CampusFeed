@@ -41,6 +41,7 @@ public class createEvent extends Activity
 	public EditText title, desc, locationDetails;
 	public Spinner location;
 	public File poster = null;
+	public Button upPoster,upHandout;
 	public File handout = null;
 	public static Button setTime,setDate;
 
@@ -59,8 +60,8 @@ public class createEvent extends Activity
 		locationDetails = (EditText) findViewById(R.id.eventLocationDetails);
 	    setTime = (Button) findViewById(R.id.setTime);
 		setDate = (Button) findViewById(R.id.setDate);
-		Button upPoster = (Button) findViewById(R.id.button1);
-		Button upHandout = (Button) findViewById(R.id.button2);
+		 upPoster = (Button) findViewById(R.id.button1);
+		 upHandout = (Button) findViewById(R.id.button2);
 		setTime.setOnClickListener(new View.OnClickListener()
 		{
 			public void onClick(View v)
@@ -129,6 +130,7 @@ public class createEvent extends Activity
 				{
 					handout = FileUtils.getFile(uri);
 				}
+			upHandout.setText(handout.getName());
 			}
 			break;
 		case 00012:
@@ -145,8 +147,7 @@ public class createEvent extends Activity
 				{
 					poster = FileUtils.getFile(uri);
 				}
-				Toast.makeText(getApplicationContext(), poster.getName(),
-						Toast.LENGTH_SHORT).show();
+				upPoster.setText(poster.getName());
 			}
 		}
 	}
@@ -230,15 +231,12 @@ public class createEvent extends Activity
 				r = h.execute(http);
 				response = EntityUtils.toString(r.getEntity());
 				// p.setMessage("Posting Event Poster and Handout...");
-			} catch (ClientProtocolException e1)
+			} catch (Exception e1)
 			{
 				Log.d("ERROR", e1.getMessage());
 				// p.setMessage("Something went wrong!");
-			} catch (IOException e1)
-			{
-				Log.d("ERROR", e1.getMessage());
-				// p.setMessage("Something went wrong!");
-			}
+			return e1.getMessage();
+			} 
 			// then connect again
 			new DownloadDataThread().Download();
 			return response;
@@ -246,12 +244,17 @@ public class createEvent extends Activity
 
 		public void onPostExecute(String result)
 		{
+			
+		    p.setMessage("Finished!");
+		    p.dismiss();
 			Intent eventInfo = new Intent(createEvent.this, EventInfo.class);
 			eventInfo.putExtra("eventId", result);
 			finish();
 			startActivity(eventInfo);
-			p.setMessage("Finished!");
-			p.dismiss();
+			
+		
+		
 		}
+		
 	}
 }

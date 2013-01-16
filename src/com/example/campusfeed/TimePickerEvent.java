@@ -39,7 +39,7 @@ public class TimePickerEvent extends DialogFragment implements
 		}
 		SimpleDateFormat formatView=new SimpleDateFormat("h:mm a");
 		
-		createEvent.setTime.setText("Selected: "+formatView.format(d));
+		createEvent.setTime.setText(formatView.format(d));
 		createEvent.time = timePhp;
 	}
 }

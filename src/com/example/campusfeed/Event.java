@@ -98,6 +98,17 @@ public class Event
 		SimpleDateFormat sdf = new SimpleDateFormat("h:mm a");
 		return sdf.format(datetime);
 	}
+	
+	//get hour (Used by SearchView)
+	
+	public String getHour()
+	{
+		// create a simple date format obj
+		// Set default timezone to EST
+		TimeZone.setDefault(TimeZone.getTimeZone("EST"));
+		SimpleDateFormat sdf = new SimpleDateFormat("ha");
+		return sdf.format(datetime);
+	}
 
 	public Date getDateTime()
 	{
@@ -133,4 +144,18 @@ public class Event
 	{
 		return host;
 	}
+	
+	// This tag will be used by the SearchView widget
+	
+	public String getSimpleTag()
+	{
+		return (name+" "+location+" "+getHour());
+	}
+	
+	// This tag will be used by advanced search
+	
+	/*public String getAdvancedTag()
+	{
+		return (name+location+getHour()+);
+	}*/
 }
