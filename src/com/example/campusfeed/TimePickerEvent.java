@@ -15,6 +15,7 @@ public class TimePickerEvent extends DialogFragment implements
 		TimePickerDialog.OnTimeSetListener
 {
 
+
 	public Dialog onCreateDialog(Bundle savedInstanceState)
 	{
 		// Use the current time as the default values for the picker
@@ -28,6 +29,7 @@ public class TimePickerEvent extends DialogFragment implements
 
 	public void onTimeSet(android.widget.TimePicker arg0, int arg1, int arg2)
 	{
+		
 		String timePhp = arg1 + ":" + arg2 + ":" + "00";
 		SimpleDateFormat timeFormat=new SimpleDateFormat("h:mm:ss");
 		Date d=null;
@@ -41,5 +43,6 @@ public class TimePickerEvent extends DialogFragment implements
 		
 		createEvent.setTime.setText(formatView.format(d));
 		createEvent.time = timePhp;
+	
 	}
 }

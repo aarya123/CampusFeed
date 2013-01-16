@@ -103,6 +103,10 @@
             android:name="com.example.campusfeed.TDLSortViewer"
             android:label="@string/title_activity_tdlsort_viewer" >
         </activity>
+         <activity
+            android:name="com.example.campusfeed.AccountSettings"
+            android:label="account_settings" >
+        </activity>
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"

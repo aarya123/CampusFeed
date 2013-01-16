@@ -111,6 +111,7 @@ public class MainActivity extends TabActivity implements
 			Intent createEvent = new Intent(this, createEvent.class);
 			startActivity(createEvent);
 			return true;
+		
 		default:
 			return super.onMenuItemSelected(featureId, item);
 		}
@@ -134,6 +135,10 @@ public class MainActivity extends TabActivity implements
 		case R.id.createEvent:
 			Intent createEvent = new Intent(this, createEvent.class);
 			startActivity(createEvent);
+			return true;
+		case R.id.myAccount:
+			Intent account = new Intent(this, AccountSettings.class);
+			startActivity(account);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
