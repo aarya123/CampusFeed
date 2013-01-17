@@ -1,9 +1,8 @@
 package com.example.campusfeed;
 
 import java.io.File;
-import java.io.IOException;
+import java.util.HashMap;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.mime.MultipartEntity;
@@ -12,7 +11,6 @@ import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import com.ipaulpro.afilechooser.utils.FileUtils;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
@@ -37,13 +35,14 @@ import android.widget.Toast;
 public class createEvent extends Activity
 {
 
-	public static String date, time;
-	public EditText title, desc, locationDetails;
-	public Spinner location;
-	public File poster = null;
-	public Button upPoster, upHandout;
-	public File handout = null;
-	public static Button setTime, setDate;
+	static String date, time;
+	EditText title, desc, locationDetails;
+	Spinner location;
+	File poster = null;
+	Button upPoster, upHandout;
+	File handout = null;
+	static Button setTime, setDate;
+	HashMap<String, String> locations;
 
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -51,9 +50,14 @@ public class createEvent extends Activity
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // force
 																			// into
 																			// portrait
+		locations = new HashMap<String, String>();
+		locations.put("Lawson Computer Science Building",
+				"40.427767,-86.916941");
+		locations.put("Purdue Student Health Center", "40.430213,-86.916648");
+		locations.put("Purdue Memorial Union", "40.424999,-86.911539");
+		locations.put("Cary Quadrangle", "40.432037,-86.917949");
+		locations.put("Electrical Engineering Building", "40.428588,-86.91193");
 		setContentView(R.layout.create_event);
-		// String[] locations=new
-		// String[]{"Lawson Computer Science Building","Purdue Student Health Center","Cary Quadrangle"};
 		location = (Spinner) findViewById(R.id.eventLocation);
 		title = (EditText) findViewById(R.id.eventTitle);
 		desc = (EditText) findViewById(R.id.eventDescription);
@@ -155,10 +159,6 @@ public class createEvent extends Activity
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		getMenuInflater().inflate(R.menu.activity_create_event, menu);
-		// SearchView
-		// search=(SearchView)menu.findItem(R.id.menu_search).getActionView();
-		// search.setQueryHint("Search an Organization or event name");
-
 		return true;
 	}
 
@@ -180,9 +180,6 @@ public class createEvent extends Activity
 		{
 		case R.id.postEvent:
 			// post the event by showing a progress bar
-			ActionBar bar = getActionBar();
-			String s = location.getSelectedItem().toString();
-			bar.setTitle(s);
 			new PostEvent().execute();
 			return true;
 		}
@@ -203,8 +200,7 @@ public class createEvent extends Activity
 		{
 			// post the event
 			// TODO Fix this
-			String locationString = "84.344342,56.34322" + "|"
-					+ location.getSelectedItem().toString();
+			String locationString = locations.get(location.getSelectedItem());
 			String titleString = title.getText().toString();
 			String descString = desc.getText().toString();
 			String locationDetailsString = locationDetails.getText().toString();
@@ -249,8 +245,9 @@ public class createEvent extends Activity
 			Intent eventInfo = new Intent(createEvent.this, EventInfo.class);
 			eventInfo.putExtra("eventId", result);
 			finish();
-			//startActivity(eventInfo);
-			Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+			// startActivity(eventInfo);
+			Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG)
+					.show();
 		}
 	}
 }
