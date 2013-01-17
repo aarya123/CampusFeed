@@ -11,7 +11,7 @@
         <item>Electrical Engineering Building</item>
     </string-array>
     <string-array name="locationsForSearch">
-        <item>Any</item>
+        <item>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Any</item>
         <item>Purdue Memorial Union</item>
         <item>Lawson Computer Science Building</item>
         <item>Purdue Student Health Center</item>
