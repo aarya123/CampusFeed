@@ -101,22 +101,10 @@ public class MainActivity extends TabActivity implements
 			Intent advsrch = new Intent(this, AdvacedSearch.class);
 			startActivity(advsrch);
 			return true;
-			
-		case R.id.signIn:
-			Intent signIn = new Intent(this, SignIn.class);
-			startActivity(signIn);
-			return true;
-			
-		case R.id.createAcc:
-			// this.overridePendingTransition(R.anim.slide_in_up,
-			// R.anim.slide_out_down);
-			Intent createAcc = new Intent(this, CreateAccount.class);
-			startActivity(createAcc);
-			return true;
-			
-		case R.id.createEvent:
-			Intent createEvent = new Intent(this, createEvent.class);
-			startActivity(createEvent);
+
+		case R.id.accSettings:
+			Intent accSettings = new Intent(this, AccountSettings.class);
+			startActivity(accSettings);
 			return true;
 		default:
 			return super.onMenuItemSelected(featureId, item);
@@ -125,31 +113,16 @@ public class MainActivity extends TabActivity implements
 
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
-		// Handle item selection
 		switch (item.getItemId())
 		{
+
 		case R.id.adv_search:
 			Intent advsrch = new Intent(this, AdvacedSearch.class);
 			startActivity(advsrch);
 			return true;
-			
-		case R.id.signIn:
-			Intent signIn = new Intent(this, SignIn.class);
-			startActivity(signIn);
-			return true;
-		case R.id.createAcc:
-			// this.overridePendingTransition(R.anim.slide_in_up,
-			// R.anim.slide_out_down);
-			Intent createAcc = new Intent(this, CreateAccount.class);
-			startActivity(createAcc);
-			return true;
-		case R.id.createEvent:
-			Intent createEvent = new Intent(this, createEvent.class);
-			startActivity(createEvent);
-			return true;
-		case R.id.myAccount:
-			Intent account = new Intent(this, AccountSettings.class);
-			startActivity(account);
+		case R.id.accSettings:
+			Intent accSettings = new Intent(this, AccountSettings.class);
+			startActivity(accSettings);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -186,12 +159,17 @@ public class MainActivity extends TabActivity implements
 
 	public void setupSlides()
 	{
-		// download the promo flyers
 		new GetPromos().execute();
+		// download the promo flyers
+		ViewPager pager = (ViewPager) findViewById(R.id.promotion_slider);
+		
+		
+		PromotionsAdapter promos = new PromotionsAdapter();
+		pager.setAdapter(promos);
 		// add action swipe listener
 	}
 
-	class GetPromos extends AsyncTask<String, Void, Bitmap[]>
+	class GetPromos extends AsyncTask<String, Void, String>
 	{
 		public ProgressDialog p;
 		public boolean error = false;
@@ -216,14 +194,22 @@ public class MainActivity extends TabActivity implements
 				"Starting Up Campus Feed", "Please Wait...", false);
 		}
 
-		protected Bitmap[] doInBackground(String... arg0)
+		protected String doInBackground(String... arg0)
 		{
 			if (!isOnline())
 			{
 				error = true;
 				return null;
-			} else
+			}
+			else
 			{
+				try {
+					Thread.sleep(2200);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					return "done";
+				}
+				/*
 				Bitmap[] promos = new Bitmap[5];
 				try
 				{
@@ -250,10 +236,12 @@ public class MainActivity extends TabActivity implements
 					error = true;
 				}
 				return promos;
+				*/
+				return "done";
 			}
 		}
 
-		protected void onPostExecute(Bitmap[] promotionImages)
+		protected void onPostExecute(String result)
 		{	
 			if (error)
 			{
@@ -261,9 +249,10 @@ public class MainActivity extends TabActivity implements
 				p.dismiss();
 			} else
 			{
-				if(promotionImages==null){
+				if(result==null){
 					
 				}else{
+					/*
 				Display screen = getWindowManager().getDefaultDisplay();
 				Point size = new Point();
 				ViewPager pager = (ViewPager) findViewById(R.id.promotion_slider);
@@ -273,11 +262,13 @@ public class MainActivity extends TabActivity implements
 				PromotionsAdapter promos = new PromotionsAdapter(
 						promotionImages, width, height);
 				pager.setAdapter(promos);
+				*/
 				p.dismiss();
 				}
 			}
 		}
 	}
+	
 }
 
 /*

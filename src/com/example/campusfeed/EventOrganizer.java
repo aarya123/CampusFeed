@@ -14,7 +14,7 @@ public class EventOrganizer
 
 	public enum Sorter
 	{
-		popular, today, social, sports, organizations, academic, sales, location, date, time;
+		popular, today, social, sports, organizations, academic, sales, location, date, time, myCreatedEvents, myStarredEvents;
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class EventOrganizer
 	 *            <Sorter> method
 	 * @return ArrayList<Event> in order of method
 	 */
-	public static ArrayList<Event> getEvents(Enum<Sorter> sorter)
+	public static ArrayList<Event> getEvents(Sorter sorter)
 	{
 		ArrayList<Event> names = new ArrayList<Event>();
 		if (sorter == Sorter.popular)
@@ -78,14 +78,23 @@ public class EventOrganizer
 			events = sort(events);
 			for (int i = events.size() - 1; i > -1; i--)
 				names.add(events.get(i));
-		}
-		if (sorter == Sorter.today)
+		} else if (sorter == Sorter.today)
 		{
 			Calendar c = Calendar.getInstance();
 			String date = (c.get(Calendar.MONTH) + 1) + "/"
 					+ c.get(Calendar.DATE) + "/" + c.get(Calendar.YEAR);
 			for (int i = 0; i < getNumOfEvents(); i++)
 				if (getEvent(i).getDate().equals(date))
+					names.add(getEvent(i));
+		} else if (sorter == Sorter.myCreatedEvents)
+		{
+			for (int i = 0; i < getNumOfEvents(); i++)
+				if (getEvent(i).getHost().equals(Accounts.getUsername()))
+					names.add(getEvent(i));
+		} else if (sorter == Sorter.myStarredEvents)
+		{
+			for (int i = 0; i < getNumOfEvents(); i++)
+				if (Accounts.isStarred(getEvent(i).getId()) > -1)
 					names.add(getEvent(i));
 		} else
 		{

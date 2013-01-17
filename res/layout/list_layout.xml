@@ -5,19 +5,8 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp" >
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@+id/imageView1"
-        android:paddingRight="10px"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#000000" />
-
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/event_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -25,12 +14,36 @@
         android:paddingTop="7dp"
         android:src="@drawable/event_not_yet" />
 
+    <ImageView
+        android:id="@+id/list_event_poster"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:paddingTop="5dp"
+        android:paddingRight="2dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/ic_menu_refresh" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/event_status"
+        android:layout_toRightOf="@+id/list_event_poster"
+        android:paddingRight="10px"
+        android:paddingTop="5dp"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#000000" />
+
     <TextView
         android:id="@+id/date_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/imageView1"
+        android:layout_alignLeft="@+id/title"
         android:layout_below="@+id/title"
+        android:layout_toLeftOf="@+id/event_status"
         android:paddingTop="5px"
         android:text="TextView"
         android:textColor="#3184bd"

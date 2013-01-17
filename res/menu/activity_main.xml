@@ -1,39 +1,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    
-    <item android:id="@+id/menu_search"
-        android:title="Search"
+
+    <item
+        android:id="@+id/menu_search"
+        android:actionViewClass="android.widget.SearchView"
         android:icon="@drawable/ic_menu_search"
         android:showAsAction="ifRoom"
-        android:actionViewClass="android.widget.SearchView" />
+    								/>
     <item
         android:id="@+id/adv_search"
         android:title="Advanced Search"/>
 
-
     <item
+        android:id="@+id/accSettings"
         android:icon="@drawable/ic_action_settings"
         android:showAsAction="ifRoom"
-        
         android:title="Settings">
-        <menu>
-            <item
-                android:id="@+id/signIn"
-                android:title="Sign In"/>
-            <item
-                android:id="@+id/createAcc"
-                android:title="Create an Account"/>
-        </menu>
     </item>
-    <item
-        android:id="@+id/createEvent"
-        android:icon="@drawable/ic_action_create_icon"
-        android:showAsAction="ifRoom"
-        android:title="Create an Event"/>
-     <item
-        android:id="@+id/myAccount"
-    
-        android:showAsAction="never"
-        android:title="My Account"/>
-    
 
 </menu>

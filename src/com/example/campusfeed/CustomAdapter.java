@@ -2,6 +2,9 @@ package com.example.campusfeed;
 
 import java.util.ArrayList;
 import java.util.Date;
+
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -37,7 +40,7 @@ public class CustomAdapter extends ArrayAdapter<Event>
 	public static class ViewHolder
 	{
 		public TextView one, two;
-		public ImageView status;
+		public ImageView status,poster;
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent)
@@ -51,9 +54,9 @@ public class CustomAdapter extends ArrayAdapter<Event>
 			v = vi.inflate(R.layout.list_layout, null);
 			holder = new ViewHolder();
 			holder.one = (TextView) v.findViewById(R.id.title);
-
 			holder.two = (TextView) v.findViewById(R.id.date_time);
-			holder.status = (ImageView) v.findViewById(R.id.imageView1);
+			holder.status = (ImageView) v.findViewById(R.id.event_status);
+			holder.poster=(ImageView)v.findViewById(R.id.list_event_poster);
 			v.setTag(holder);
 		} else
 			holder = (ViewHolder) v.getTag();
@@ -62,6 +65,7 @@ public class CustomAdapter extends ArrayAdapter<Event>
 		{
 			holder.one.setText(events.get(position).getName());
 			holder.two.setText(events.get(position).getDateandTime());
+			UrlImageViewHelper.setUrlDrawable(holder.poster,"http://ezevents.6te.net/"+events.get(position).posterPath );
 			Date date = events.get(position).getDateTime();
 			if (date.before(new Date()))
 				// set the icon to a green dot
@@ -70,7 +74,8 @@ public class CustomAdapter extends ArrayAdapter<Event>
 				holder.status.setImageResource(R.drawable.event_not_yet);
 			if (Accounts.contains(events.get(position).getId()))
 				v.setBackgroundColor(Color.YELLOW);
-			else{
+			else
+			{
 				v.setBackgroundColor(Color.WHITE);
 			}
 		} else
