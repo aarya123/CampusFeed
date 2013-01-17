@@ -44,7 +44,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                   
                     android:layout_toRightOf="@+id/event_info_poster_spot"
                     android:text="Medium Text"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -57,11 +56,9 @@
                     android:layout_alignParentRight="true"
                     android:text="Small Text"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
-
             </RelativeLayout>
-            
         </LinearLayout>
-       
+
         <TextView
             android:id="@+id/description"
             android:layout_width="match_parent"
@@ -71,22 +68,18 @@
             android:text="What"
             android:textColor="#FFFFFF"
             android:textSize="25sp" />
-			
-           <TextView
+
+        <TextView
             android:id="@+id/eventInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:gravity="center"
-            android:onClick="onClick"
             android:text="EventInfo"
             android:textSize="20sp" />
-      
 
         <TextView
             android:id="@+id/when"
             android:layout_width="match_parent"
-            
             android:layout_height="wrap_content"
             android:background="#2388cd"
             android:gravity="center"
