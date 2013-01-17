@@ -319,7 +319,7 @@ public class createEvent extends Activity
 				entity.addPart(
 						"location",
 						new StringBody(locationsHashMap.get(location
-								.getSelectedItem())));
+								.getSelectedItem().toString())));
 				entity.addPart("location_details", new StringBody(
 						locationDetails.getText().toString()));
 				entity.addPart("title", new StringBody(title.getText()
