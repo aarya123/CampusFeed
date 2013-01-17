@@ -25,17 +25,19 @@ public class AccountSettings extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_account_settings);
-		this.getActionBar().setBackgroundDrawable(new ColorDrawable(R.color.black));
+		this.getActionBar().setBackgroundDrawable(
+				new ColorDrawable(R.color.black));
 		switcher = (ViewSwitcher) findViewById(R.id.viewSwitcherSettings);
 		switchedList = (ListView) findViewById(R.id.settingsListView);
 		// ACCOUNT OPTIONS
 		if (Accounts.isSignedIn())
 		{
-			choices = new String[] { "Create an Event", "My Created Events",
-					"My Starred Events", "Log Out"/*, "My Groups", "My School", "About CampusFeed" */};
+			choices = new String[] { "Advanced Search", "Create an Event",
+					"My Created Events", "My Starred Events", "Log Out"/*, "My Groups", "My School", "About CampusFeed" */};
 		} else
 		{
-			choices = new String[] { "Sign In", "Create an Account"/*, "My Groups", "My School", "About CampusFeed" */};
+			choices = new String[] { "Advanced Search", "Sign In",
+					"Create an Account"/*, "My Groups", "My School", "About CampusFeed" */};
 		}
 		ListView accountChoices = (ListView) findViewById(R.id.account_settings_list);
 		AccountSettingsAdapter adapter = new AccountSettingsAdapter(
@@ -122,6 +124,11 @@ public class AccountSettings extends Activity
 							CreateAccount.class);
 					startActivity(createAcc);
 					AccountSettings.this.finish();
+				} else if (choices[position].equals("Advanced Search"))
+				{
+					Intent advsrch = new Intent(AccountSettings.this,
+							AdvacedSearch.class);
+					startActivity(advsrch);
 				}
 			}
 		});

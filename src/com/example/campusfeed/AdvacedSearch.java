@@ -16,7 +16,8 @@ import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ViewSwitcher;
 
-public class AdvacedSearch extends Activity {
+public class AdvacedSearch extends Activity
+{
 	public EditText title = null;
 	public static String date = null;
 	public static Date time = null;
@@ -27,7 +28,8 @@ public class AdvacedSearch extends Activity {
 	ViewSwitcher switcher;
 	int clickCount = 0;
 
-	public void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.advanced_search);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // force
@@ -42,24 +44,30 @@ public class AdvacedSearch extends Activity {
 		submit = (Button) findViewById(R.id.advsrch_submit);
 		switcher = (ViewSwitcher) findViewById(R.id.searchViewSwitcher);
 		// Setting action listeners for the buttons
-		TimeChooser.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
+		TimeChooser.setOnClickListener(new View.OnClickListener()
+		{
+			public void onClick(View v)
+			{
 				TimePickerEvent.fromAdv = true;
 				FragmentManager fm = getFragmentManager();
 				TimePickerEvent t = new TimePickerEvent();
 				t.show(fm, "time_picker");
 			}
 		});
-		DateChooser.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
+		DateChooser.setOnClickListener(new View.OnClickListener()
+		{
+			public void onClick(View v)
+			{
 				DatePicker.fromAdv = true;
 				FragmentManager fm = getFragmentManager();
 				DatePicker d = new DatePicker();
 				d.show(fm, "date_picker");
 			}
 		});
-		submit.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
+		submit.setOnClickListener(new View.OnClickListener()
+		{
+			public void onClick(View v)
+			{
 				switcher.showNext();
 				clickCount = 1;
 				// Ignoring "ENTER"
@@ -79,10 +87,13 @@ public class AdvacedSearch extends Activity {
 				listView.setAdapter(a);
 				date = null;
 				time = null;
-				listView.setOnItemClickListener(new OnItemClickListener() {
+				listView.setOnItemClickListener(new OnItemClickListener()
+				{
 					public void onItemClick(AdapterView<?> parent, View view,
-							int position, long id) {
-						if (!(listView.getItemAtPosition(0) == null)) {
+							int position, long id)
+					{
+						if (!(listView.getItemAtPosition(0) == null))
+						{
 							Event selectedEvent = a.getItem(position);
 							Intent eventInfo = new Intent(AdvacedSearch.this,
 									EventInfo.class);
@@ -95,16 +106,20 @@ public class AdvacedSearch extends Activity {
 		});
 	}
 
-	public static void setTime(Date chosenTime) {
+	public static void setTime(Date chosenTime)
+	{
 		time = chosenTime;
 	}
 
-	public static void setDate(String chosenDate) {
+	public static void setDate(String chosenDate)
+	{
 		date = chosenDate;
 	}
 
-	public void onBackPressed() {
-		if (clickCount == 1) {
+	public void onBackPressed()
+	{
+		if (clickCount == 1)
+		{
 			switcher.showPrevious();
 			clickCount = 0;
 		} else
