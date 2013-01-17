@@ -41,6 +41,7 @@ public class createEvent extends Activity
 	File poster = null;
 	Button upPoster, upHandout;
 	File handout = null;
+	public ProgressDialog p;
 	static Button setTime, setDate;
 	HashMap<String, String> locationsHashMap;
 
@@ -354,12 +355,12 @@ public class createEvent extends Activity
 
 	class PostEvent extends AsyncTask<String, Void, String>
 	{
-		ProgressDialog p;
+		
 
 		protected void onPreExecute()
 		{
-			p = ProgressDialog.show(createEvent.this, "Posting Event",
-					"Posting Event Handout and Poster", false);
+			p = ProgressDialog.show(createEvent.this, "Please Wait",
+					"Posting The Event!", false);
 		}
 
 		protected String doInBackground(String... params)
@@ -409,13 +410,13 @@ public class createEvent extends Activity
 
 		public void onPostExecute(String result)
 		{
-			p.setMessage("Finished!");
-			p.dismiss();
+			p.setMessage("");
+	
 			
 		
 			new RefreshForPost().execute(result);
-		
-			
+	
+	
 
 			
 		}
@@ -436,6 +437,7 @@ public class createEvent extends Activity
 		
 		
 		eventInfo.putExtra("eventId", result);
+		p.dismiss();
 	    startActivity(eventInfo);
 		finish();
 	}
