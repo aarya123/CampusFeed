@@ -14,7 +14,6 @@ public class DatePicker extends DialogFragment implements
 		DatePickerDialog.OnDateSetListener
 {
 	// Checking if AdvancedSearch is calling this function
-	
 	public static boolean fromAdv = false;
 
 	public Dialog onCreateDialog(Bundle savedInstanceState)
@@ -31,32 +30,27 @@ public class DatePicker extends DialogFragment implements
 	public void onDateSet(android.widget.DatePicker arg0, int arg1, int arg2,
 			int arg3)
 	{
-		if(fromAdv == true)
+		if (fromAdv == true)
 		{
-			String date = (arg2+1)+"/"+arg3+"/"+arg1;
-			SimpleDateFormat timeFormat1=new SimpleDateFormat("M/d/yyyy");
-	
-			Date d=null;
-			try 
+			String date = (arg2 + 1) + "/" + arg3 + "/" + arg1;
+			SimpleDateFormat timeFormat1 = new SimpleDateFormat("M/d/yyyy");
+			Date d = null;
+			try
 			{
-				d=timeFormat1.parse(date);
-			} 
-			catch (ParseException e)
+				d = timeFormat1.parse(date);
+			} catch (ParseException e)
 			{
 				e.printStackTrace();
 			}
-			
-			SimpleDateFormat timeFormat2 =new SimpleDateFormat("M/d/yyyy");
+			SimpleDateFormat timeFormat2 = new SimpleDateFormat("M/d/yyyy");
 			AdvacedSearch.DateChooser.setText(timeFormat2.format(d));
 			AdvacedSearch.setDate(timeFormat2.format(d));
-		}
-		else
+		} else
 		{
 			String dateMysql = arg1 + "-" + (arg2 + 1) + "-" + (arg3) + " ";
 			createEvent.date = dateMysql;
-
-			createEvent.setDate.setText((arg2+1)+"/"+arg3+"/"+arg1);
+			createEvent.setDate.setText((arg2 + 1) + "/" + arg3 + "/" + arg1);
 		}
-		
+
 	}
 }

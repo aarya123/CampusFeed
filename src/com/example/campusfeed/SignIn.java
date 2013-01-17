@@ -65,8 +65,8 @@ public class SignIn extends Activity
 
 		protected String doInBackground(String... params)
 		{
-			String url = "http://ezevents.6te.net/accounts_mobile.php?username=" + params[0] + "&password=" + params[1]
-					+ "&action=log_in";
+			String url = "http://ezevents.6te.net/accounts_mobile.php?username="
+					+ params[0] + "&password=" + params[1] + "&action=log_in";
 			HttpGet httpGet = new HttpGet(url);
 			HttpClient h = new DefaultHttpClient();
 			HttpResponse r = null;
@@ -107,14 +107,14 @@ public class SignIn extends Activity
 				Accounts.setPassword(passWord.getText().toString());
 				String[] array = result.split("\\|");
 				Accounts.setEmail(array[0]);
-				ArrayList<String> events=new ArrayList<String>();
-				String[] tempEvents=array[1].split(",,,");
-				for(int i=0;i<tempEvents.length;i++)
+				ArrayList<String> events = new ArrayList<String>();
+				String[] tempEvents = array[1].split(",,,");
+				for (int i = 0; i < tempEvents.length; i++)
 					events.add(tempEvents[i]);
 				Accounts.setStarredEvents(events);
-				events=new ArrayList<String>();
-				tempEvents=array[2].split(",,,");
-				for(int i=0;i<tempEvents.length;i++)
+				events = new ArrayList<String>();
+				tempEvents = array[2].split(",,,");
+				for (int i = 0; i < tempEvents.length; i++)
 					events.add(tempEvents[i]);
 				Accounts.setCreatedEvents(events);
 				error.setVisibility(View.GONE);
@@ -126,7 +126,7 @@ public class SignIn extends Activity
 				{
 					// Tab 2 hasn't been opened yet
 				}
-				Accounts.signedIn=true;
+				Accounts.signedIn = true;
 				p.dismiss();
 				SignIn.this.finish();
 			}

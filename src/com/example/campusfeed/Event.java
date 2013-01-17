@@ -7,21 +7,20 @@ import java.util.*;
 public class Event
 {
 	private String name, id, status, location, host, category, description,
-			locationSpecifics,username;
+			locationSpecifics, username;
 	private Date datetime;
 	private int interest;
 	private LatLng latlng;
 	public String posterPath, handoutPath;
-	
 
 	public Event(String id, String name, String status, String location,
 			String host, String category, String description,
 			String locationSpecifics, String date, int interest, String latlng,
-			String posterPath, String handoutPath,String username)
+			String posterPath, String handoutPath, String username)
 	{
 		this.id = id;
 		this.name = name;
-		this.username=username;
+		this.username = username;
 		this.status = status;
 		this.location = location;
 		this.posterPath = posterPath;
@@ -39,11 +38,12 @@ public class Event
 
 	public void Update(String id, String name, String status, String location,
 			String host, String category, String description,
-			String locationSpecifics, String date, int interest, String latlng,String username,	String posterPath, String handoutPath)
+			String locationSpecifics, String date, int interest, String latlng,
+			String username, String posterPath, String handoutPath)
 	{
 		this.id = id;
 		this.name = name;
-		this.username=username;
+		this.username = username;
 		this.status = status;
 		this.location = location;
 		this.host = host;
@@ -51,14 +51,16 @@ public class Event
 		this.description = description;
 		this.locationSpecifics = locationSpecifics;
 		this.datetime = new Date(Long.parseLong(date) * 1000);
-		this.posterPath=posterPath;
-		this.handoutPath=handoutPath;
+		this.posterPath = posterPath;
+		this.handoutPath = handoutPath;
 		this.interest = interest;
 		String[] latAndLang = latlng.split(",");
 		this.latlng = new LatLng(Double.parseDouble(latAndLang[0]),
 				Double.parseDouble(latAndLang[1]));
 	}
-	public String getUser(){
+
+	public String getUser()
+	{
 		return this.username;
 	}
 
@@ -82,7 +84,6 @@ public class Event
 		return locationSpecifics;
 	}
 
-	// good stuff happening here :D
 	public String getDate()
 	{
 		// create a simpledateformat obj
@@ -97,7 +98,6 @@ public class Event
 		return sdf.format(datetime);
 	}
 
-	// good stuff happening here :D
 	public String getTime()
 	{
 		// create a simple date format obj
@@ -106,12 +106,12 @@ public class Event
 		SimpleDateFormat sdf = new SimpleDateFormat("h:mm a");
 		return sdf.format(datetime);
 	}
-	
+
 	/**
 	 * getTime_noformat() (Used by advanced search)
-	 *
-	 */ 
-	
+	 * 
+	 */
+
 	public Date getTime_noformat()
 	{
 		// create a simple date format obj
@@ -119,9 +119,9 @@ public class Event
 		TimeZone.setDefault(TimeZone.getTimeZone("EST"));
 		return datetime;
 	}
-	
+
 	// getHour() (Used by SearchView widget)
-	
+
 	public String getHour()
 	{
 		// create a simple date format obj
@@ -165,12 +165,12 @@ public class Event
 	{
 		return host;
 	}
-	
+
 	// This tag will be used by the SearchView widget
-	
+
 	public String getSimpleTag()
 	{
-		return (name+" "+location+" "+getHour());
+		return (name + " " + location + " " + getHour());
 	}
-	
+
 }
