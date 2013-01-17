@@ -230,6 +230,7 @@ public class createEvent extends Activity
 		{
 			public void onClick(View v)
 			{
+				DatePicker.fromAdv=false;
 				FragmentManager fm = getFragmentManager();
 				TimePickerEvent.fromAdv = false;
 				TimePickerEvent t = new TimePickerEvent();
@@ -240,6 +241,7 @@ public class createEvent extends Activity
 		{
 			public void onClick(View v)
 			{
+				DatePicker.fromAdv=false;
 				FragmentManager fm = getFragmentManager();
 				DatePicker.fromAdv = false;
 				DatePicker d = new DatePicker();
