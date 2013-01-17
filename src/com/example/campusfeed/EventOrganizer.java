@@ -284,7 +284,7 @@ public class EventOrganizer
 			}
 			
 			if ( isNameMatching == true
-			 && (location.equals("                                  Any")|| getEvent(i).getLocation().toLowerCase().equals(location.toLowerCase()))
+			 && (location.equals("Any")|| getEvent(i).getLocation().toLowerCase().equals(location.toLowerCase()))
 			 && (date==null || getEvent(i).getDate().toLowerCase().equals(date.toLowerCase()))
 			 && (time==null || 
 			 		(((getEvent(i).getTime_noformat().getHours()>begtime.getHours()) || 

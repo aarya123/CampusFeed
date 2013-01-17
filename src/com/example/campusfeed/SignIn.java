@@ -65,8 +65,7 @@ public class SignIn extends Activity
 
 		protected String doInBackground(String... params)
 		{
-			String url = "http://ezevents.6te.net/accounts_mobile.php"
-					+ "?username=" + params[0] + "&password=" + params[1]
+			String url = "http://ezevents.6te.net/accounts_mobile.php?username=" + params[0] + "&password=" + params[1]
 					+ "&action=log_in";
 			HttpGet httpGet = new HttpGet(url);
 			HttpClient h = new DefaultHttpClient();

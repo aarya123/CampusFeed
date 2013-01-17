@@ -10,6 +10,14 @@
         <item>Cary Quadrangle</item>
         <item>Electrical Engineering Building</item>
     </string-array>
+    <string-array name="locationsForSearch">
+        <item>Any</item>
+        <item>Purdue Memorial Union</item>
+        <item>Lawson Computer Science Building</item>
+        <item>Purdue Student Health Center</item>
+        <item>Cary Quadrangle</item>
+        <item>Electrical Engineering Building</item>
+    </string-array>
     <string-array name="listdialogoptions">
         <item>View</item>
         <item>Star/Unstar Event</item>
