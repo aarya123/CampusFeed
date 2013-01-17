@@ -2,13 +2,11 @@
 <resources>
 
     <string name="app_name">CampusFeed</string>
-    <string name="location_prompt">Where is it happening?</string>
 
     <string-array name="locations">
-        <item>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Any</item>
+        <item>Purdue Memorial Union</item>
         <item>Lawson Computer Science Building</item>
         <item>Purdue Student Health Center</item>
-        <item>Purdue Memorial Union</item>
         <item>Cary Quadrangle</item>
         <item>Electrical Engineering Building</item>
     </string-array>
@@ -37,5 +35,13 @@
     <string name="title_activity_create_account">CreateAccount</string>
     <string name="title_activity_sign_in">SignIn</string>
     <string name="search_hint">Enter Event Name</string>
+
+    <string-array name="categories">
+        <item>Academic</item>
+        <item>Organizational</item>
+        <item>Sales</item>
+        <item>Social</item>
+        <item>Sports</item>
+    </string-array>
 
 </resources>

@@ -30,19 +30,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 public class createEvent extends Activity
 {
 
 	static String date, time;
 	EditText title, desc, locationDetails;
-	Spinner location;
+	Spinner location, categories;
 	File poster = null;
 	Button upPoster, upHandout;
 	File handout = null;
 	static Button setTime, setDate;
-	HashMap<String, String> locations;
+	HashMap<String, String> locationsHashMap;
 
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -50,18 +49,21 @@ public class createEvent extends Activity
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // force
 																			// into
 																			// portrait
-		locations = new HashMap<String, String>();
-		locations.put("Lawson Computer Science Building",
+		locationsHashMap = new HashMap<String, String>();
+		locationsHashMap.put("Lawson Computer Science Building",
 				"40.427767,-86.916941");
-		locations.put("Purdue Student Health Center", "40.430213,-86.916648");
-		locations.put("Purdue Memorial Union", "40.424999,-86.911539");
-		locations.put("Cary Quadrangle", "40.432037,-86.917949");
-		locations.put("Electrical Engineering Building", "40.428588,-86.91193");
+		locationsHashMap.put("Purdue Student Health Center",
+				"40.430213,-86.916648");
+		locationsHashMap.put("Purdue Memorial Union", "40.424999,-86.911539");
+		locationsHashMap.put("Cary Quadrangle", "40.432037,-86.917949");
+		locationsHashMap.put("Electrical Engineering Building",
+				"40.428588,-86.91193");
 		setContentView(R.layout.create_event);
 		location = (Spinner) findViewById(R.id.eventLocation);
 		title = (EditText) findViewById(R.id.eventTitle);
 		desc = (EditText) findViewById(R.id.eventDescription);
 		locationDetails = (EditText) findViewById(R.id.eventLocationDetails);
+		categories = (Spinner) findViewById(R.id.eventCategory);
 		setTime = (Button) findViewById(R.id.setTime);
 		setDate = (Button) findViewById(R.id.setDate);
 		upPoster = (Button) findViewById(R.id.button1);
@@ -199,11 +201,6 @@ public class createEvent extends Activity
 		protected String doInBackground(String... params)
 		{
 			// post the event
-			// TODO Fix this
-			String locationString = locations.get(location.getSelectedItem());
-			String titleString = title.getText().toString();
-			String descString = desc.getText().toString();
-			String locationDetailsString = locationDetails.getText().toString();
 			String response = null;
 			HttpPost http = new HttpPost("http://ezevents.6te.net/create.php");
 			HttpClient h = new DefaultHttpClient();
@@ -215,13 +212,19 @@ public class createEvent extends Activity
 				entity.addPart("HANDOUT", new FileBody(handout));
 				entity.addPart("time", new StringBody(time));
 				entity.addPart("date", new StringBody(date));
-				entity.addPart("location", new StringBody(locationString));
+				entity.addPart(
+						"location",
+						new StringBody(locationsHashMap.get(location
+								.getSelectedItem())));
 				entity.addPart("location_details", new StringBody(
-						locationDetailsString));
-				entity.addPart("title", new StringBody(titleString));
+						locationDetails.getText().toString()));
+				entity.addPart("title", new StringBody(title.getText()
+						.toString()));
 				entity.addPart("user", new StringBody(Accounts.getUsername()));
-				entity.addPart("description", new StringBody(descString));
-				entity.addPart("cat", new StringBody("social"));
+				entity.addPart("description", new StringBody(desc.getText()
+						.toString()));
+				entity.addPart("cat", new StringBody(categories
+						.getSelectedItem().toString().toLowerCase()));
 				http.setEntity(entity);
 				// execute request
 				r = h.execute(http);
@@ -246,8 +249,6 @@ public class createEvent extends Activity
 			eventInfo.putExtra("eventId", result);
 			finish();
 			// startActivity(eventInfo);
-			Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG)
-					.show();
 		}
 	}
 }

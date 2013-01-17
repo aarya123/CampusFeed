@@ -77,9 +77,7 @@ public class MainActivity extends TabActivity implements
 		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 		SearchView searchView = (SearchView) menu.findItem(R.id.menu_search)
 				.getActionView();
-
-		searchView.setSearchableInfo(searchManager
-				.getSearchableInfo(getComponentName()));
+		searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 		searchView.setIconifiedByDefault(true);
 
 		return super.onCreateOptionsMenu(menu);
