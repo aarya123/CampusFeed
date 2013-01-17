@@ -52,7 +52,7 @@ public class createEvent extends Activity
 		locationsHashMap = new HashMap<String, String>();
 		locationsHashMap.put("Aerospace Science Laboratory",
 				"40.416303,-86.928527");
-		locationsHashMap.put("Agricultural and Biological Engineering",
+		locationsHashMap.put("Agricultural and Biological Engineering ",
 				"40.421632,-86.91655");
 		locationsHashMap.put("Animal Disease Diagnostic Laboratory",
 				"40.418197,-86.916002");
@@ -117,7 +117,7 @@ public class createEvent extends Activity
 		locationsHashMap.put("Lynn Hall of Veterinary Medicine",
 				"40.419364,-86.914984");
 		locationsHashMap.put(
-				"	Martin C. Jischke Hall of Biomedical Engineering",
+				"Martin C. Jischke Hall of Biomedical Engineering",
 				"40.422153,-86.921169");
 		locationsHashMap.put("Materials and Electrical Engineering",
 				"40.429404,-86.912713");
@@ -375,8 +375,8 @@ public class createEvent extends Activity
 						"latlng",
 						new StringBody(locationsHashMap.get(location
 								.getSelectedItem())));
-				entity.addPart("location",
-						new StringBody(location.getSelectedItem().toString()));
+				entity.addPart("location", new StringBody(location
+						.getSelectedItem().toString()));
 				entity.addPart("location_details", new StringBody(
 						locationDetails.getText().toString()));
 				entity.addPart("title", new StringBody(title.getText()
