@@ -1,7 +1,12 @@
 package com.example.campusfeed;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+
 
 public class EventOrganizer
 {
@@ -142,7 +147,7 @@ public class EventOrganizer
 	 * @param query
 	 *            The string sent by the Searchable activity (the search query)
 	 * 
-	 *            Note: an event tag = "name location time"
+	 * Note: simple event tag = "name location time"
 	 */
 	public static ArrayList<Event> searchEvents(String query)
 	{
@@ -172,6 +177,127 @@ public class EventOrganizer
 			if (containsFullQuery == 1)
 				names.add(getEvent(i));
 		}
+		return names;
+	}
+	
+	/**
+	 * adv_searchEvents() is for the Advanced search feature, 
+	 * 
+	 * Returns list of events whose name contains the search query
+	 */
+	@SuppressWarnings("deprecation")
+	public static ArrayList<Event> adv_searchEvents(String name, String location, String date, Date time)
+	{
+		Date begtime = new Date();
+		Date endtime = new Date();
+		
+		if(time!=null)
+		{
+			/*
+			 * If time  < 00:30
+			 *
+			 * begtime = 00:00
+			 * endtime = 01:00
+			 *
+			 */
+			
+			if(time.getHours() == 0 && time.getMinutes() < 30)
+			{
+				begtime.setHours(0);
+				begtime.setMinutes(0);
+				begtime.setSeconds(0);
+				
+				endtime.setHours(1);
+				endtime.setMinutes(0);
+				endtime.setSeconds(0);
+				
+			}
+			else
+
+			/*
+			 * If time  > 23:30
+			 *
+			 * begtime = 23:00
+			 * endtime = 23:59
+			 *
+			 */
+				
+			if(time.getHours() == 23 && time.getMinutes() > 30)
+			{
+				begtime.setHours(23);
+				begtime.setMinutes(0);
+				begtime.setSeconds(0);
+
+				endtime.setHours(23);
+				endtime.setMinutes(59);
+				endtime.setSeconds(0);
+
+			}
+			else
+			if(time.getMinutes()==30)
+			{
+				begtime.setHours(time.getHours());
+				begtime.setMinutes(0);
+				begtime.setSeconds(0);
+				
+				endtime.setHours(time.getHours()+1);
+				endtime.setMinutes(0);
+				endtime.setSeconds(0);
+				
+			}
+			else
+			if(time.getMinutes()<30)
+			{
+				begtime.setHours(time.getHours()-1);
+				begtime.setMinutes(30+time.getMinutes());
+				begtime.setSeconds(0);
+
+				endtime.setHours(time.getHours());
+				endtime.setMinutes(30+time.getMinutes());
+				endtime.setSeconds(0);
+
+			}	
+			else
+			if(time.getMinutes()>30)
+			{
+				begtime.setHours(time.getHours());
+				begtime.setMinutes(time.getMinutes()-30);
+				begtime.setSeconds(0);
+
+				endtime.setHours(time.getHours()+1);
+				endtime.setMinutes(time.getMinutes()-30);
+				endtime.setSeconds(0);
+
+			}	
+		}
+		ArrayList<Event> names = new ArrayList<Event>();
+		for(int i = 0; i < getNumOfEvents(); i++)
+		{			
+			// Only events starting with the search string will get displayed
+			
+			boolean isNameMatching=true;
+			int sizeOfName = name.length();
+			for(int k=0 ; k<sizeOfName; k++)
+			{
+				if(Character.toLowerCase(getEvent(i).getName().charAt(k)) != Character.toLowerCase(name.charAt(k)))
+					isNameMatching = false;
+			}
+			
+			if ( isNameMatching == true
+			 && (location.equals("                                  Any")|| getEvent(i).getLocation().toLowerCase().equals(location.toLowerCase()))
+			 && (date==null || getEvent(i).getDate().toLowerCase().equals(date.toLowerCase()))
+			 && (time==null || 
+			 		(((getEvent(i).getTime_noformat().getHours()>begtime.getHours()) || 
+					((getEvent(i).getTime_noformat().getHours()==begtime.getHours()) && (getEvent(i).getTime_noformat().getMinutes()>=begtime.getMinutes())))
+			    &&  ((getEvent(i).getTime_noformat().getHours()<endtime.getHours()) || 
+			    	((getEvent(i).getTime_noformat().getHours()==endtime.getHours()) && (getEvent(i).getTime_noformat().getMinutes()<=endtime.getMinutes()))))
+			    )
+			   )
+			{
+				names.add(getEvent(i));
+			}
+		}
+		
 		return names;
 	}
 

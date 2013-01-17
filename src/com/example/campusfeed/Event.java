@@ -107,7 +107,20 @@ public class Event
 		return sdf.format(datetime);
 	}
 	
-	//get hour (Used by SearchView)
+	/**
+	 * getTime_noformat() (Used by advanced search)
+	 *
+	 */ 
+	
+	public Date getTime_noformat()
+	{
+		// create a simple date format obj
+		// Set default timezone to EST
+		TimeZone.setDefault(TimeZone.getTimeZone("EST"));
+		return datetime;
+	}
+	
+	// getHour() (Used by SearchView widget)
 	
 	public String getHour()
 	{
@@ -160,10 +173,4 @@ public class Event
 		return (name+" "+location+" "+getHour());
 	}
 	
-	// This tag will be used by advanced search
-	
-	/*public String getAdvancedTag()
-	{
-		return (name+location+getHour()+);
-	}*/
 }

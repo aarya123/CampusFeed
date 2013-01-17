@@ -1,6 +1,9 @@
 package com.example.campusfeed;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -10,6 +13,9 @@ import android.app.DatePickerDialog;
 public class DatePicker extends DialogFragment implements
 		DatePickerDialog.OnDateSetListener
 {
+	// Checking if AdvancedSearch is calling this function
+	
+	public static boolean fromAdv = false;
 
 	public Dialog onCreateDialog(Bundle savedInstanceState)
 	{
@@ -25,10 +31,32 @@ public class DatePicker extends DialogFragment implements
 	public void onDateSet(android.widget.DatePicker arg0, int arg1, int arg2,
 			int arg3)
 	{
-		String dateMysql = arg1 + "-" + (arg2 + 1) + "-" + (arg3) + " ";
-		createEvent.date = dateMysql;
+		if(fromAdv == true)
+		{
+			String date = (arg2+1)+"/"+arg3+"/"+arg1;
+			SimpleDateFormat timeFormat1=new SimpleDateFormat("M/d/yyyy");
 	
-		createEvent.setDate.setText((arg2+1)+"/"+arg3+"/"+arg1);
+			Date d=null;
+			try 
+			{
+				d=timeFormat1.parse(date);
+			} 
+			catch (ParseException e)
+			{
+				e.printStackTrace();
+			}
+			
+			SimpleDateFormat timeFormat2 =new SimpleDateFormat("M/d/yyyy");
+			AdvacedSearch.DateChooser.setText(timeFormat2.format(d));
+			AdvacedSearch.setDate(timeFormat2.format(d));
+		}
+		else
+		{
+			String dateMysql = arg1 + "-" + (arg2 + 1) + "-" + (arg3) + " ";
+			createEvent.date = dateMysql;
+
+			createEvent.setDate.setText((arg2+1)+"/"+arg3+"/"+arg1);
+		}
 		
 	}
 }

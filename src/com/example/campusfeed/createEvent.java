@@ -1,9 +1,8 @@
 package com.example.campusfeed;
 
 import java.io.File;
-import java.io.IOException;
+import java.util.HashMap;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.mime.MultipartEntity;
@@ -12,7 +11,6 @@ import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import com.ipaulpro.afilechooser.utils.FileUtils;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
@@ -37,13 +35,14 @@ import android.widget.Toast;
 public class createEvent extends Activity
 {
 
-	public static String date, time;
-	public EditText title, desc, locationDetails;
-	public Spinner location;
-	public File poster = null;
-	public Button upPoster, upHandout;
-	public File handout = null;
-	public static Button setTime, setDate;
+	static String date, time;
+	EditText title, desc, locationDetails;
+	Spinner location, categories;
+	File poster = null;
+	Button upPoster, upHandout;
+	File handout = null;
+	static Button setTime, setDate;
+	HashMap<String, String> locationsHashMap;
 
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -51,13 +50,21 @@ public class createEvent extends Activity
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // force
 																			// into
 																			// portrait
+		locationsHashMap = new HashMap<String, String>();
+		locationsHashMap.put("Lawson Computer Science Building",
+				"40.427767,-86.916941");
+		locationsHashMap.put("Purdue Student Health Center",
+				"40.430213,-86.916648");
+		locationsHashMap.put("Purdue Memorial Union", "40.424999,-86.911539");
+		locationsHashMap.put("Cary Quadrangle", "40.432037,-86.917949");
+		locationsHashMap.put("Electrical Engineering Building",
+				"40.428588,-86.91193");
 		setContentView(R.layout.create_event);
-		// String[] locations=new
-		// String[]{"Lawson Computer Science Building","Purdue Student Health Center","Cary Quadrangle"};
 		location = (Spinner) findViewById(R.id.eventLocation);
 		title = (EditText) findViewById(R.id.eventTitle);
 		desc = (EditText) findViewById(R.id.eventDescription);
 		locationDetails = (EditText) findViewById(R.id.eventLocationDetails);
+		categories = (Spinner) findViewById(R.id.eventCategory);
 		setTime = (Button) findViewById(R.id.setTime);
 		setDate = (Button) findViewById(R.id.setDate);
 		upPoster = (Button) findViewById(R.id.button1);
@@ -155,10 +162,6 @@ public class createEvent extends Activity
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		getMenuInflater().inflate(R.menu.activity_create_event, menu);
-		// SearchView
-		// search=(SearchView)menu.findItem(R.id.menu_search).getActionView();
-		// search.setQueryHint("Search an Organization or event name");
-
 		return true;
 	}
 
@@ -180,9 +183,10 @@ public class createEvent extends Activity
 		{
 		case R.id.postEvent:
 			// post the event by showing a progress bar
+
 			
 			String s = location.getSelectedItem().toString();
-		
+
 			new PostEvent().execute();
 			return true;
 		}
@@ -202,12 +206,6 @@ public class createEvent extends Activity
 		protected String doInBackground(String... params)
 		{
 			// post the event
-			// TODO Fix this
-			String locationString = "84.344342,56.34322" + "|"
-					+ location.getSelectedItem().toString();
-			String titleString = title.getText().toString();
-			String descString = desc.getText().toString();
-			String locationDetailsString = locationDetails.getText().toString();
 			String response = null;
 			HttpPost http = new HttpPost("http://ezevents.6te.net/create.php");
 			HttpClient h = new DefaultHttpClient();
@@ -219,13 +217,19 @@ public class createEvent extends Activity
 				entity.addPart("HANDOUT", new FileBody(handout));
 				entity.addPart("time", new StringBody(time));
 				entity.addPart("date", new StringBody(date));
-				entity.addPart("location", new StringBody(locationString));
+				entity.addPart(
+						"location",
+						new StringBody(locationsHashMap.get(location
+								.getSelectedItem())));
 				entity.addPart("location_details", new StringBody(
-						locationDetailsString));
-				entity.addPart("title", new StringBody(titleString));
+						locationDetails.getText().toString()));
+				entity.addPart("title", new StringBody(title.getText()
+						.toString()));
 				entity.addPart("user", new StringBody(Accounts.getUsername()));
-				entity.addPart("description", new StringBody(descString));
-				entity.addPart("cat", new StringBody("social"));
+				entity.addPart("description", new StringBody(desc.getText()
+						.toString()));
+				entity.addPart("cat", new StringBody(categories
+						.getSelectedItem().toString().toLowerCase()));
 				http.setEntity(entity);
 				// execute request
 				r = h.execute(http);
@@ -246,11 +250,33 @@ public class createEvent extends Activity
 		{
 			p.setMessage("Finished!");
 			p.dismiss();
-			Intent eventInfo = new Intent(createEvent.this, EventInfo.class);
-			eventInfo.putExtra("eventId", result);
-			finish();
-			//startActivity(eventInfo);
+			
+		
+			new RefreshForPost().execute(result);
+		
+			
+
 			
 		}
+	}
+	
+ class RefreshForPost extends AsyncTask<String,Void,String>{
+
+	@Override
+	protected String doInBackground(String... params) {
+		// TODO Auto-generated method stub
+	new DownloadDataThread().Download();
+	return params[0];
+	
+	}
+	@Override 
+	protected void onPostExecute(String result){
+		Intent eventInfo = new Intent(createEvent.this, EventInfo.class);
+		
+		
+		eventInfo.putExtra("eventId", result);
+	    startActivity(eventInfo);
+		finish();
+	}
 	}
 }

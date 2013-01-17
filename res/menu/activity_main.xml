@@ -5,7 +5,11 @@
         android:actionViewClass="android.widget.SearchView"
         android:icon="@drawable/ic_menu_search"
         android:showAsAction="ifRoom"
-        android:title="Search"/>
+    								/>
+    <item
+        android:id="@+id/adv_search"
+        android:title="Advanced Search"/>
+
     <item
         android:id="@+id/accSettings"
         android:icon="@drawable/ic_action_settings"
