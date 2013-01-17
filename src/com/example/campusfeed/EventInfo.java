@@ -80,7 +80,7 @@ public class EventInfo extends Activity
 
 				Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
 						Uri.parse("geo:0,0?q=" + location.latitude + ","
-								+ location.longitude + "(Location)"));
+								+ location.longitude + "("+currentEvent.getName()+")"));
 				startActivity(intent);
 			}
 		});
