@@ -1,9 +1,5 @@
 package com.example.campusfeed;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -12,22 +8,17 @@ import android.app.SearchManager;
 import android.app.TabActivity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Point;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
-import android.widget.Toast;
 
 public class MainActivity extends TabActivity implements
 		SearchView.OnQueryTextListener
@@ -81,22 +72,23 @@ public class MainActivity extends TabActivity implements
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		getMenuInflater().inflate(R.menu.activity_main, menu);
-		
+
 		// Get the SearchView and set the searchable configuration
-	    SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-	    SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
-	    
-	    searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-	    searchView.setIconifiedByDefault(true); 
-		
-	    return super.onCreateOptionsMenu(menu);
+		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+		SearchView searchView = (SearchView) menu.findItem(R.id.menu_search)
+				.getActionView();
+
+		searchView.setSearchableInfo(searchManager
+				.getSearchableInfo(getComponentName()));
+		searchView.setIconifiedByDefault(true);
+
+		return super.onCreateOptionsMenu(menu);
 	}
 
 	public boolean onMenuItemSelected(int featureId, MenuItem item)
 	{
 		switch (item.getItemId())
 		{
-	
 		case R.id.accSettings:
 			Intent accSettings = new Intent(this, AccountSettings.class);
 			startActivity(accSettings);
@@ -110,7 +102,6 @@ public class MainActivity extends TabActivity implements
 	{
 		switch (item.getItemId())
 		{
-	
 		case R.id.accSettings:
 			Intent accSettings = new Intent(this, AccountSettings.class);
 			startActivity(accSettings);
@@ -153,8 +144,7 @@ public class MainActivity extends TabActivity implements
 		new GetPromos().execute();
 		// download the promo flyers
 		ViewPager pager = (ViewPager) findViewById(R.id.promotion_slider);
-		
-		
+
 		PromotionsAdapter promos = new PromotionsAdapter();
 		pager.setAdapter(promos);
 		// add action swipe listener
@@ -182,7 +172,7 @@ public class MainActivity extends TabActivity implements
 		protected void onPreExecute()
 		{
 			p = ProgressDialog.show(MainActivity.this,
-				"Starting Up Campus Feed", "Please Wait...", false);
+					"Starting Up Campus Feed", "Please Wait...", false);
 		}
 
 		protected String doInBackground(String... arg0)
@@ -191,12 +181,13 @@ public class MainActivity extends TabActivity implements
 			{
 				error = true;
 				return null;
-			}
-			else
+			} else
 			{
-				try {
+				try
+				{
 					Thread.sleep(2200);
-				} catch (InterruptedException e) {
+				} catch (InterruptedException e)
+				{
 					// TODO Auto-generated catch block
 					return "done";
 				}
@@ -211,7 +202,7 @@ public class MainActivity extends TabActivity implements
 							"http://ezevents.6te.net/promos/promo2.png")
 				
 							.openStream();
-			
+				
 					promos[0] = BitmapFactory.decodeStream(pic1);
 					promos[1] = BitmapFactory.decodeStream(pic2);
 					promos[2] = promos[0];
@@ -233,33 +224,35 @@ public class MainActivity extends TabActivity implements
 		}
 
 		protected void onPostExecute(String result)
-		{	
+		{
 			if (error)
 			{
 				p.setMessage("Internet Connection Required");
 				p.dismiss();
 			} else
 			{
-				if(result==null){
-					
-				}else{
+				if (result == null)
+				{
+
+				} else
+				{
 					/*
-				Display screen = getWindowManager().getDefaultDisplay();
-				Point size = new Point();
-				ViewPager pager = (ViewPager) findViewById(R.id.promotion_slider);
-				screen.getSize(size);
-				int width = size.x;
-				int height = pager.getHeight();
-				PromotionsAdapter promos = new PromotionsAdapter(
+					Display screen = getWindowManager().getDefaultDisplay();
+					Point size = new Point();
+					ViewPager pager = (ViewPager) findViewById(R.id.promotion_slider);
+					screen.getSize(size);
+					int width = size.x;
+					int height = pager.getHeight();
+					PromotionsAdapter promos = new PromotionsAdapter(
 						promotionImages, width, height);
-				pager.setAdapter(promos);
-				*/
-				p.dismiss();
+					pager.setAdapter(promos);
+					*/
+					p.dismiss();
 				}
 			}
 		}
 	}
-	
+
 }
 
 /*
