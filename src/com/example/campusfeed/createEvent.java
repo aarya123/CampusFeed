@@ -30,7 +30,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 public class createEvent extends Activity
 {
@@ -48,9 +47,8 @@ public class createEvent extends Activity
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // force
-																			// into
-																			// portrait
+		// force into portrait
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		locationsHashMap = new HashMap<String, String>();
 		locationsHashMap.put("Aerospace Science Laboratory",
 				"40.416303,-86.928527");
@@ -218,7 +216,6 @@ public class createEvent extends Activity
 		locationsHashMap.put("Varsity Soccer Complex", "40.437655,-86.938937");
 		locationsHashMap.put("Visitor Information Center",
 				"40.429713,-86.911979");
-
 		setContentView(R.layout.create_event);
 		location = (Spinner) findViewById(R.id.eventLocation);
 		title = (EditText) findViewById(R.id.eventTitle);
@@ -234,6 +231,7 @@ public class createEvent extends Activity
 			public void onClick(View v)
 			{
 				FragmentManager fm = getFragmentManager();
+				TimePickerEvent.fromAdv = false;
 				TimePickerEvent t = new TimePickerEvent();
 				t.show(fm, "time_picker");
 			}
@@ -243,6 +241,7 @@ public class createEvent extends Activity
 			public void onClick(View v)
 			{
 				FragmentManager fm = getFragmentManager();
+				DatePicker.fromAdv = false;
 				DatePicker d = new DatePicker();
 				d.show(fm, "date_picker");
 			}
@@ -343,10 +342,6 @@ public class createEvent extends Activity
 		{
 		case R.id.postEvent:
 			// post the event by showing a progress bar
-
-			
-			String s = location.getSelectedItem().toString();
-
 			new PostEvent().execute();
 			return true;
 		}
@@ -355,7 +350,6 @@ public class createEvent extends Activity
 
 	class PostEvent extends AsyncTask<String, Void, String>
 	{
-		
 
 		protected void onPreExecute()
 		{
@@ -410,36 +404,9 @@ public class createEvent extends Activity
 
 		public void onPostExecute(String result)
 		{
-			p.setMessage("");
-	
-			
-		
-			new RefreshForPost().execute(result);
-	
-	
-
-			
+			p.setMessage("Finished!");
+			p.dismiss();
+			createEvent.this.finish();
 		}
-	}
-	
- class RefreshForPost extends AsyncTask<String,Void,String>{
-
-	@Override
-	protected String doInBackground(String... params) {
-		// TODO Auto-generated method stub
-	new DownloadDataThread().Download();
-	return params[0];
-	
-	}
-	@Override 
-	protected void onPostExecute(String result){
-		Intent eventInfo = new Intent(createEvent.this, EventInfo.class);
-		
-		
-		eventInfo.putExtra("eventId", result);
-		p.dismiss();
-	    startActivity(eventInfo);
-		finish();
-	}
 	}
 }

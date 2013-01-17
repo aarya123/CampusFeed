@@ -1,19 +1,12 @@
 package com.example.campusfeed;
 
-import com.example.campusfeed.EventOrganizer.Sorter;
-
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class AccountSettingsAdapter extends ArrayAdapter<String>
 {

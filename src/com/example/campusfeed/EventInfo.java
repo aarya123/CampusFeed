@@ -1,21 +1,8 @@
 package com.example.campusfeed;
 
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
-
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
-import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -26,13 +13,20 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 public class EventInfo extends Activity
 {
 	public Event currentEvent;
 	public ProgressBar fetching;
-	public 	ImageView posterspot;
+	public ImageView posterspot;
+
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
@@ -48,12 +42,12 @@ public class EventInfo extends Activity
 		TextView time = (TextView) findViewById(R.id.time);
 		time.setText(currentEvent.getTime());
 		TextView date = (TextView) findViewById(R.id.date);
-		TextView user=(TextView)findViewById(R.id.postedBy);
-		user.setText("By: "+currentEvent.getUser());
+		TextView user = (TextView) findViewById(R.id.postedBy);
+		user.setText("By: " + currentEvent.getUser());
 		date.setText(currentEvent.getDate());
 		TextView location = (TextView) findViewById(R.id.eventLocation);
-		 posterspot=(ImageView)findViewById(R.id.event_info_poster_spot);
-		
+		posterspot = (ImageView) findViewById(R.id.event_info_poster_spot);
+
 		location.setText(currentEvent.getLocation());
 		TextView locationSpecs = (TextView) findViewById(R.id.eventLocationSpecifics);
 		locationSpecs.setText(currentEvent.getLocationSpecifics());
@@ -64,10 +58,14 @@ public class EventInfo extends Activity
 				.title(currentEvent.getName()));
 		map.moveCamera(CameraUpdateFactory.newLatLngZoom(
 				currentEvent.getLatLng(), 17));
-		//Toast.makeText(getApplicationContext(), currentEvent.posterPath, Toast.LENGTH_LONG).show();
-		try{
-		UrlImageViewHelper.setUrlDrawable(posterspot,"http://ezevents.6te.net/"+currentEvent.posterPath );
-		}catch(Exception e){
+		// Toast.makeText(getApplicationContext(), currentEvent.posterPath,
+		// Toast.LENGTH_LONG).show();
+		try
+		{
+			UrlImageViewHelper.setUrlDrawable(posterspot,
+					"http://ezevents.6te.net/" + currentEvent.posterPath);
+		} catch (Exception e)
+		{
 			Log.d("Error", e.toString());
 		}
 		// set onLongClick listener so once the use holds the touch for some
@@ -84,20 +82,22 @@ public class EventInfo extends Activity
 				startActivity(intent);
 			}
 		});
-		posterspot.setOnClickListener(new View.OnClickListener() {
-			
+		posterspot.setOnClickListener(new View.OnClickListener()
+		{
+
 			@Override
-			public void onClick(View v) {
+			public void onClick(View v)
+			{
 				// TODO Auto-generated method stub
 				Log.d("clicked", "imageview");
-				Intent viewer=new Intent(v.getContext(),ViewPoster.class);
-				viewer.putExtra("url","http://ezevents.6te.net/"+currentEvent.posterPath );
+				Intent viewer = new Intent(v.getContext(), ViewPoster.class);
+				viewer.putExtra("url", "http://ezevents.6te.net/"
+						+ currentEvent.posterPath);
 				startActivity(viewer);
-		
+
 			}
 		});
 	}
-	
 
 	public void onClick(View v)
 	{
@@ -122,9 +122,8 @@ public class EventInfo extends Activity
 			extraListViewer.putExtra("eventId", currentEvent.getId());
 			startActivity(extraListViewer);
 		}
-		
+
 	}
-	
 
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
@@ -143,48 +142,41 @@ public class EventInfo extends Activity
 			return super.onMenuItemSelected(featureId, item);
 		}
 	}
-	
-		class getPosterandHandouts extends AsyncTask<String, Void, Bitmap>
+
+	class getPosterandHandouts extends AsyncTask<String, Void, Bitmap>
+	{
+		protected Bitmap doInBackground(String... arg0)
 		{
-			protected Bitmap doInBackground(String... arg0)
+			Bitmap bitmap = null;
+			try
 			{
-				URL url;
-				Bitmap bitmap = null;
-				try
-				{
-				//	url = new URL("http://ezevents.6te.net/"
-						//	+ currentEvent.posterPath);
-					//URLConnection connection = url.openConnection();
-					
-					
-					
-						 //get the files
-						 Log.d("GET","http://ezevents.6te.net/"+currentEvent.posterPath
-						 );
-						// InputStream pic1=new URL("http://ezevents.6te.net/"+currentEvent.posterPath).openStream();
-						//bitmap=BitmapFactory.decodeStream(pic1);
-				
-				} catch (Exception e)
-				{
-					Log.d("ERROR", e.getMessage());
-					return null;
-				}
-				return bitmap;
+				// url = new URL("http://ezevents.6te.net/"
+				// + currentEvent.posterPath);
+				// URLConnection connection = url.openConnection();
+				// get the files
+				Log.d("GET", "http://ezevents.6te.net/"
+						+ currentEvent.posterPath);
+				// InputStream pic1=new
+				// URL("http://ezevents.6te.net/"+currentEvent.posterPath).openStream();
+				// bitmap=BitmapFactory.decodeStream(pic1);
+			} catch (Exception e)
+			{
+				Log.d("ERROR", e.getMessage());
+				return null;
 			}
+			return bitmap;
+		}
 
-			protected void onPostExecute(Bitmap poster)
+		protected void onPostExecute(Bitmap poster)
+		{
+			if (poster == null)
 			{
-				if (poster == null)
-				{
-					
-				} else
-				{
-					
-					
-					
 
-				}
+			} else
+			{
+
 			}
 		}
-		
+	}
+
 }
