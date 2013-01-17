@@ -34,9 +34,7 @@ public class EventInfo extends Activity
 		currentEvent = EventOrganizer.getEventById(getIntent().getExtras()
 				.getString("eventId"));
 		// fetching =(ProgressBar)findViewById(R.id.fetchPosteAndHandout);
-		TextView name = (TextView) findViewById(R.id.name);
-		// new getPosterandHandouts().execute();
-		name.setText(currentEvent.getName());
+
 		TextView description = (TextView) findViewById(R.id.eventInfo);
 		description.setText(currentEvent.getDescription());
 		TextView time = (TextView) findViewById(R.id.time);
@@ -47,7 +45,8 @@ public class EventInfo extends Activity
 		date.setText(currentEvent.getDate());
 		TextView location = (TextView) findViewById(R.id.eventLocation);
 		posterspot = (ImageView) findViewById(R.id.event_info_poster_spot);
-
+		TextView name = (TextView) findViewById(R.id.name);
+		name.setText(currentEvent.getName());
 		location.setText(currentEvent.getLocation());
 		TextView locationSpecs = (TextView) findViewById(R.id.eventLocationSpecifics);
 		locationSpecs.setText(currentEvent.getLocationSpecifics());
