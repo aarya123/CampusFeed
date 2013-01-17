@@ -28,14 +28,15 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="42dp" >
+                android:layout_height="80dp" >
 
                 <ImageView
                     android:id="@+id/event_info_poster_spot"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="75dp"
+                    android:layout_height="110dp"
                     android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
+                    android:paddingBottom="6dp"
+                    android:paddingTop="6dp"
                     android:src="@drawable/ic_menu_refresh" />
 
                 <TextView
@@ -43,9 +44,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
+                   
                     android:layout_toRightOf="@+id/event_info_poster_spot"
                     android:text="Medium Text"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <TextView
+                    android:id="@+id/postedBy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:text="Small Text"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
 
             </RelativeLayout>
             

@@ -11,16 +11,16 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="17dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="17dp"
         android:src="@drawable/event_not_yet" />
 
     <TextView
         android:id="@+id/account_choice_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/account_choice_icon"
-        android:layout_marginLeft="28dp"
+        android:layout_alignTop="@+id/account_choice_icon"
+        android:layout_marginLeft="20dp"
         android:layout_toRightOf="@+id/account_choice_icon"
         android:text="Large Text"
         android:textAppearance="?android:attr/textAppearanceLarge"

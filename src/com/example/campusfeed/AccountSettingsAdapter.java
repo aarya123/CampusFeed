@@ -59,13 +59,16 @@ public class AccountSettingsAdapter extends ArrayAdapter<String>
 		} else if (choices[position].equals("My Created Events"))
 		{
 		} else if (choices[position].equals("My Starred Events"))
-		{
+		
+			{
+				holder.icon.setImageResource(R.drawable.star);
+		
 		} else if (choices[position].equals("Log Out"))
 		{
-			//holder.icon.setImageResource(R.drawable.log_out);
+			holder.icon.setImageResource(R.drawable.arrow_left);
 		} else if (choices[position].equals("Sign In"))
 		{
-			//holder.icon.setImageResource(R.drawable.log_in);
+			holder.icon.setImageResource(R.drawable.log_in);
 
 		} else if (choices[position].equals("Create an Account"))
 		{

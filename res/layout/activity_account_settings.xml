@@ -19,6 +19,8 @@
             <ListView
                 android:id="@+id/account_settings_list"
                 android:layout_width="match_parent"
+                android:paddingTop="10dp"
+               
                 android:layout_height="fill_parent"
                 android:divider="#ededed"
                 android:dividerHeight="10dp"

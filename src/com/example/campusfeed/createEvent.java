@@ -180,9 +180,9 @@ public class createEvent extends Activity
 		{
 		case R.id.postEvent:
 			// post the event by showing a progress bar
-			ActionBar bar = getActionBar();
+			
 			String s = location.getSelectedItem().toString();
-			bar.setTitle(s);
+		
 			new PostEvent().execute();
 			return true;
 		}
@@ -250,7 +250,7 @@ public class createEvent extends Activity
 			eventInfo.putExtra("eventId", result);
 			finish();
 			//startActivity(eventInfo);
-			Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+			
 		}
 	}
 }

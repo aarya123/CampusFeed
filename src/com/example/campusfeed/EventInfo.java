@@ -48,8 +48,8 @@ public class EventInfo extends Activity
 		TextView time = (TextView) findViewById(R.id.time);
 		time.setText(currentEvent.getTime());
 		TextView date = (TextView) findViewById(R.id.date);
-		//TextView user=(TextView)findViewById(R.id.postedBy);
-		//user.setText(currentEvent.getUser());
+		TextView user=(TextView)findViewById(R.id.postedBy);
+		user.setText("By: "+currentEvent.getUser());
 		date.setText(currentEvent.getDate());
 		TextView location = (TextView) findViewById(R.id.eventLocation);
 		 posterspot=(ImageView)findViewById(R.id.event_info_poster_spot);
