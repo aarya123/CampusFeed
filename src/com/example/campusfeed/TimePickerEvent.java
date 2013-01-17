@@ -15,6 +15,7 @@ import android.app.TimePickerDialog;
 public class TimePickerEvent extends DialogFragment implements
 		TimePickerDialog.OnTimeSetListener
 {
+
 	// Checking if AdvancedSearch is calling this function
 	
 	public static boolean fromAdv = false;
@@ -75,5 +76,6 @@ public class TimePickerEvent extends DialogFragment implements
 			createEvent.setTime.setText(formatView.format(d));
 			createEvent.time = timePhp;
 		}
+
 	}
 }

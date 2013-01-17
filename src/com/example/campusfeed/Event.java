@@ -7,19 +7,21 @@ import java.util.*;
 public class Event
 {
 	private String name, id, status, location, host, category, description,
-			locationSpecifics;
+			locationSpecifics,username;
 	private Date datetime;
 	private int interest;
 	private LatLng latlng;
 	public String posterPath, handoutPath;
+	
 
 	public Event(String id, String name, String status, String location,
 			String host, String category, String description,
 			String locationSpecifics, String date, int interest, String latlng,
-			String posterPath, String handoutPath)
+			String posterPath, String handoutPath,String username)
 	{
 		this.id = id;
 		this.name = name;
+		this.username=username;
 		this.status = status;
 		this.location = location;
 		this.posterPath = posterPath;
@@ -37,10 +39,11 @@ public class Event
 
 	public void Update(String id, String name, String status, String location,
 			String host, String category, String description,
-			String locationSpecifics, String date, int interest, String latlng)
+			String locationSpecifics, String date, int interest, String latlng,String username)
 	{
 		this.id = id;
 		this.name = name;
+		this.username=username;
 		this.status = status;
 		this.location = location;
 		this.host = host;
@@ -52,6 +55,9 @@ public class Event
 		String[] latAndLang = latlng.split(",");
 		this.latlng = new LatLng(Double.parseDouble(latAndLang[0]),
 				Double.parseDouble(latAndLang[1]));
+	}
+	public String getUser(){
+		return this.username;
 	}
 
 	public String getLocation()

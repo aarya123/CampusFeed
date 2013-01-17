@@ -13,6 +13,7 @@
     <item
         android:icon="@drawable/ic_action_settings"
         android:showAsAction="ifRoom"
+        
         android:title="Settings">
         <menu>
             <item
@@ -28,6 +29,11 @@
         android:icon="@drawable/ic_action_create_icon"
         android:showAsAction="ifRoom"
         android:title="Create an Event"/>
+     <item
+        android:id="@+id/myAccount"
+    
+        android:showAsAction="never"
+        android:title="My Account"/>
     
 
 </menu>
