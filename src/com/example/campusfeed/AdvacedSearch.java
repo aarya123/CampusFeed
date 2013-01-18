@@ -32,18 +32,17 @@ public class AdvacedSearch extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.advanced_search);
-		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // force
-																			// into
-																			// portrait
-		// String[] locations=new
-		// String[]{"Lawson Computer Science Building","Purdue Student Health Center","Cary Quadrangle"};
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // force into portrait
+																			
 		title = (EditText) findViewById(R.id.advsrch_eventtitle);
 		TimeChooser = (Button) findViewById(R.id.advsrch_settime);
 		DateChooser = (Button) findViewById(R.id.advsrch_setdate);
 		LocationChooser = (Spinner) findViewById(R.id.advsrch_setlocation);
 		submit = (Button) findViewById(R.id.advsrch_submit);
 		switcher = (ViewSwitcher) findViewById(R.id.searchViewSwitcher);
+		
 		// Setting action listeners for the buttons
+		
 		TimeChooser.setOnClickListener(new View.OnClickListener()
 		{
 			public void onClick(View v)
@@ -70,15 +69,22 @@ public class AdvacedSearch extends Activity
 			{
 				switcher.showNext();
 				clickCount = 1;
+				
 				// Ignoring "ENTER"
+				
 				String arrtemp[] = title.getText().toString().split("\n");
+				
+				// Getting number of matches
+				
 				int numberOfMatches = EventOrganizer.adv_searchEvents(
 						arrtemp[0],
 						LocationChooser.getSelectedItem().toString(), date,
 						time).size();
 				TextView queryinfo = (TextView) findViewById(R.id.number_of_matches);
 				queryinfo.setText(numberOfMatches + " result(s)");
+				
 				// Setting the ListView
+				
 				listView = (ListView) findViewById(R.id.searchlist);
 				a = new CustomAdapter(getApplicationContext(), R.id.searchlist,
 						EventOrganizer.adv_searchEvents(arrtemp[0],
@@ -106,6 +112,10 @@ public class AdvacedSearch extends Activity
 		});
 	}
 
+	// setTime is called by TimePickerEvent.java
+	
+	// setDate is called by DatePicker.java
+	
 	public static void setTime(Date chosenTime)
 	{
 		time = chosenTime;
@@ -115,6 +125,11 @@ public class AdvacedSearch extends Activity
 	{
 		date = chosenDate;
 	}
+	
+	/*
+	 *  When back is pressed after viewing the results,
+	 *  the view switches back to advanced search
+	 */
 
 	public void onBackPressed()
 	{

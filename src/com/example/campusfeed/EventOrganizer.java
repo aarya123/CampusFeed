@@ -268,6 +268,7 @@ public class EventOrganizer
 			}	
 		}
 		ArrayList<Event> names = new ArrayList<Event>();
+		//System.out.println(date);
 		for(int i = 0; i < getNumOfEvents(); i++)
 		{			
 			// Only events starting with the search string will get displayed
@@ -276,12 +277,18 @@ public class EventOrganizer
 			int sizeOfName = name.length();
 			for(int k=0 ; k<sizeOfName; k++)
 			{
+				if(k>=name.length())
+					break;
+				else
 				if(Character.toLowerCase(getEvent(i).getName().charAt(k)) != Character.toLowerCase(name.charAt(k)))
+				{
 					isNameMatching = false;
+					break;
+				}
 			}
 			
 			if ( isNameMatching == true
-			 && (location.equals("Any")|| getEvent(i).getLocation().toLowerCase().equals(location.toLowerCase()))
+			 && (location.equals("                                Any")|| getEvent(i).getLocation().toLowerCase().equals(location.toLowerCase()))
 			 && (date==null || getEvent(i).getDate().toLowerCase().equals(date.toLowerCase()))
 			 && (time==null || 
 			 		(((getEvent(i).getTime_noformat().getHours()>begtime.getHours()) || 

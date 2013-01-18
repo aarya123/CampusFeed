@@ -52,7 +52,7 @@ public class createEvent extends Activity
 		locationsHashMap = new HashMap<String, String>();
 		locationsHashMap.put("Aerospace Science Laboratory",
 				"40.416303,-86.928527");
-		locationsHashMap.put("Agricultural and Biological Engineering ",
+		locationsHashMap.put("Agricultural and Biological Engineering",
 				"40.421632,-86.91655");
 		locationsHashMap.put("Animal Disease Diagnostic Laboratory",
 				"40.418197,-86.916002");
