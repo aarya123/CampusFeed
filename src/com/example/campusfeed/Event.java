@@ -9,6 +9,7 @@ public class Event
 	private String name, id, status, location, host, category, description,
 			locationSpecifics, username;
 	private Date datetime;
+	public int starredNum;
 	private int interest;
 	private LatLng latlng;
 	public String posterPath, handoutPath;
@@ -16,11 +17,12 @@ public class Event
 	public Event(String id, String name, String status, String location,
 			String host, String category, String description,
 			String locationSpecifics, String date, int interest, String latlng,
-			String posterPath, String handoutPath, String username)
+			String posterPath, String handoutPath, String username,int starredNum)
 	{
 		this.id = id;
 		this.name = name;
 		this.username = username;
+		this.starredNum=starredNum;
 		this.status = status;
 		this.location = location;
 		this.posterPath = posterPath;

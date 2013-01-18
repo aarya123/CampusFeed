@@ -1,5 +1,15 @@
 package com.example.campusfeed;
 
+import java.io.IOException;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.ParseException;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -10,6 +20,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -45,6 +56,18 @@ public class EventInfo extends Activity
 		date.setText(currentEvent.getDate());
 		TextView location = (TextView) findViewById(R.id.eventLocation);
 		posterspot = (ImageView) findViewById(R.id.event_info_poster_spot);
+		Button numViews =(Button)findViewById(R.id.button1);
+		numViews.setText("  "+currentEvent.getInterest());
+		Button numStarred=(Button)findViewById(R.id.button2);
+		numStarred.setText("  "+currentEvent.starredNum);
+		numStarred.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Log.d("APP", "STARRED");
+			}
+		});
 		TextView name = (TextView) findViewById(R.id.name);
 		name.setText(currentEvent.getName());
 		location.setText(currentEvent.getLocation());
@@ -106,6 +129,10 @@ public class EventInfo extends Activity
 			extraListViewer.putExtra("sort", "date");
 			extraListViewer.putExtra("eventId", currentEvent.getId());
 			startActivity(extraListViewer);
+		}
+		if(v.getId()==R.id.button2){
+			// then call star the event
+			Log.d("APP", "CLICKED ON STAR");
 		}
 		if (v.getId() == R.id.time)
 		{
@@ -176,6 +203,90 @@ public class EventInfo extends Activity
 
 			}
 		}
+	}
+	class AccountOnline extends AsyncTask<String, Void, String>
+	{
+		protected String doInBackground(String... params)
+		{
+			if (params[2].equals("star"))
+			{
+				HttpGet httpGet = new HttpGet(
+						"http://ezevents.6te.net/accounts_mobile.php?username="
+								+ params[0] + "&starring_event_id=" + params[1]
+								+ "&action=star_event");
+				HttpClient h = new DefaultHttpClient();
+				HttpResponse r = null;
+				try
+				{
+					// execute request
+					r = h.execute(httpGet);
+				} catch (ClientProtocolException e1)
+				{
+					Log.d("ERROR", e1.getMessage());
+				} catch (IOException e1)
+				{
+					Log.d("ERROR", e1.getMessage());
+				}
+				try
+				{
+					// will return the full json array outputted by php
+					Accounts.s = EntityUtils.toString(r.getEntity());
+				} catch (ParseException e1)
+				{
+					Log.d("ERROR", e1.getMessage());
+				} catch (IOException e1)
+				{
+					Log.d("ERROR", e1.getMessage());
+				}
+				new DownloadDataThread().Download();
+			
+				return "STARRED";
+				// connect to php file and add in starred
+			} else
+			{
+				HttpGet httpGet = new HttpGet(
+						"http://ezevents.6te.net/accounts_mobile.php?username="
+								+ params[0] + "&unstarring_event_id="
+								+ params[1] + "&action=unstar_event");
+				HttpClient h = new DefaultHttpClient();
+				HttpResponse r = null;
+				try
+				{
+					// execute request
+					r = h.execute(httpGet);
+				} catch (ClientProtocolException e1)
+				{
+					Log.d("ERROR", e1.getMessage());
+				} catch (IOException e1)
+				{
+					Log.d("ERROR", e1.getMessage());
+				}
+				try
+				{
+					// will return the full json array outputted by php
+					Accounts.s = EntityUtils.toString(r.getEntity());
+				} catch (ParseException e1)
+				{
+					Log.d("ERROR", e1.getMessage());
+				} catch (IOException e1)
+				{
+					Log.d("ERROR", e1.getMessage());
+				}
+				return "ELSE";
+			}
+		}
+		@Override
+		protected void onPostExecute(String result){
+			
+			if(result=="STARRED"){
+				
+			}
+			else{
+				
+			}
+		}
+		
+
 	}
 
 }

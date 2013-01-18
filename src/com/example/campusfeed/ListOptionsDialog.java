@@ -15,6 +15,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,6 +25,7 @@ public class ListOptionsDialog extends DialogFragment
 {
 	public static Event longClicked;
 	public static int x;
+	public static int position_clicked;
 
 	public Dialog onCreateDialog(Bundle savedInstanceState)
 	{
@@ -111,9 +113,9 @@ public class ListOptionsDialog extends DialogFragment
 				{
 					Log.d("ERROR", e1.getMessage());
 				}
-				// Tab1.listView.invalidateViews();
-				// Tab2.listView.invalidateViews();
-				return "DONE";
+				new DownloadDataThread().Download();
+			
+				return "STARRED";
 				// connect to php file and add in starred
 			} else
 			{
@@ -145,9 +147,15 @@ public class ListOptionsDialog extends DialogFragment
 				{
 					Log.d("ERROR", e1.getMessage());
 				}
-				return "DONE";
+				return "ELSE";
 			}
 		}
+		@Override
+		protected void onPostExecute(String result){
+			Tab2.a.notifyDataSetChanged();
+			Tab1.a.notifyDataSetChanged();
+		}
+		
 
 	}
 }
