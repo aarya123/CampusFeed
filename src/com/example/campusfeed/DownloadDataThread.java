@@ -88,7 +88,7 @@ public class DownloadDataThread extends Thread
 									.replace("\n", ""), event
 									.getString("poster"), event
 									.getString("handout"), event
-									.getString("user")));
+									.getString("user"),event.getInt("starred_num")));
 
 				} catch (JSONException e)
 				{

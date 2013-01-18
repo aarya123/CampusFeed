@@ -335,10 +335,13 @@ class Connection extends AsyncTask<String, Void, String>
 		{
 			Tab1.a.add(EventOrganizer.getEvents(EventOrganizer.Sorter.today));
 			Tab2.a.add(EventOrganizer.getEvents(EventOrganizer.Sorter.popular));
+			Tab1.a.notifyDataSetChanged();
+			Tab2.a.notifyDataSetChanged();
 		} catch (Exception e)
 		{
 			// since null pointer might go off if the array adapter has not
 			// loaded yet.
+			Log.d("APP", "ERORRRR");
 		}
 	}
 }

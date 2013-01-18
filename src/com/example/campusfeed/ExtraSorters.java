@@ -16,6 +16,7 @@ public class ExtraSorters extends Activity
 	ListView choiceListView, eventListView;
 	ViewSwitcher switcher;
 	CustomAdapter a, b;
+	CategoriesAdapter adapter;
 	int clickCount;
 
 	protected void onCreate(Bundle savedInstanceState)
@@ -26,9 +27,7 @@ public class ExtraSorters extends Activity
 		String[] events = new String[] { "Social", "Sales", "Organizational",
 				"Sports", "Academic" };
 		choiceListView = (ListView) findViewById(R.id.choiceList);
-		ArrayAdapter<String> a = new ArrayAdapter<String>(
-				getApplicationContext(), R.layout.plainlistlayout,
-				R.id.eventTitle, events);
+		CategoriesAdapter a=new CategoriesAdapter(getApplicationContext(),R.id.choiceList,events);
 		choiceListView.setAdapter(a);
 		switcher = (ViewSwitcher) findViewById(R.id.viewSwitcher);
 		choiceListView.setOnItemClickListener(new OnItemClickListener()

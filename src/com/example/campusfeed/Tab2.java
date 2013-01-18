@@ -45,6 +45,7 @@ public class Tab2 extends Activity
 				// fire off the dialog box
 				ListOptionsDialog.longClicked = a.getItem(arg2);
 				FragmentManager fm = getFragmentManager();
+				ListOptionsDialog.position_clicked=arg2;
 				ListOptionsDialog d = new ListOptionsDialog();
 				d.show(fm, "options");
 				return false;

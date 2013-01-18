@@ -22,60 +22,90 @@
             android:background="#FFFFFF"
             android:visibility="visible" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="34dp"
+            android:background="#000000" >
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="80dp" >
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/textView1"
+                android:background="#000000"
+                android:paddingLeft="18dp"
+                android:paddingRight="5dp"
+                android:layout_marginLeft="67dp"
+                android:drawableLeft="@drawable/eye"
+            
+                android:gravity="left|center_vertical"
+                android:text=" 100"
+                android:textColor="#ffffff" />
 
-                <ImageView
-                    android:id="@+id/event_info_poster_spot"
-                    android:layout_width="75dp"
-                    android:layout_height="110dp"
-                    android:layout_alignParentLeft="true"
-                    android:paddingBottom="6dp"
-                    android:paddingTop="6dp"
-                    android:src="@drawable/ic_menu_refresh" />
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/textView1"
+                android:background="#000000"
+                android:drawableLeft="@drawable/star"
+                android:drawablePadding="0sp"
+                android:gravity="left|center_vertical"
+                android:text="  121"
+                android:textColor="#ffffff" />
 
-                <TextView
-                    android:id="@+id/name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/event_info_poster_spot"
-                    android:text="Medium Text"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColor="#ffffff"
+                android:layout_centerVertical="true"
+                android:text="|  "
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                <TextView
-                    android:id="@+id/postedBy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:text="Small Text"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-            </RelativeLayout>
-        </LinearLayout>
+          
+        </RelativeLayout>
 
         <TextView
-            android:id="@+id/description"
+            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#2388cd"
             android:gravity="center"
-            android:text="What"
+            android:text="Event Name"
             android:textColor="#FFFFFF"
             android:textSize="25sp" />
 
-        <TextView
-            android:id="@+id/eventInfo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:text="EventInfo"
-            android:textSize="20sp" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/event_info_poster_spot"
+                android:layout_width="75dp"
+                android:layout_height="110dp"
+                android:layout_alignParentLeft="true"
+                android:paddingBottom="6dp"
+                android:paddingTop="6dp"
+                android:src="@drawable/ic_menu_refresh" />
+
+            <TextView
+                android:id="@+id/eventInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_toRightOf="@+id/event_info_poster_spot"
+                android:clickable="true"
+                android:paddingLeft="6dp"
+                android:paddingTop="6dp"
+                android:text="EventInfo"
+                android:textSize="20sp" />
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/when"
@@ -141,6 +171,13 @@
             android:layout_width="match_parent"
             android:layout_height="290dp"
             class="com.google.android.gms.maps.MapFragment" />
+
+        <TextView
+            android:id="@+id/postedBy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
     </LinearLayout>
 
 </ScrollView>
