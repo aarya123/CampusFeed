@@ -21,9 +21,10 @@
             android:id="@+id/eventTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10" >
+            android:ems="10" 
+                    android:inputType="textNoSuggestions">
 
-            <requestFocus />
+       
         </EditText>
 
         <TextView
@@ -38,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textMultiLine" />
+                    android:inputType="textNoSuggestions" />
 
         <TextView
             android:id="@+id/textView3"
@@ -105,7 +106,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textMultiLine" />
+        android:inputType="textNoSuggestions"/>
 
         <TextView
             android:id="@+id/event_poster_upload_textview"
@@ -113,23 +114,13 @@
             android:layout_height="wrap_content"
             android:text="Upload a poster (Optional)" />
 
+   
+
         <Button
             android:id="@+id/button1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Choose Poster Image" />
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Upload a handout (pdf,docx,and etc.) Optional" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Choose Handout" />
     </LinearLayout>
 
 </ScrollView>

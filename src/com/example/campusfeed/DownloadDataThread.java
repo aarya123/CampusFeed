@@ -46,12 +46,9 @@ public class DownloadDataThread extends Thread
 		{
 			// will return the full json array outputted by php
 			response = EntityUtils.toString(r.getEntity());
-		} catch (ParseException e1)
-		{
-			Log.d("APP", "ERROR3");
-		} catch (IOException e1)
-		{
-			Log.d("APP", "ERROR4");
+		} catch(Exception e){
+			EventOrganizer.getList().clear();
+			return;
 		}
 		// decode it.
 		jsonArray = URLDecoder.decode(response);

@@ -167,7 +167,9 @@ public class Event
 	{
 		return host;
 	}
-
+public void setInterest(){
+	this.interest=this.interest+1;
+}
 	// This tag will be used by the SearchView widget
 
 	public String getSimpleTag()

@@ -1,5 +1,16 @@
 package com.example.campusfeed;
 
+import java.io.IOException;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import com.example.campusfeed.Tab1.UpdateInterest;
+
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -67,12 +78,16 @@ public class ExtraSorters extends Activity
 					public void onItemClick(AdapterView<?> parent, View view,
 							int position, long id)
 					{
+						b.getItem(position).setInterest();
 						Event goingTo = (Event) b.getItem(position);
+						
 						Log.d("APP", goingTo.getId());
 						Intent eventInfo = new Intent(ExtraSorters.this,
 								EventInfo.class);
 						eventInfo.putExtra("eventId", goingTo.getId());
+						eventInfo.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 						ExtraSorters.this.startActivity(eventInfo);
+						new UpdateInterest().execute(goingTo.getId());
 					}
 				});
 			}
@@ -87,5 +102,30 @@ public class ExtraSorters extends Activity
 			clickCount = 0;
 		} else
 			super.onBackPressed();
+	}
+	public class UpdateInterest extends AsyncTask<String,Void,String>{
+
+		@Override
+		protected String doInBackground(String... params) {
+			// TODO Auto-generated method stub
+			HttpGet httpGet = new HttpGet(
+					"http://ezevents.6te.net/interest.php?eventid="+params[0]);
+			HttpClient h = new DefaultHttpClient();
+			HttpResponse r = null;
+			try
+			{
+				// execute request
+				r = h.execute(httpGet);
+			} catch (Exception e1){
+				return "error";
+			}
+		
+			return "done";
+		}
+		
+		@Override
+		protected void onPostExecute(String result){
+			
+		}
 	}
 }

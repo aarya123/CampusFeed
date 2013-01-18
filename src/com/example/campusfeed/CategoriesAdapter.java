@@ -52,16 +52,20 @@ public class CategoriesAdapter extends ArrayAdapter<String>
 		}
 		else
 			if(position==1){
-				holder.icon.setImageResource(R.drawable.football);
+				holder.icon.setImageResource(R.drawable.sale);
 			}
 			else
 				if(position==2){
-					holder.icon.setImageResource(R.drawable.university_icon);
+					holder.icon.setImageResource(R.drawable.organizational);
 				}
 				else
 					if(position==3){
-						
+						holder.icon.setImageResource(R.drawable.football);
 					}
+					else
+						if(position==4){
+							holder.icon.setImageResource(R.drawable.university_icon);
+						}
 		return v;
 	}
 }

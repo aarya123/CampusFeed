@@ -1,6 +1,7 @@
 package com.example.campusfeed;
 
 import com.example.campusfeed.EventOrganizer.Sorter;
+import com.example.campusfeed.ListOptionsDialog.AccountOnline;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 import android.widget.ViewSwitcher;
 
@@ -20,13 +22,15 @@ public class AccountSettings extends Activity
 	CustomAdapter b;
 	int clickCount = 0;
 	String[] choices;
-
+//
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_account_settings);
 		this.getActionBar().setBackgroundDrawable(
-				new ColorDrawable(R.color.black));
+				new ColorDrawable(R.color.cf_blue));
+		setContentView(R.layout.activity_account_settings);
+		
+		//
 		switcher = (ViewSwitcher) findViewById(R.id.viewSwitcherSettings);
 		switchedList = (ListView) findViewById(R.id.settingsListView);
 		// ACCOUNT OPTIONS
@@ -43,8 +47,7 @@ public class AccountSettings extends Activity
 		AccountSettingsAdapter adapter = new AccountSettingsAdapter(
 				this.getApplicationContext(), R.id.account_settings_list,
 				choices);
-		accountChoices.setSelector(android.R.color.holo_blue_light);
-		accountChoices.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+
 		accountChoices.setAdapter(adapter);
 		accountChoices.setOnItemClickListener(new OnItemClickListener()
 		{
@@ -106,6 +109,9 @@ public class AccountSettings extends Activity
 											.startActivity(eventInfo);
 								}
 							});
+				
+						
+					
 					clickCount = 1;
 					switcher.showNext();
 				} else if (choices[position].equals("Log Out"))

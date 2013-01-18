@@ -225,7 +225,7 @@ public class createEvent extends Activity
 		setTime = (Button) findViewById(R.id.setTime);
 		setDate = (Button) findViewById(R.id.setDate);
 		upPoster = (Button) findViewById(R.id.button1);
-		upHandout = (Button) findViewById(R.id.button2);
+		
 		setTime.setOnClickListener(new View.OnClickListener()
 		{
 			public void onClick(View v)
@@ -263,22 +263,7 @@ public class createEvent extends Activity
 				}
 			}
 		});
-		upHandout.setOnClickListener(new View.OnClickListener()
-		{
-			public void onClick(View v)
-			{
-				Intent target = FileUtils.createGetContentIntent();
-				Intent intent = Intent.createChooser(target,
-						"Choose your Handout");
-				try
-				{
-					startActivityForResult(intent, 00011);
-				} catch (ActivityNotFoundException e)
-				{
-					// The reason for the existence of aFileChooser
-				}
-			}
-		});
+		
 	}
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
@@ -370,7 +355,7 @@ public class createEvent extends Activity
 			{
 				MultipartEntity entity = new MultipartEntity();
 				entity.addPart("POSTER", new FileBody(poster));
-				entity.addPart("HANDOUT", new FileBody(handout));
+			
 				entity.addPart("time", new StringBody(time));
 				entity.addPart("date", new StringBody(date));
 				entity.addPart(

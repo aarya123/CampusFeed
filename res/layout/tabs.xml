@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:divider="#EDEDED"
         android:dividerHeight="7.0dp"
-        android:listSelector="#2388cd"
+        android:listSelector="#ededed"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingTop="5dp" >

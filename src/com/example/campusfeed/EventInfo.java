@@ -24,6 +24,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.example.campusfeed.ListOptionsDialog.AccountOnline;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
@@ -36,6 +38,7 @@ public class EventInfo extends Activity
 {
 	public Event currentEvent;
 	public ProgressBar fetching;
+	public Button numStarred;
 	public ImageView posterspot;
 
 	protected void onCreate(Bundle savedInstanceState)
@@ -58,7 +61,7 @@ public class EventInfo extends Activity
 		posterspot = (ImageView) findViewById(R.id.event_info_poster_spot);
 		Button numViews =(Button)findViewById(R.id.button1);
 		numViews.setText("  "+currentEvent.getInterest());
-		Button numStarred=(Button)findViewById(R.id.button2);
+	numStarred=(Button)findViewById(R.id.button2);
 		numStarred.setText("  "+currentEvent.starredNum);
 		numStarred.setOnClickListener(new View.OnClickListener() {
 			
@@ -66,6 +69,32 @@ public class EventInfo extends Activity
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Log.d("APP", "STARRED");
+				if (Accounts.isSignedIn())
+				{
+					int index;
+					if ((index = Accounts.isStarred(currentEvent.getId())) == -1)
+					{
+						currentEvent.starredNum=currentEvent.starredNum+1;
+						numStarred.setText("  "+currentEvent.starredNum);
+						Accounts.starEvent(currentEvent.getId());
+						
+						new AccountOnline().execute(
+								Accounts.getUsername(),
+								currentEvent.getId(), "star");
+						
+						
+					} else
+					{
+						Accounts.unStar(index);
+						currentEvent.starredNum=currentEvent.starredNum-1;
+						numStarred.setText("  "+currentEvent.starredNum);
+						new AccountOnline().execute(
+								Accounts.getUsername(),
+								currentEvent.getId(), "unstar");
+						
+						
+					}
+				}
 			}
 		});
 		TextView name = (TextView) findViewById(R.id.name);

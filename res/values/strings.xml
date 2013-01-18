@@ -4,27 +4,241 @@
     <string name="app_name">CampusFeed</string>
 
     <string-array name="locations">
-        <item>Purdue Memorial Union</item>
-        <item>Lawson Computer Science Building</item>
-        <item>Purdue Student Health Center</item>
-        <item>Cary Quadrangle</item>
-        <item>Electrical Engineering Building</item>
+        <item>        Aerospace Science Laboratory        </item>
+<item>        Agricultural and Biological Engineering         </item>
+<item>        Animal Disease Diagnostic Laboratory        </item>
+<item>        Animal Sciences Teaching Laboratory        </item>
+<item>        Beering Hall of Liberal Arts and Education        </item>
+<item>        Biochemistry Building        </item>
+<item>        Bowen Laboratory for Civil Engineering         </item>
+<item>        Brown Laboratory of Chemistry         </item>
+<item>        Chaffee Hall        </item>
+<item>        Class of 1950 Lecture Hall         </item>
+<item>        Combustion Research Laboratory        </item>
+<item>        Composites Laboratory         </item>
+<item>        Doyle Laboratory        </item>
+<item>        Electrical Engineering Building         </item>
+<item>        Entomology Environmental Laboratory         </item>
+<item>        Equine Health Sciences Annex        </item>
+<item>        Flight Operations Building         </item>
+<item>        Forestry Building        </item>
+<item>        Forestry Products Building         </item>
+<item>        Forney Hall of Chemical Engineering        </item>
+<item>        Fowler Memorial House         </item>
+<item>        Gas Dynamics Research Laboratory        </item>
+<item>        Grissom Hall        </item>
+<item>        Haas Hall        </item>
+<item>        Hampton Hall of Civil Engineering        </item>
+<item>        Hansen Life Sciences Research Building        </item>
+<item>        Heavilon Hall         </item>
+<item>        Heine Pharmacy Building         </item>
+<item>        Herrick Laboratories        </item>
+<item>        Hicks Undergraduate Library         </item>
+<item>        High Pressure Research Laboratory        </item>
+<item>        Hockmeyer Hall of Structural Biology        </item>
+<item>        Horticulture Building         </item>
+<item>        Horticulture Greenhouse         </item>
+<item>        Johnson Hall of Nursing         </item>
+<item>        Knoy Hall of Technology         </item>
+<item>        Krannert Building        </item>
+<item>        Lawson Computer Science Building        </item>
+<item>        Life Science Animal Building         </item>
+<item>        Lilly Hall of Life Sciences         </item>
+<item>        Lynn Hall of Veterinary Medicine        </item>
+<item>        Martin C. Jischke Hall of Biomedical Engineering        </item>
+<item>        Materials and Electrical Engineering         </item>
+<item>        Mathematial Sciences Building         </item>
+<item>        Matthews Hall        </item>
+<item>        Mechanical Engineering Building        </item>
+<item>        Neil Armstrong Hall of Engineering        </item>
+<item>        Nelson Hall of Food Science         </item>
+<item>        Niswonger Aviation Technology Building        </item>
+<item>        Nuclear Engineering Building        </item>
+<item>        Peirce Hall        </item>
+<item>        Pfendler Hall of Agriculture         </item>
+<item>        Physics Building        </item>
+<item>        Potter Engineering Center         </item>
+<item>        Poultry Science Building         </item>
+<item>        Propulsion Research Laboratory         </item>
+<item>        Psychological Sciences Building        </item>
+<item>        Rawls Hall        </item>
+<item>        Recitation Building        </item>
+<item>        Smith Hall        </item>
+<item>        National Soil Erosion Laboratory        </item>
+<item>        Stanley Coulter Hall         </item>
+<item>        Stone Hall         </item>
+<item>        University Hall        </item>
+<item>        Veterinary Pathobiology Research Building        </item>
+<item>        Wetherill Laboratory of Chemistry         </item>
+<item>        Whistler Hall of Agricultural Research        </item>
+<item>        Armory        </item>
+<item>        Hovde Hall of Administration         </item>
+<item>        Purdue Police Department         </item>
+<item>        Purdue University Student Health Center        </item>
+<item>        Schleman Hall of Student Services         </item>
+<item>        Terminal Building        </item>
+<item>        Young Hall        </item>
+<item>        Cary Quadrangle         </item>
+<item>        Earhart Residence Hall         </item>
+<item>        First Street Towers        </item>
+<item>        Ford Dining Court         </item>
+<item>        Harrison Residence Hall         </item>
+<item>        Hawkins Residence Hall         </item>
+<item>        Hillenbrand Residence Hall         </item>
+<item>        Hilltop Apartments        </item>
+<item>        McCutcheon Residence Hall         </item>
+<item>        Meredith Residence Hall         </item>
+<item>        Owen Residence Hall         </item>
+<item>        Purdue Village Administration Building         </item>
+<item>        Shreve Residence Hall         </item>
+<item>        Tarkington Residence Hall         </item>
+<item>        Wiley Dining Court        </item>
+<item>        Wiley Residence Hall        </item>
+<item>        Windsor Halls        </item>
+<item>        Birck Boilermaker Golf Complex        </item>
+<item>        Black Cultural Center        </item>
+<item>        Boilermaker Aquatic Center         </item>
+<item>        Dauch Alumni Center        </item>
+<item>        Elliott Hall of Music        </item>
+<item>        Lambert Fieldhouse        </item>
+<item>        Latino Cultural Center        </item>
+<item>        Mackey Arena        </item>
+<item>        Memorial Mall        </item>
+<item>        Mollenkopf Athletic Center         </item>
+<item>        Bell Tower        </item>
+<item>        Engineering Fountain         </item>
+<item>        Purdue Memorial Union         </item>
+<item>        Rankin Track and Field        </item>
+<item>        Recreational Sports Center         </item>
+<item>        Ross-Ade Stadium        </item>
+<item>        Slayter Center of Performing Arts        </item>
+<item>        Stewart Center        </item>
+<item>        Varsity Soccer Complex        </item>
+<item>        Visitor Information Center         </item>
+
+
+        
     </string-array>
     <string-array name="locationsForSearch">
         <item>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Any</item>
-        <item>Purdue Memorial Union</item>
-        <item>Lawson Computer Science Building</item>
-        <item>Purdue Student Health Center</item>
-        <item>Cary Quadrangle</item>
-        <item>Electrical Engineering Building</item>
+      <item>        Aerospace Science Laboratory        </item>
+<item>        Agricultural and Biological Engineering         </item>
+<item>        Animal Disease Diagnostic Laboratory        </item>
+<item>        Animal Sciences Teaching Laboratory        </item>
+<item>        Beering Hall of Liberal Arts and Education        </item>
+<item>        Biochemistry Building        </item>
+<item>        Bowen Laboratory for Civil Engineering         </item>
+<item>        Brown Laboratory of Chemistry         </item>
+<item>        Chaffee Hall        </item>
+<item>        Class of 1950 Lecture Hall         </item>
+<item>        Combustion Research Laboratory        </item>
+<item>        Composites Laboratory         </item>
+<item>        Doyle Laboratory        </item>
+<item>        Electrical Engineering Building         </item>
+<item>        Entomology Environmental Laboratory         </item>
+<item>        Equine Health Sciences Annex        </item>
+<item>        Flight Operations Building         </item>
+<item>        Forestry Building        </item>
+<item>        Forestry Products Building         </item>
+<item>        Forney Hall of Chemical Engineering        </item>
+<item>        Fowler Memorial House         </item>
+<item>        Gas Dynamics Research Laboratory        </item>
+<item>        Grissom Hall        </item>
+<item>        Haas Hall        </item>
+<item>        Hampton Hall of Civil Engineering        </item>
+<item>        Hansen Life Sciences Research Building        </item>
+<item>        Heavilon Hall         </item>
+<item>        Heine Pharmacy Building         </item>
+<item>        Herrick Laboratories        </item>
+<item>        Hicks Undergraduate Library         </item>
+<item>        High Pressure Research Laboratory        </item>
+<item>        Hockmeyer Hall of Structural Biology        </item>
+<item>        Horticulture Building         </item>
+<item>        Horticulture Greenhouse         </item>
+<item>        Johnson Hall of Nursing         </item>
+<item>        Knoy Hall of Technology         </item>
+<item>        Krannert Building        </item>
+<item>        Lawson Computer Science Building        </item>
+<item>        Life Science Animal Building         </item>
+<item>        Lilly Hall of Life Sciences         </item>
+<item>        Lynn Hall of Veterinary Medicine        </item>
+<item>        Martin C. Jischke Hall of Biomedical Engineering        </item>
+<item>        Materials and Electrical Engineering         </item>
+<item>        Mathematial Sciences Building         </item>
+<item>        Matthews Hall        </item>
+<item>        Mechanical Engineering Building        </item>
+<item>        Neil Armstrong Hall of Engineering        </item>
+<item>        Nelson Hall of Food Science         </item>
+<item>        Niswonger Aviation Technology Building        </item>
+<item>        Nuclear Engineering Building        </item>
+<item>        Peirce Hall        </item>
+<item>        Pfendler Hall of Agriculture         </item>
+<item>        Physics Building        </item>
+<item>        Potter Engineering Center         </item>
+<item>        Poultry Science Building         </item>
+<item>        Propulsion Research Laboratory         </item>
+<item>        Psychological Sciences Building        </item>
+<item>        Rawls Hall        </item>
+<item>        Recitation Building        </item>
+<item>        Smith Hall        </item>
+<item>        National Soil Erosion Laboratory        </item>
+<item>        Stanley Coulter Hall         </item>
+<item>        Stone Hall         </item>
+<item>        University Hall        </item>
+<item>        Veterinary Pathobiology Research Building        </item>
+<item>        Wetherill Laboratory of Chemistry         </item>
+<item>        Whistler Hall of Agricultural Research        </item>
+<item>        Armory        </item>
+<item>        Hovde Hall of Administration         </item>
+<item>        Purdue Police Department         </item>
+<item>        Purdue University Student Health Center        </item>
+<item>        Schleman Hall of Student Services         </item>
+<item>        Terminal Building        </item>
+<item>        Young Hall        </item>
+<item>        Cary Quadrangle         </item>
+<item>        Earhart Residence Hall         </item>
+<item>        First Street Towers        </item>
+<item>        Ford Dining Court         </item>
+<item>        Harrison Residence Hall         </item>
+<item>        Hawkins Residence Hall         </item>
+<item>        Hillenbrand Residence Hall         </item>
+<item>        Hilltop Apartments        </item>
+<item>        McCutcheon Residence Hall         </item>
+<item>        Meredith Residence Hall         </item>
+<item>        Owen Residence Hall         </item>
+<item>        Purdue Village Administration Building         </item>
+<item>        Shreve Residence Hall         </item>
+<item>        Tarkington Residence Hall         </item>
+<item>        Wiley Dining Court        </item>
+<item>        Wiley Residence Hall        </item>
+<item>        Windsor Halls        </item>
+<item>        Birck Boilermaker Golf Complex        </item>
+<item>        Black Cultural Center        </item>
+<item>        Boilermaker Aquatic Center         </item>
+<item>        Dauch Alumni Center        </item>
+<item>        Elliott Hall of Music        </item>
+<item>        Lambert Fieldhouse        </item>
+<item>        Latino Cultural Center        </item>
+<item>        Mackey Arena        </item>
+<item>        Memorial Mall        </item>
+<item>        Mollenkopf Athletic Center         </item>
+<item>        Bell Tower        </item>
+<item>        Engineering Fountain         </item>
+<item>        Purdue Memorial Union         </item>
+<item>        Rankin Track and Field        </item>
+<item>        Recreational Sports Center         </item>
+<item>        Ross-Ade Stadium        </item>
+<item>        Slayter Center of Performing Arts        </item>
+<item>        Stewart Center        </item>
+<item>        Varsity Soccer Complex        </item>
+<item>        Visitor Information Center         </item>
+
+
     </string-array>
     <string-array name="listdialogoptions">
         <item>View</item>
         <item>Star/Unstar Event</item>
-        <item>Star/Unstar User</item>
-        <item>Share by text message</item>
-        <item>Share by Email</item>
-        <item>Share on Facebook</item>
+
     </string-array>
 
     <string name="EventName">Event Name</string>

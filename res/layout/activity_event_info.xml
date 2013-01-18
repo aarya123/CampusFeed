@@ -91,6 +91,7 @@
                 android:layout_height="110dp"
                 android:layout_alignParentLeft="true"
                 android:paddingBottom="6dp"
+                android:paddingLeft="6dp"
                 android:paddingTop="6dp"
                 android:src="@drawable/ic_menu_refresh" />
 
@@ -176,8 +177,10 @@
             android:id="@+id/postedBy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Small Text"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:textColor="@color/cf_blue"
+            android:text="Posted By"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
     </LinearLayout>
 
 </ScrollView>

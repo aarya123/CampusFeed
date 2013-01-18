@@ -15,9 +15,9 @@ public class PromotionsAdapter extends PagerAdapter
 	String[] promotions = new String[] {
 			"http://ezevents.6te.net/promos/promo2.png",
 			"http://ezevents.6te.net/promos/promotion1display.png",
-			"http://ezevents.6te.net/promos/promo2.png",
+			"http://ezevents.6te.net/promos/promo3.png",
 			"http://ezevents.6te.net/promos/promotion1display.png",
-			"http://ezevents.6te.net/promos/promo2.png" };
+			"http://ezevents.6te.net/promos/promo3.png" };
 
 	public int getCount()
 	{
