@@ -1,4 +1,4 @@
 CampusFeed
 ==========
 Created by Mayank Jethva, Anubhaw Arya, Pranav Menon
-Purdue Google Coding Compeition JAN 2013
+Purdue Google Coding Competition JAN 2013
